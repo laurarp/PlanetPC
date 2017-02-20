@@ -4,21 +4,32 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
 import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.Font;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.Arrays;
+
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class FormLogin {
 
 	private JFrame frame;
 	private JTextField textUsuario;
-	private JPasswordField Contrasena;
+	private JPasswordField textContrasena;
 
 	/**
 	 * Launch the application.
@@ -99,16 +110,105 @@ public class FormLogin {
 		label.setBounds(350, 0, 21, 373);
 		frame.getContentPane().add(label);
 		
-		Contrasena = new JPasswordField();
-		Contrasena.setFont(new Font("Calibri", Font.PLAIN, 20));
-		Contrasena.setHorizontalAlignment(SwingConstants.CENTER);
-		Contrasena.setBounds(34, 256, 295, 36);
-		frame.getContentPane().add(Contrasena);
+		textContrasena = new JPasswordField();
+		textContrasena.setFont(new Font("Calibri", Font.PLAIN, 20));
+		textContrasena.setHorizontalAlignment(SwingConstants.CENTER);
+		textContrasena.setBounds(34, 256, 295, 36);
+		frame.getContentPane().add(textContrasena);
 		
 		JButton btnIngresar = new JButton("Ingresar");
+		btnIngresar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Actor[] usuarios=ReadFileActores("ListaUsuarios.txt");
+				
+				if(usuarios!=null)
+				{
+					int i=-1;
+					
+					while( i<usuarios.length && usuarios[i].getId()!=textUsuario.getText() && usuarios[i].getContrasena()!=textContrasena.getText())
+					{
+						i++;
+					}
+					
+					if(i>=0)
+					{
+						FormPrincipal principal=new FormPrincipal();
+						principal.setVisible(true);
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Verifique el usuario o la contraseña");
+						textContrasena.setText("");
+						textContrasena.requestFocusInWindow();
+					}
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "No existe ningún usuario creado");
+					textUsuario.setText("");
+					textContrasena.setText("");
+					textUsuario.requestFocusInWindow();
+				}
+			}
+		});
 		btnIngresar.setBackground(new Color(32, 178, 170));
 		btnIngresar.setFont(new Font("Calibri", Font.BOLD, 20));
 		btnIngresar.setBounds(34, 315, 295, 36);
 		frame.getContentPane().add(btnIngresar);
+	}
+	
+	public static Actor[] ReadFileActores(String file)
+	{
+		FileInputStream fi=null;
+		ObjectInputStream oi=null;
+		Actor[] listaActores= new Actor[0];
+		
+		try{
+			fi=new FileInputStream(file);
+			oi=new ObjectInputStream(fi);
+			int i=0;
+			
+			while(fi.available()>0)
+			{
+				Actor actor=(Actor) oi.readObject();
+				listaActores=Arrays.copyOf(listaActores, listaActores.length+1);
+				listaActores[i++]=actor;
+			}
+		}
+		catch(FileNotFoundException e)
+		{
+			System.out.println("Problemas con la direccion para abrir el fichero");
+		}
+		catch(IOException e)
+		{
+			System.out.println("El fichero tiene problema al leer los objetos");
+		}
+		catch(ClassNotFoundException e)
+		{
+			System.out.println("Problema al leer el fichero");
+		}
+		finally
+		{
+			try
+			{
+				if(fi!=null)
+				{
+					fi.close();
+					oi.close();
+				}
+			}
+			catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("No se pudo cerrar el fichero");
+			}
+		}
+		if(listaActores.length==0)
+		{
+			return null;
+		}
+		else
+		{
+			return listaActores;
+		}
 	}
 }
