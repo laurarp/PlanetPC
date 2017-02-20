@@ -10,10 +10,14 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.Font;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.sql.Date;
 import java.util.Arrays;
 
 import javax.swing.SwingConstants;
@@ -119,7 +123,7 @@ public class FormLogin {
 		JButton btnIngresar = new JButton("Ingresar");
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Actor[] usuarios=ReadFileActores("ListaUsuarios.txt");
+				Actor[] usuarios=ReadFileActores("ListaActores.txt");
 				
 				if(usuarios!=null)
 				{
@@ -209,6 +213,52 @@ public class FormLogin {
 		else
 		{
 			return listaActores;
+		}
+	}
+	
+	public static void WriteFileObject(String file, Administrador[] listPersonas)
+	{
+		FileOutputStream fo=null;
+		ObjectOutputStream ol=null;
+		
+		try{
+			fo=new FileOutputStream(file);
+			ol=new ObjectOutputStream(fo);
+			
+			for(Administrador o:listPersonas)
+			{
+				try
+				{
+					ol.writeObject(o);
+				}
+				catch(IOException e)
+				{
+					System.out.println("Problema al crear las clases");
+				}
+			}
+		}
+		catch(FileNotFoundException e)
+		{
+			System.out.println("Problemas con la direccion para crear el fichero");
+		}
+		catch(IOException e)
+		{
+			System.out.println("El fichero tiene problema al crearse");
+		}
+		finally
+		{
+			try
+			{
+				if(fo!=null)
+				{
+					fo.close();
+					ol.close();
+				}
+			}
+			catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("No se pudo cerrar el fichero");
+			}
 		}
 	}
 }

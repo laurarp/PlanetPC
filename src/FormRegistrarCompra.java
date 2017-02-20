@@ -86,7 +86,15 @@ public class FormRegistrarCompra {
 		btnRegistrar.setBounds(321, 151, 89, 23);
 		frame.getContentPane().add(btnRegistrar);
 		
+		
+		
+		ListaProveedores lp=new ListaProveedores();
+		
 		Choice chProveedores = new Choice();
+		for(int i=0;i<lp.mostrarProveedores().size();i++)
+		{
+			chProveedores.addItem(lp.mostrarProveedores().get(i).getNombre());
+		}
 		chProveedores.setBounds(99, 16, 79, 20);
 		frame.getContentPane().add(chProveedores);
 		
