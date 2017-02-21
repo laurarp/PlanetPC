@@ -176,28 +176,39 @@ public class ListaServicios {
         SimpleDateFormat formateador = new SimpleDateFormat("dd-MM-yyyy");
         return formateador.format(ahora);
     }
+	public static ServicioTecnico buscarServicioOb(String idServicio) throws Excepciones {
+		if (listaServicios == null) {
+			throw new Excepciones("la lista de servicios esta vacia");
+		}
+		int i = 0;
+		while (i < listaServicios.size() && listaServicios.get(i).getIdServicio().compareTo(idServicio) != 0) {
+			i++;
+		}
+		if (i < listaServicios.size()) {
+			return listaServicios.get(i);
+		} else{
+			throw new Excepciones("El servicio no esta en la lista");
+		}
+	}
 
 	public static void main(String[] args) {
 		ArrayList<ServicioTecnico> listaServicios = new ArrayList <ServicioTecnico>();
 		ListaServicios lista = new ListaServicios();
 		lista.crearServicio("12345","portatil dell", "1017196884", "activo", 35000, 10);
-		lista.crearServicio("12345","PC clon", "1017196885", "activo", 35000,5);
-		lista.crearServicio("12345","portatil panasonic", "1017196883", "activo", 35000,4);
-		ArrayList<ServicioTecnico> listaLeer = leerArchivoObjeto("ListaServicios.txt");
-		if (listaLeer != null) {
-			for (ServicioTecnico p : listaLeer) {
-				System.out.println(p);
-			}
-		}
+		lista.crearServicio("12346","PC clon", "1017196885", "activo", 35000,5);
+		lista.crearServicio("12347","portatil panasonic", "1017196883", "activo", 35000,4);
 		try {
 			lista.eliminarServicio("1017196883");
 			lista.eliminarServicio("1017196884");
+			System.out.println(buscarServicioOb("12346"));
+			lista.crearServicio("12348","pantalla lg", "1017196883", "activo", 35000,3);
+			mostrarServicios();
+			System.out.println(buscarServicioOb("12348"));
 		} catch (Excepciones e) {
 			System.out.println(e.getMessage());
 		}
-		mostrarServicios();
-		lista.crearServicio("12345","pantalla lg", "1017196883", "activo", 35000,3);
-		mostrarServicios();
+		
+		
 	}
 
 }
