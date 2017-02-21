@@ -22,5 +22,12 @@ public abstract class Actor {
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
+	public Actor(String nombre, String id, String contrasena) {
+		super();
+		Nombre = nombre;
+		this.id = id;
+		this.contrasena = contrasena;
+	}
+	
 
 }
