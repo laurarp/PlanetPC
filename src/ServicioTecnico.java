@@ -10,7 +10,7 @@ public class ServicioTecnico implements Serializable {
 	 */
 	private static final long serialVersionUID = -4896187308543036429L;
 	private String idProducto;
-	private String fechaEntrada;
+	private Date fechaEntrada;
 	private Date fechaSalida;
 	private String idCliente;
 	private double precio;
@@ -24,11 +24,11 @@ public class ServicioTecnico implements Serializable {
 		this.idProducto = idProducto;
 	}
 
-	public String getFechaEntrada() {
+	public Date getFechaEntrada() {
 		return fechaEntrada;
 	}
 
-	public void setFechaEntrada(String fechaEntrada) {
+	public void setFechaEntrada(Date fechaEntrada) {
 		this.fechaEntrada = fechaEntrada;
 	}
 
@@ -84,7 +84,7 @@ public class ServicioTecnico implements Serializable {
 		this.idCliente = idCliente;
 		this.precio = precio;
 		this.estado = estado;
-		fechaEntrada=getFechaActual();
+		fechaEntrada=new Date(System.currentTimeMillis());
 	}
 
 	@Override
