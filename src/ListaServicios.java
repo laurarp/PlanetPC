@@ -49,10 +49,10 @@ public class ListaServicios {
 		}
 	}
 
-	public int buscarServicio(String idCliente) {
+	public static int buscarServicio(String idServicio) {
 		int indice = 0;
 		while (indice < listaServicios.size()) {
-			if (idCliente == (listaServicios.get(indice).getIdCliente())) {
+			if (idServicio == (listaServicios.get(indice).getIdServicio())) {
 				return indice;
 			} else {
 				indice++;
@@ -61,11 +61,11 @@ public class ListaServicios {
 		return -1;
 	}
 
-	public void eliminarServicio(String idCliente) throws Excepciones {
+	public void eliminarServicio(String idServicio) throws Excepciones {
 
 		ArrayList<ServicioTecnico> auxiliar = new ArrayList <ServicioTecnico>();
-		int posicionEliminar = buscarServicio(idCliente);
-		if (buscarServicio(idCliente) == -1) {
+		int posicionEliminar = buscarServicio(idServicio);
+		if (buscarServicio(idServicio) == -1) {
 			throw new Excepciones("el usuario no se encuentra en la lista");
 		} else {
 			for (int i = 0; i < listaServicios.size(); i++) {
@@ -138,7 +138,7 @@ public class ListaServicios {
 			}
 		}
 	}
-
+	
 	public static ArrayList<ServicioTecnico> leerArchivoObjeto(String archivo) {
 		ObjectInputStream oI = null;
 		FileInputStream fI = null;
@@ -190,20 +190,31 @@ public class ListaServicios {
 			throw new Excepciones("El servicio no esta en la lista");
 		}
 	}
+	public static void modificarEstado(String idServicio) throws Excepciones{
+		int indice=buscarServicio(idServicio);
+		if(buscarServicio(idServicio)==-1){
+			throw new Excepciones("El servicio no esta cargado en la lista");
+		}else{
+			listaServicios.get(indice).setEstado("activo");
+		}
+	}
 
 	public static void main(String[] args) {
 		ArrayList<ServicioTecnico> listaServicios = new ArrayList <ServicioTecnico>();
 		ListaServicios lista = new ListaServicios();
-		lista.crearServicio("12345","portatil dell", "1017196884", "activo", 35000, 10);
-		lista.crearServicio("12346","PC clon", "1017196885", "activo", 35000,5);
-		lista.crearServicio("12347","portatil panasonic", "1017196883", "activo", 35000,4);
+		lista.crearServicio("12345","portatil dell", "1017196884", "pendiente", 35000, 10);
+		lista.crearServicio("12346","PC clon", "1017196885", "pendiente", 35000,5);
+		lista.crearServicio("12347","portatil panasonic", "1017196883", "pendiente", 35000,4);
 		try {
-			lista.eliminarServicio("1017196883");
-			lista.eliminarServicio("1017196884");
-			System.out.println(buscarServicioOb("12346"));
-			lista.crearServicio("12348","pantalla lg", "1017196883", "activo", 35000,3);
+			lista.eliminarServicio("12346");
+			lista.eliminarServicio("12347");
+			System.out.println(buscarServicioOb("12345"));
+			lista.crearServicio("12348","pantalla lg", "1017196883", "pendiente", 35000,3);
 			mostrarServicios();
+			modificarEstado("12348");
+			
 			System.out.println(buscarServicioOb("12348"));
+			
 		} catch (Excepciones e) {
 			System.out.println(e.getMessage());
 		}
