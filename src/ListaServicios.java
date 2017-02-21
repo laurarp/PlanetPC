@@ -60,13 +60,12 @@ public class ListaServicios {
 		if (buscarServicio(idCliente) == -1) {
 			throw new Excepciones("el usuario no se encuentra en la lista");
 		} else {
-			int j = 0;
 			for (int i = 0; i < listaServicios.size(); i++) {
 				if (posicionEliminar != i) {
 					auxiliar.add(listaServicios.get(i));
-					j++;
 				}
 			}
+			listaServicios=auxiliar;
 			File fichero= new File("ListaServicios.txt");
 			fichero.delete();
 			escribirArchivoObjeto("ListaServicios.txt", listaServicios);
