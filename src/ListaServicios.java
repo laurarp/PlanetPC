@@ -23,15 +23,16 @@ public class ListaServicios {
 
 	public ListaServicios() {
 		super();
-		crearArchhivo("fichero.txt", listaServicios);
-		this.listaServicios=leerArchivoObjeto("fichero.txt");
+		this.listaServicios=listaServicios;
+		crearArchivo("ListServicios.txt", listaServicios);
+		
 		
 	}
 
 	public void crearServicio(String id, String descripcion, String idCiente, String estado, double precio, int diasEstimados) {
 		ServicioTecnico a = new ServicioTecnico(id, descripcion, idCiente, precio, estado, diasEstimados);
 		listaServicios.add(a);
-		escribirArchivoObjeto("listaServicios.txt", listaServicios);
+		escribirArchivoObjeto("ListaServicios.txt", listaServicios);
 	}
 
 	/*public void mostrarServicios() {
@@ -68,7 +69,7 @@ public class ListaServicios {
 			}
 			File fichero= new File("fichero.txt");
 			fichero.delete();
-			escribirArchivoObjeto("fichero.txt", listaServicios);
+			escribirArchivoObjeto("ListaServicios.txt", listaServicios);
 		}
 
 	}
@@ -105,7 +106,7 @@ public class ListaServicios {
 		}
 	}
 	
-	public static void crearArchhivo(String archivo, ArrayList<ServicioTecnico> listaServicios) {
+	public static void crearArchivo(String archivo, ArrayList<ServicioTecnico> listaServicios) {
 		FileOutputStream fo = null;
 		ObjectOutputStream oI = null;
 		try {
@@ -161,6 +162,8 @@ public class ListaServicios {
 			return listaServicios;
 		}
 	}
+	
+	
 	public static String getFechaActual() {
         Date ahora = new Date();
         SimpleDateFormat formateador = new SimpleDateFormat("dd-MM-yyyy");
