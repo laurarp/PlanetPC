@@ -6,42 +6,50 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
 public class ListaServicios {
-	protected static ServicioTecnico[] listaServicios;
+	protected static ArrayList <ServicioTecnico> listaServicios;
 
-	public ServicioTecnico[] getListaServicios() {
+	public ArrayList<ServicioTecnico> getListaServicios() {
 		return listaServicios;
 	}
 
-	public void setListaServicios(ServicioTecnico[] listaServicios) {
+	public void setListaServicios(ArrayList<ServicioTecnico> listaServicios) {
 		ListaServicios.listaServicios = listaServicios;
 	}
 
-	public ListaServicios(ServicioTecnico[] listaServicios) {
+	public ListaServicios() {
 		super();
-		ListaServicios.listaServicios = listaServicios;
+		File lista=new File("ListaServicios.txt");
+		if(lista.exists()==false){
+			crearArchivo("ListServicios.txt", listaServicios);
+			this.listaServicios=new ArrayList <ServicioTecnico>();
+		}else{
+			this.listaServicios=leerArchivoObjeto("listaServicios.txt");
+		}
+		
+		
 	}
 
-	public void crearServicio(String id, String idCiente, String estado, double precio) {
-		ServicioTecnico a = new ServicioTecnico(id, idCiente, precio, estado);
-		listaServicios = Arrays.copyOf(listaServicios, listaServicios.length + 1);
-		listaServicios[listaServicios.length - 1] = a;
-		escribirArchivoObjeto("C:\\Users\\Guillermo Uribe G\\Desktop\\fichero.txt", listaServicios);
+	public void crearServicio(String id, String descripcion, String idCiente, String estado, double precio, int diasEstimados) {
+		ServicioTecnico a = new ServicioTecnico(id, descripcion, idCiente, precio, estado, diasEstimados);
+		listaServicios.add(a);
+		escribirArchivoObjeto("ListaServicios.txt", listaServicios);
 	}
 
-	public void mostrarServicios() {
+	/*public void mostrarServicios() {
 		for (int i = 0; i < listaServicios.length; i++) {
 			System.out.println(listaServicios[i]);
 		}
-	}
+	}*/
 
 	public int buscarServicio(String idCliente) {
 		int indice = 0;
-		while (indice < listaServicios.length) {
-			if (idCliente == (listaServicios[indice].getIdCliente())) {
+		while (indice < listaServicios.size()) {
+			if (idCliente == (listaServicios.get(indice).getIdCliente())) {
 				return indice;
 			} else {
 				indice++;
@@ -52,27 +60,25 @@ public class ListaServicios {
 
 	public void eliminarServicio(String idCliente) throws Excepciones {
 
-		ServicioTecnico[] auxiliar = new ServicioTecnico[listaServicios.length - 1];
+		ArrayList<ServicioTecnico> auxiliar = new ArrayList <ServicioTecnico>();
 		int posicionEliminar = buscarServicio(idCliente);
 		if (buscarServicio(idCliente) == -1) {
 			throw new Excepciones("el usuario no se encuentra en la lista");
 		} else {
-			int j = 0;
-			for (int i = 0; i < listaServicios.length; i++) {
+			for (int i = 0; i < listaServicios.size(); i++) {
 				if (posicionEliminar != i) {
-					auxiliar[j] = listaServicios[i];
-					j++;
+					auxiliar.add(listaServicios.get(i));
 				}
 			}
-			listaServicios = Arrays.copyOf(auxiliar, auxiliar.length);
-			File fichero= new File("C:\\Users\\Guillermo Uribe G\\Desktop\\fichero.txt");
+			listaServicios=auxiliar;
+			File fichero= new File("ListaServicios.txt");
 			fichero.delete();
-			escribirArchivoObjeto("C:\\Users\\Guillermo Uribe G\\Desktop\\fichero.txt", listaServicios);
+			escribirArchivoObjeto("ListaServicios.txt", listaServicios);
 		}
 
 	}
 
-	public static void escribirArchivoObjeto(String archivo, ServicioTecnico[] listaServicios) {
+	public static void escribirArchivoObjeto(String archivo, ArrayList<ServicioTecnico> listaServicios) {
 		FileOutputStream fo = null;
 		ObjectOutputStream oI = null;
 		try {
@@ -103,19 +109,43 @@ public class ListaServicios {
 			}
 		}
 	}
+	
+	public static void crearArchivo(String archivo, ArrayList<ServicioTecnico> listaServicios) {
+		FileOutputStream fo = null;
+		ObjectOutputStream oI = null;
+		try {
+			fo = new FileOutputStream(archivo);
+			oI = new ObjectOutputStream(fo);
+			
+		} catch (FileNotFoundException e) {
+			System.out.println("problemas con la direcion para crear el fichero");
+		} catch (IOException e) {
+			System.out.println("el fichero tiene problemas al crearse");
+		} finally {
+			try {
+				if (fo == null) {
+					fo.close();
+				}
+				if (oI == null) {
+					oI.close();
+				}
 
-	public static ServicioTecnico[] leerArchivoObjeto(String archivo) {
+			} catch (IOException e) {
+				System.out.println("no se pudo cerrar el archivo");
+			}
+		}
+	}
+
+	public static ArrayList<ServicioTecnico> leerArchivoObjeto(String archivo) {
 		ObjectInputStream oI = null;
 		FileInputStream fI = null;
-		ServicioTecnico[] listaServicios = new ServicioTecnico[0];
+		ArrayList<ServicioTecnico> listaServicios = new ArrayList <ServicioTecnico>();
 		try {
 			fI = new FileInputStream(archivo);
 			oI = new ObjectInputStream(fI);
-			int i = 0;
 			while (fI.available() > 0) {
 				ServicioTecnico p = (ServicioTecnico) oI.readObject();
-				listaServicios = Arrays.copyOf(listaServicios, listaServicios.length + 1);
-				listaServicios[i++] = p;
+				listaServicios.add(p);
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("problemas con la direcion para leer el fichero");
@@ -130,12 +160,14 @@ public class ListaServicios {
 				System.out.println("el fichero tiene problemas al leerlo");
 			}
 		}
-		if (listaServicios.length == 0) {
+		if (listaServicios.size() == 0) {
 			return null;
 		} else {
 			return listaServicios;
 		}
 	}
+	
+	
 	public static String getFechaActual() {
         Date ahora = new Date();
         SimpleDateFormat formateador = new SimpleDateFormat("dd-MM-yyyy");
@@ -143,12 +175,12 @@ public class ListaServicios {
     }
 
 	public static void main(String[] args) {
-		ServicioTecnico[] listaServicios = new ServicioTecnico[0];
-		ListaServicios lista = new ListaServicios(listaServicios);
-		lista.crearServicio("12345", "1017196884", "activo", 35000);
-		lista.crearServicio("12345", "1017196885", "activo", 35000);
-		lista.crearServicio("12345", "1017196883", "activo", 35000);
-		ServicioTecnico[] listaLeer = leerArchivoObjeto("C:\\Users\\Guillermo Uribe G\\Desktop\\fichero.txt");
+		ArrayList<ServicioTecnico> listaServicios = new ArrayList <ServicioTecnico>();
+		ListaServicios lista = new ListaServicios();
+		lista.crearServicio("12345","portatil dell", "1017196884", "activo", 35000, 10);
+		lista.crearServicio("12345","PC clon", "1017196885", "activo", 35000,5);
+		lista.crearServicio("12345","portatil panasonic", "1017196883", "activo", 35000,4);
+		ArrayList<ServicioTecnico> listaLeer = leerArchivoObjeto("ListaServicios.txt");
 		System.out.println(getFechaActual());
 		if (listaLeer != null) {
 			for (ServicioTecnico p : listaLeer) {
@@ -161,14 +193,14 @@ public class ListaServicios {
 		} catch (Excepciones e) {
 			System.out.println(e.getMessage());
 		}
-		ServicioTecnico[] listaLeer1 = leerArchivoObjeto("C:\\Users\\Guillermo Uribe G\\Desktop\\fichero.txt");
+		ArrayList<ServicioTecnico> listaLeer1 = leerArchivoObjeto("ListaServicios.txt");
 		if (listaLeer1 != null) {
 			for (ServicioTecnico p : listaLeer1) {
 				System.out.println(p);
 			}
 		}
-		lista.crearServicio("12345", "1017196883", "activo", 35000);
-		ServicioTecnico[] listaLeer11 = leerArchivoObjeto("C:\\Users\\Guillermo Uribe G\\Desktop\\fichero.txt");
+		lista.crearServicio("12345","pantalla lg", "1017196883", "activo", 35000,3);
+		ArrayList<ServicioTecnico> listaLeer11 = leerArchivoObjeto("ListaServicios.txt");
 		if (listaLeer11 != null) {
 			for (ServicioTecnico p : listaLeer11) {
 				System.out.println(p);
