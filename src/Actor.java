@@ -28,7 +28,7 @@ public abstract class Actor {
 		this.id = id;
 		this.contrasena = contrasena;
 	}
-	public void borrar()
+	public void borrar22()
 	{
 		
 	}
