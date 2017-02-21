@@ -23,9 +23,14 @@ public class ListaServicios {
 
 	public ListaServicios() {
 		super();
+		File lista=new File("ListaServicios.txt");
+		if(lista.exists()==false){
+			crearArchivo("ListServicios.txt", listaServicios);
+			this.listaServicios=new ArrayList <ServicioTecnico>();
+		}else{
+			this.listaServicios=leerArchivoObjeto("listaServicios.txt");
+		}
 		
-		crearArchivo("ListServicios.txt", listaServicios);
-		this.listaServicios=new ArrayList <ServicioTecnico>();
 		
 	}
 
