@@ -23,9 +23,9 @@ public class ListaServicios {
 
 	public ListaServicios() {
 		super();
-		this.listaServicios=listaServicios;
-		crearArchivo("ListServicios.txt", listaServicios);
 		
+		crearArchivo("ListServicios.txt", listaServicios);
+		this.listaServicios=new ArrayList <ServicioTecnico>();
 		
 	}
 
@@ -67,7 +67,7 @@ public class ListaServicios {
 					j++;
 				}
 			}
-			File fichero= new File("fichero.txt");
+			File fichero= new File("ListaServicios.txt");
 			fichero.delete();
 			escribirArchivoObjeto("ListaServicios.txt", listaServicios);
 		}
@@ -176,7 +176,7 @@ public class ListaServicios {
 		lista.crearServicio("12345","portatil dell", "1017196884", "activo", 35000, 10);
 		lista.crearServicio("12345","PC clon", "1017196885", "activo", 35000,5);
 		lista.crearServicio("12345","portatil panasonic", "1017196883", "activo", 35000,4);
-		ArrayList<ServicioTecnico> listaLeer = leerArchivoObjeto("fichero.txt");
+		ArrayList<ServicioTecnico> listaLeer = leerArchivoObjeto("ListaServicios.txt");
 		System.out.println(getFechaActual());
 		if (listaLeer != null) {
 			for (ServicioTecnico p : listaLeer) {
@@ -189,14 +189,14 @@ public class ListaServicios {
 		} catch (Excepciones e) {
 			System.out.println(e.getMessage());
 		}
-		ArrayList<ServicioTecnico> listaLeer1 = leerArchivoObjeto("C:\\Users\\Guillermo Uribe G\\Desktop\\fichero.txt");
+		ArrayList<ServicioTecnico> listaLeer1 = leerArchivoObjeto("ListaServicios.txt");
 		if (listaLeer1 != null) {
 			for (ServicioTecnico p : listaLeer1) {
 				System.out.println(p);
 			}
 		}
 		lista.crearServicio("12345","pantalla lg", "1017196883", "activo", 35000,3);
-		ArrayList<ServicioTecnico> listaLeer11 = leerArchivoObjeto("C:\\Users\\Guillermo Uribe G\\Desktop\\fichero.txt");
+		ArrayList<ServicioTecnico> listaLeer11 = leerArchivoObjeto("ListaServicios.txt");
 		if (listaLeer11 != null) {
 			for (ServicioTecnico p : listaLeer11) {
 				System.out.println(p);
