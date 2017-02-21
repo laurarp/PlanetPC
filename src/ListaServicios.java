@@ -40,11 +40,14 @@ public class ListaServicios {
 		escribirArchivoObjeto("ListaServicios.txt", listaServicios);
 	}
 
-	/*public void mostrarServicios() {
-		for (int i = 0; i < listaServicios.length; i++) {
-			System.out.println(listaServicios[i]);
+	public static void mostrarServicios() {
+		ArrayList<ServicioTecnico> lista = leerArchivoObjeto("ListaServicios.txt");
+		if (lista != null) {
+			for (ServicioTecnico p : lista) {
+				System.out.println(p);
+			}
 		}
-	}*/
+	}
 
 	public int buscarServicio(String idCliente) {
 		int indice = 0;
@@ -193,20 +196,9 @@ public class ListaServicios {
 		} catch (Excepciones e) {
 			System.out.println(e.getMessage());
 		}
-		ArrayList<ServicioTecnico> listaLeer1 = leerArchivoObjeto("ListaServicios.txt");
-		if (listaLeer1 != null) {
-			for (ServicioTecnico p : listaLeer1) {
-				System.out.println(p);
-			}
-		}
+		mostrarServicios();
 		lista.crearServicio("12345","pantalla lg", "1017196883", "activo", 35000,3);
-		ArrayList<ServicioTecnico> listaLeer11 = leerArchivoObjeto("ListaServicios.txt");
-		if (listaLeer11 != null) {
-			for (ServicioTecnico p : listaLeer11) {
-				System.out.println(p);
-			}
-
-		}
+		mostrarServicios();
 	}
 
 }
