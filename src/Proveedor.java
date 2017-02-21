@@ -1,13 +1,20 @@
+import java.io.Serializable;
 
-public class Proveedor {
-	private String Nombre;
+
+public class Proveedor implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8798707564030262353L;
+	private String nombre;
 	private String id;
 	
 	public String getNombre() {
-		return Nombre;
+		return nombre;
 	}
 	public void setNombre(String nombre) {
-		Nombre = nombre;
+		this.nombre = nombre;
 	}
 	public String getId() {
 		return id;
@@ -16,9 +23,10 @@ public class Proveedor {
 		this.id = id;
 	}
 	
-	public Proveedor(String nombre) {
+	public Proveedor(String id,String nombre) {
 		super();
-		Nombre = nombre;
+		this.id=id;
+		this.nombre = nombre;
 		
 	}
 	
