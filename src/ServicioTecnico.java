@@ -86,11 +86,11 @@ public class ServicioTecnico implements Serializable {
 		this.estado = estado;
 		fechaEntrada=new Date(System.currentTimeMillis());
 	}
-
+	SimpleDateFormat s=new SimpleDateFormat("dd-MM-yyyy");
 	@Override
 	public String toString() {
-		return "ServicioTecnico [idProducto=" + idProducto + ", fechaEntrada=" + fechaEntrada + ", fechaSalida="
-				+ fechaSalida + ", idCliente=" + idCliente + ", precio=" + precio + ", estado=" + estado + "]";
+		return "ServicioTecnico [idProducto=" + idProducto + ", fechaEntrada=" + s.format(fechaEntrada) + ", fechaSalida="
+				+ s.format(fechaSalida) + ", idCliente=" + idCliente + ", precio=" + precio + ", estado=" + estado + "]";
 	}
 
 	
