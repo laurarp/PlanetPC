@@ -5,6 +5,7 @@ import java.util.Date;
 public class AsesorVentas {
 	private ListaCompras listaCompras;
 	private ListaVentas listaVentas;
+	private Inventario inventario;
 	
 	
 	public ArrayList<Compra> reporteCompras() throws Exception
@@ -12,14 +13,14 @@ public class AsesorVentas {
 		return listaCompras.getListaCompras();
 	}
 	
-	public ArrayList<Venta> reporteVentas()
+	public ArrayList<Venta> reporteVentas() throws Exception
 	{
 		return listaVentas.getListaVentas();
 	}
 	
-	public Producto buscarProducto(Inventario inventario, String idProducto)
+	public Producto buscarProducto(String idProducto)
 	{
-		return null;
+		return inventario.buscarProducto(idProducto);
 	}
 	
 	public void modificarEstadoCompra(String idCompra,String estado) throws Exception
@@ -69,9 +70,8 @@ public class AsesorVentas {
 		return pendientes;
 	}
 	
-	
-	public void registarVenta(ListaVentas listaVentas,DescripcionProducto descripcionProducto, Date fechaVenta, String idCliente, String idVendedor, int Cantidad)
+	public void registarVenta(DescripcionProducto descripcionProducto, Date fechaVenta, String idCliente, String idVendedor, int Cantidad) throws Exception
 	{
-		
+		listaVentas.añadirVenta(descripcionProducto, fechaVenta, idCliente, idVendedor, Cantidad);
 	}
 }
