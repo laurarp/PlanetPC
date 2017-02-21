@@ -1,6 +1,8 @@
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class ServicioTecnico implements Serializable {
 	/**
@@ -8,7 +10,7 @@ public class ServicioTecnico implements Serializable {
 	 */
 	private static final long serialVersionUID = -4896187308543036429L;
 	private String idProducto;
-	private SimpleDateFormat fechaEntrada;
+	private String fechaEntrada;
 	private Date fechaSalida;
 	private String idCliente;
 	private double precio;
@@ -22,11 +24,11 @@ public class ServicioTecnico implements Serializable {
 		this.idProducto = idProducto;
 	}
 
-	public SimpleDateFormat getFechaEntrada() {
+	public String getFechaEntrada() {
 		return fechaEntrada;
 	}
 
-	public void setFechaEntrada(SimpleDateFormat fechaEntrada) {
+	public void setFechaEntrada(String fechaEntrada) {
 		this.fechaEntrada = fechaEntrada;
 	}
 
@@ -61,17 +63,28 @@ public class ServicioTecnico implements Serializable {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	public static String getFechaActual() {
+        Date ahora = new Date();
+        SimpleDateFormat formateador = new SimpleDateFormat("dd-MM-yyyy");
+        return formateador.format(ahora);
+    }
+	public static Date sumarFechasDias(Date fch, int dias) {
+        Calendar cal = new GregorianCalendar();
+        cal.setTimeInMillis(fch.getTime());
+        cal.add(Calendar.DATE, dias);
+        return new Date(cal.getTimeInMillis());
+    }
 
-	public ServicioTecnico(String idProducto, SimpleDateFormat fechaEntrada, Date fechaSalida, String idCliente, double precio,
+
+	public ServicioTecnico(String idProducto, String idCliente, double precio,
 			String estado) {
 		super();
 		this.idProducto = idProducto;
-		//this.fechaEntrada = fechaEntrada;
-		this.fechaSalida = fechaSalida;
+		fechaSalida =sumarFechasDias(new Date(), 5);
 		this.idCliente = idCliente;
 		this.precio = precio;
 		this.estado = estado;
-		this.fechaEntrada=new SimpleDateFormat("dd-MM-yyyy");
+		fechaEntrada=getFechaActual();
 	}
 
 	@Override
