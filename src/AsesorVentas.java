@@ -3,10 +3,11 @@ import java.util.Date;
 
 
 public class AsesorVentas {
-	private ListaCompras listaCompras=new ListaCompras();
-	private ListaVentas listaVentas=new ListaVentas();
+	private ListaCompras listaCompras;
+	private ListaVentas listaVentas;
 	
-	public ArrayList<Compra> reporteCompras()
+	
+	public ArrayList<Compra> reporteCompras() throws Exception
 	{
 		return listaCompras.getListaCompras();
 	}
@@ -21,22 +22,47 @@ public class AsesorVentas {
 		return null;
 	}
 	
-	public void modificarCompra(ListaCompras listaCompras, Compra compra)
+	public void modificarEstadoCompra(String idCompra,String estado) throws Exception
 	{
+		int i=0;
+		ArrayList<Compra> compras= new ArrayList<Compra>();
+		compras=listaCompras.getListaCompras();
 		
+		if(compras!=null)
+		{
+			while(i<compras.size() && String.valueOf(compras.get(i).getIdCompra())!=idCompra)
+			{
+				i++;
+			}
+			if(i<compras.size())
+			{
+				compras.get(i).setEstado("recibido");
+				listaCompras.setListaCompras(compras);
+				
+			}
+			else
+			{
+				throw new Exception ("La compra no existe");
+			}
+		}
+		else
+		{
+			throw new Exception("No hay compras disponibles");
+		}
 	}
 	
-	public ArrayList<Compra> obtenerPedidosPendientes()
+	public ArrayList<Compra> obtenerPedidosPendientesProveedor(String idProveedor) throws Exception
 	{
 		ArrayList<Compra> pendientes=null;
+		ArrayList<Compra> compras=listaCompras.getListaCompras();
 		
-		if(listaCompras.getListaCompras()!=null)
+		if(compras!=null)
 		{
-			for(int i=0;i<listaCompras.getListaCompras().size();i++)
+			for(int i=0;i<compras.size();i++)
 			{
-				if(listaCompras.getListaCompras().get(i).getEstado()=="Pendiente")
+				if(compras.get(i).getEstado()=="Pendiente")
 				{
-					pendientes.add(listaCompras.getListaCompras().get(i));
+					pendientes.add(compras.get(i));
 				}
 			}
 		}
