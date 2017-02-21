@@ -12,24 +12,34 @@ import java.util.Arrays;
 public class ListaProveedores {
 	private ArrayList<Proveedor> listaProveedores; 
 
-	public void nuevoProveedor(String Nombre, String id)
-	{
-		
+	public void nuevoProveedor(String nombre, String id){
+		Proveedor tempProveedor = new Proveedor(nombre, id);
+		listaProveedores.add(tempProveedor);
+		System.out.println("El proveedor"+listaProveedores.get(0).getNombre()+", con Id: "+listaProveedores.get(0).getId()+" ha sido creado.");
 	}
 	
-	public Proveedor buscarProveedor(String id)
-	{
-		return null;
+	public Proveedor buscarProveedor(String id) throws Exception {
+		for (Proveedor a : listaProveedores)
+			if (id.equals(a.getId())){
+				return a.getNombre();
+			}else{
+			throw new Exception("El proveedor no existe");
+			}
+		}
+	
+	
+	public void modificarProveedor(Proveedor proveedor, String id, String nombre){
+		proveedor.setId(id);
+		proveedor.setNombre(nombre);
 	}
 	
-	public void modificarProveedor(Proveedor proveedor)
-	{
-		
-	}
-	
-	public void eliminarProveedor(String id)
-	{
-		
+	public void eliminarProveedor(String id) throws Exception{
+		for (Proveedor a : listaProveedores)
+			if (id.equals(a.getId())){
+				listaProveedores.remove(a);
+			}else{
+			throw new Exception("El proveedor no existe");
+			}
 	}
 	
 	public ArrayList<Proveedor> mostrarProveedores()

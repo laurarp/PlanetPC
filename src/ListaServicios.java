@@ -40,16 +40,19 @@ public class ListaServicios {
 		escribirArchivoObjeto("ListaServicios.txt", listaServicios);
 	}
 
-	/*public void mostrarServicios() {
-		for (int i = 0; i < listaServicios.length; i++) {
-			System.out.println(listaServicios[i]);
+	public static void mostrarServicios() {
+		ArrayList<ServicioTecnico> lista = leerArchivoObjeto("ListaServicios.txt");
+		if (lista != null) {
+			for (ServicioTecnico p : lista) {
+				System.out.println(p);
+			}
 		}
-	}*/
+	}
 
-	public int buscarServicio(String idCliente) {
+	public static int buscarServicio(String idServicio) {
 		int indice = 0;
 		while (indice < listaServicios.size()) {
-			if (idCliente == (listaServicios.get(indice).getIdCliente())) {
+			if (idServicio == (listaServicios.get(indice).getIdServicio())) {
 				return indice;
 			} else {
 				indice++;
@@ -58,11 +61,11 @@ public class ListaServicios {
 		return -1;
 	}
 
-	public void eliminarServicio(String idCliente) throws Excepciones {
+	public void eliminarServicio(String idServicio) throws Excepciones {
 
 		ArrayList<ServicioTecnico> auxiliar = new ArrayList <ServicioTecnico>();
-		int posicionEliminar = buscarServicio(idCliente);
-		if (buscarServicio(idCliente) == -1) {
+		int posicionEliminar = buscarServicio(idServicio);
+		if (buscarServicio(idServicio) == -1) {
 			throw new Excepciones("el usuario no se encuentra en la lista");
 		} else {
 			for (int i = 0; i < listaServicios.size(); i++) {
@@ -135,7 +138,7 @@ public class ListaServicios {
 			}
 		}
 	}
-
+	
 	public static ArrayList<ServicioTecnico> leerArchivoObjeto(String archivo) {
 		ObjectInputStream oI = null;
 		FileInputStream fI = null;
@@ -173,40 +176,50 @@ public class ListaServicios {
         SimpleDateFormat formateador = new SimpleDateFormat("dd-MM-yyyy");
         return formateador.format(ahora);
     }
+	public static ServicioTecnico buscarServicioOb(String idServicio) throws Excepciones {
+		if (listaServicios == null) {
+			throw new Excepciones("la lista de servicios esta vacia");
+		}
+		int i = 0;
+		while (i < listaServicios.size() && listaServicios.get(i).getIdServicio().compareTo(idServicio) != 0) {
+			i++;
+		}
+		if (i < listaServicios.size()) {
+			return listaServicios.get(i);
+		} else{
+			throw new Excepciones("El servicio no esta en la lista");
+		}
+	}
+	public static void modificarEstado(String idServicio) throws Excepciones{
+		int indice=buscarServicio(idServicio);
+		if(buscarServicio(idServicio)==-1){
+			throw new Excepciones("El servicio no esta cargado en la lista");
+		}else{
+			listaServicios.get(indice).setEstado("activo");
+		}
+	}
 
 	public static void main(String[] args) {
 		ArrayList<ServicioTecnico> listaServicios = new ArrayList <ServicioTecnico>();
 		ListaServicios lista = new ListaServicios();
-		lista.crearServicio("12345","portatil dell", "1017196884", "activo", 35000, 10);
-		lista.crearServicio("12345","PC clon", "1017196885", "activo", 35000,5);
-		lista.crearServicio("12345","portatil panasonic", "1017196883", "activo", 35000,4);
-		ArrayList<ServicioTecnico> listaLeer = leerArchivoObjeto("ListaServicios.txt");
-		System.out.println(getFechaActual());
-		if (listaLeer != null) {
-			for (ServicioTecnico p : listaLeer) {
-				System.out.println(p);
-			}
-		}
+		lista.crearServicio("12345","portatil dell", "1017196884", "pendiente", 35000, 10);
+		lista.crearServicio("12346","PC clon", "1017196885", "pendiente", 35000,5);
+		lista.crearServicio("12347","portatil panasonic", "1017196883", "pendiente", 35000,4);
 		try {
-			lista.eliminarServicio("1017196883");
-			lista.eliminarServicio("1017196884");
+			lista.eliminarServicio("12346");
+			lista.eliminarServicio("12347");
+			System.out.println(buscarServicioOb("12345"));
+			lista.crearServicio("12348","pantalla lg", "1017196883", "pendiente", 35000,3);
+			mostrarServicios();
+			modificarEstado("12348");
+			
+			System.out.println(buscarServicioOb("12348"));
+			
 		} catch (Excepciones e) {
 			System.out.println(e.getMessage());
 		}
-		ArrayList<ServicioTecnico> listaLeer1 = leerArchivoObjeto("ListaServicios.txt");
-		if (listaLeer1 != null) {
-			for (ServicioTecnico p : listaLeer1) {
-				System.out.println(p);
-			}
-		}
-		lista.crearServicio("12345","pantalla lg", "1017196883", "activo", 35000,3);
-		ArrayList<ServicioTecnico> listaLeer11 = leerArchivoObjeto("ListaServicios.txt");
-		if (listaLeer11 != null) {
-			for (ServicioTecnico p : listaLeer11) {
-				System.out.println(p);
-			}
-
-		}
+		
+		
 	}
 
 }
