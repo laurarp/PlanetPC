@@ -12,6 +12,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Choice;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class FormRegistrarCompra {
@@ -59,19 +61,41 @@ public class FormRegistrarCompra {
 		JLabel lblNewLabel = new JLabel("Proveedor");
 		lblNewLabel.setBounds(24, 22, 69, 14);
 		frame.getContentPane().add(lblNewLabel);
-		
-		JButton btnConsultar = new JButton("Consultar");
-		btnConsultar.setBounds(203, 18, 89, 23);
-		frame.getContentPane().add(btnConsultar);
-				
+			
 		String titulos[] = { "Id Compra", "Tipo", "Cantidad", "Valor","Fecha pedido","Estado" };
-		String informacion[][] = {{"11","Nombre","Edad","Prof","Telefono","pen"},{"11","Nombre","Edad","Prof","Telefono","pen"}};
+		
+		DefaultTableModel tableModel = new DefaultTableModel(titulos, 0);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(24, 62, 268, 170);
 		frame.getContentPane().add(scrollPane);
-		table = new JTable(informacion,titulos);
+		table = new JTable(tableModel);
 		scrollPane.setViewportView(table);
+		
+		JButton btnConsultar = new JButton("Consultar");
+		btnConsultar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AsesorVentas asesorVentas= new AsesorVentas();
+				
+				//for(int i=0;i<asesorVentas.obtenerPedidosPendientes().size();i++)
+				{
+					//String idcompra=Integer.toString(asesorVentas.obtenerPedidosPendientes().get(i).getIdCompra());
+					//String tipo=asesorVentas.obtenerPedidosPendientes().get(i).getDescripcionProducto().getTipo();
+					//String cantidad=Integer.toString(asesorVentas.obtenerPedidosPendientes().get(i).getCantidad());
+					//String valor=Integer.toString(asesorVentas.obtenerPedidosPendientes().get(i).getPrecioCompra());
+					//String fechap=asesorVentas.obtenerPedidosPendientes().get(i).getFechaPedido().toString();
+					//String estado=asesorVentas.obtenerPedidosPendientes().get(i).getEstado();
+					//Object[] objs = {idcompra, tipo,cantidad,valor,fechap,estado};
+					Object[] objs = {"1", "PC","2","3600","Hoy","Pendiente"};
+					tableModel.addRow(objs);
+				}
+				
+				
+				
+			}
+		});
+		btnConsultar.setBounds(203, 18, 89, 23);
+		frame.getContentPane().add(btnConsultar);
 		
 		textIdCompra = new JTextField();
 		textIdCompra.setBounds(321, 108, 86, 20);

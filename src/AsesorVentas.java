@@ -1,15 +1,19 @@
+import java.util.ArrayList;
 import java.util.Date;
 
 
 public class AsesorVentas {
-	public ListaCompras reporteCompras()
+	private ListaCompras listaCompras=new ListaCompras();
+	private ListaVentas listaVentas=new ListaVentas();
+	
+	public ArrayList<Compra> reporteCompras()
 	{
-		return null;
+		return listaCompras.getListaCompras();
 	}
 	
-	public ListaVentas reporteVentas()
+	public ArrayList<Venta> reporteVentas()
 	{
-		return null;
+		return listaVentas.getListaVentas();
 	}
 	
 	public Producto buscarProducto(Inventario inventario, String idProducto)
@@ -21,6 +25,21 @@ public class AsesorVentas {
 	{
 		
 	}
+	
+	public ArrayList<Compra> obtenerPedidosPendientes()
+	{
+		ArrayList<Compra> pendientes=null;
+		
+		for(int i=0;i<listaCompras.getListaCompras().size();i++)
+		{
+			if(listaCompras.getListaCompras().get(i).getEstado()=="Pendiente")
+			{
+				pendientes.add(listaCompras.getListaCompras().get(i));
+			}
+		}
+		return pendientes;
+	}
+	
 	
 	public void registarVenta(ListaVentas listaVentas,DescripcionProducto descripcionProducto, Date fechaVenta, String idCliente, String idVendedor, int Cantidad)
 	{

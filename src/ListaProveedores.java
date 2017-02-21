@@ -34,7 +34,8 @@ public class ListaProveedores {
 	
 	public ArrayList<Proveedor> mostrarProveedores()
 	{
-		return new ArrayList<Proveedor>(Arrays.asList(ReadFileProveedores("ListaProveedores.txt")));
+		listaProveedores=new ArrayList<Proveedor>(Arrays.asList(ReadFileProveedores("ListaProveedores.txt")));
+		return listaProveedores; 
 	}
 	
 	public static Proveedor[] ReadFileProveedores(String file)
