@@ -184,7 +184,6 @@ public class ListaServicios {
 		lista.crearServicio("12345","PC clon", "1017196885", "activo", 35000,5);
 		lista.crearServicio("12345","portatil panasonic", "1017196883", "activo", 35000,4);
 		ArrayList<ServicioTecnico> listaLeer = leerArchivoObjeto("ListaServicios.txt");
-		System.out.println(getFechaActual());
 		if (listaLeer != null) {
 			for (ServicioTecnico p : listaLeer) {
 				System.out.println(p);
