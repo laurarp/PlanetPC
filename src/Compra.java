@@ -1,7 +1,12 @@
+import java.io.Serializable;
 import java.util.Date;
 
 
-public class Compra {
+public class Compra implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4562210406616396L;
 	private int idCompra;
 	private DescripcionProducto descripcionProducto;
 	private String idProveedor;

@@ -30,11 +30,14 @@ public class AsesorVentas {
 	{
 		ArrayList<Compra> pendientes=null;
 		
-		for(int i=0;i<listaCompras.getListaCompras().size();i++)
+		if(listaCompras.getListaCompras()!=null)
 		{
-			if(listaCompras.getListaCompras().get(i).getEstado()=="Pendiente")
+			for(int i=0;i<listaCompras.getListaCompras().size();i++)
 			{
-				pendientes.add(listaCompras.getListaCompras().get(i));
+				if(listaCompras.getListaCompras().get(i).getEstado()=="Pendiente")
+				{
+					pendientes.add(listaCompras.getListaCompras().get(i));
+				}
 			}
 		}
 		return pendientes;

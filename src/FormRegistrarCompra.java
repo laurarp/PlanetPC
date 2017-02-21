@@ -52,6 +52,8 @@ public class FormRegistrarCompra {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		AsesorVentas asesorVentas= new AsesorVentas();
+		
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 450, 300);
@@ -75,23 +77,22 @@ public class FormRegistrarCompra {
 		JButton btnConsultar = new JButton("Consultar");
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AsesorVentas asesorVentas= new AsesorVentas();
 				
-				//for(int i=0;i<asesorVentas.obtenerPedidosPendientes().size();i++)
+				if(asesorVentas.obtenerPedidosPendientes()!=null)
 				{
-					//String idcompra=Integer.toString(asesorVentas.obtenerPedidosPendientes().get(i).getIdCompra());
-					//String tipo=asesorVentas.obtenerPedidosPendientes().get(i).getDescripcionProducto().getTipo();
-					//String cantidad=Integer.toString(asesorVentas.obtenerPedidosPendientes().get(i).getCantidad());
-					//String valor=Integer.toString(asesorVentas.obtenerPedidosPendientes().get(i).getPrecioCompra());
-					//String fechap=asesorVentas.obtenerPedidosPendientes().get(i).getFechaPedido().toString();
-					//String estado=asesorVentas.obtenerPedidosPendientes().get(i).getEstado();
-					//Object[] objs = {idcompra, tipo,cantidad,valor,fechap,estado};
-					Object[] objs = {"1", "PC","2","3600","Hoy","Pendiente"};
-					tableModel.addRow(objs);
+					for(int i=0;i<asesorVentas.obtenerPedidosPendientes().size();i++)
+					{
+						String idcompra=Integer.toString(asesorVentas.obtenerPedidosPendientes().get(i).getIdCompra());
+						String tipo=asesorVentas.obtenerPedidosPendientes().get(i).getDescripcionProducto().getTipo();
+						String cantidad=Integer.toString(asesorVentas.obtenerPedidosPendientes().get(i).getCantidad());
+						String valor=Integer.toString(asesorVentas.obtenerPedidosPendientes().get(i).getPrecioCompra());
+						String fechap=asesorVentas.obtenerPedidosPendientes().get(i).getFechaPedido().toString();
+						String estado=asesorVentas.obtenerPedidosPendientes().get(i).getEstado();
+						Object[] objs = {idcompra, tipo,cantidad,valor,fechap,estado};
+						//Object[] objs = {"1", "PC","2","3600","Hoy","Pendiente"};
+						tableModel.addRow(objs);
+					}
 				}
-				
-				
-				
 			}
 		});
 		btnConsultar.setBounds(203, 18, 89, 23);

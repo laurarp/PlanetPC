@@ -29,7 +29,14 @@ public class ListaVentas {
 	
 	public ArrayList<Venta> getListaVentas()
 	{
-		listaVentas=(ArrayList<Venta>) (Arrays.asList(ReadFileVentas("ListaVentas.txt")));
+		if(ReadFileVentas("ListaVentas.txt")!=null)
+		{
+			listaVentas = (ArrayList<Venta>) (Arrays.asList(ReadFileVentas("ListaVentas.txt")));
+		}
+		else
+		{
+			listaVentas =null;
+		}
 		return listaVentas; 
 	}
 	

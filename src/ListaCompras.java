@@ -35,7 +35,14 @@ public class ListaCompras {
 	
 	public ArrayList<Compra> getListaCompras()
 	{
-		listaCompras=(ArrayList<Compra>) (Arrays.asList(ReadFileCompras("ListaCompras.txt")));
+		if(ReadFileCompras("ListaCompras.txt")!=null)
+		{
+			listaCompras = (ArrayList<Compra>) (Arrays.asList(ReadFileCompras("ListaCompras.txt")));
+		}
+		else
+		{
+			listaCompras =null;
+		}
 		return listaCompras; 
 	}
 	
@@ -92,6 +99,21 @@ public class ListaCompras {
 		{
 			return listaCompras;
 		}
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Compra[] listR=ReadFileCompras("ListaCompras.txt");
+		if(listR!=null)
+		{
+			for(Compra p:listR)
+			{
+				//System.out.println(p.getNombre());
+				System.out.println(p.toString());
+			}
+		}
+
 	}
 
 }
