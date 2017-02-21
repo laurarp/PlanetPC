@@ -28,7 +28,7 @@ public abstract class Actor {
 		this.id = id;
 		this.contrasena = contrasena;
 	}
-	public void borrar33()
+	public void borrar4()
 	{
 		//esta es una prueba de gitHub para subir cambios al programa
 	}
