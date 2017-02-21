@@ -38,7 +38,7 @@ public class ListaProveedores {
 			if (id.equals(a.getId())){
 				listaProveedores.remove(a);
 			}else{
-			throw new Exception("El proveedor no existe");
+			throw new Exception("La Id ingresada es incorrecta");
 			}
 	}
 	
