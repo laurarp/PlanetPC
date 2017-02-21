@@ -101,7 +101,7 @@ public class ServicioTecnico implements Serializable {
 	@Override
 	public String toString() {
 		return "ServicioTecnico [idServicio=" + idServicio + ", descripcion=" + descripcion + ", fechaEntrada="
-				+ fechaEntrada + ", fechaSalida=" + fechaSalida + ", idCliente=" + idCliente + ", precio=" + precio
+				+ s.format(fechaEntrada) + ", fechaSalida=" + s.format(fechaSalida) + ", idCliente=" + idCliente + ", precio=" + precio
 				+ ", estado=" + estado + "]";
 	}
 
