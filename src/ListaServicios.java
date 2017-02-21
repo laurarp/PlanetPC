@@ -153,7 +153,6 @@ public class ListaServicios {
 		if (listaLeer != null) {
 			for (ServicioTecnico p : listaLeer) {
 				System.out.println(p);
-				//
 			}
 		}
 		try {
