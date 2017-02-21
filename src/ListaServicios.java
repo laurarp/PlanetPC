@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -24,7 +25,7 @@ public class ListaServicios {
 		ListaServicios.listaServicios = listaServicios;
 	}
 
-	public void crearServicio(String id, Date fechaIn, Date fechaOut, String idCiente, String estado, double precio) {
+	public void crearServicio(String id, SimpleDateFormat fechaIn, Date fechaOut, String idCiente, String estado, double precio) {
 		ServicioTecnico a = new ServicioTecnico(id, fechaIn, fechaOut, idCiente, precio, estado);
 		listaServicios = Arrays.copyOf(listaServicios, listaServicios.length + 1);
 		listaServicios[listaServicios.length - 1] = a;
@@ -139,9 +140,9 @@ public class ListaServicios {
 	public static void main(String[] args) {
 		ServicioTecnico[] listaServicios = new ServicioTecnico[0];
 		ListaServicios lista = new ListaServicios(listaServicios);
-		lista.crearServicio("12345", new Date(20170202), new Date(20170205), "1017196884", "activo", 35000);
-		lista.crearServicio("12345", new Date(20170202), new Date(20170205), "1017196885", "activo", 35000);
-		lista.crearServicio("12345", new Date(20170202), new Date(20170205), "1017196883", "activo", 35000);
+		lista.crearServicio("12345", new SimpleDateFormat("30-11-2345"), new Date(20170205), "1017196884", "activo", 35000);
+		lista.crearServicio("12345", new SimpleDateFormat("30-11-2345"), new Date(20170205), "1017196885", "activo", 35000);
+		lista.crearServicio("12345", new SimpleDateFormat("30-11-2345"), new Date(20170205), "1017196883", "activo", 35000);
 		ServicioTecnico[] listaLeer = leerArchivoObjeto("C:\\Users\\Guillermo Uribe G\\Desktop\\fichero.txt");
 		if (listaLeer != null) {
 			for (ServicioTecnico p : listaLeer) {
@@ -160,7 +161,7 @@ public class ListaServicios {
 				System.out.println(p);
 			}
 		}
-		lista.crearServicio("12345", new Date(20170202), new Date(20170205), "1017196883", "activo", 35000);
+		lista.crearServicio("12345", new SimpleDateFormat("30-11-2345"), new Date(20170205), "1017196883", "activo", 35000);
 		ServicioTecnico[] listaLeer11 = leerArchivoObjeto("C:\\Users\\Guillermo Uribe G\\Desktop\\fichero.txt");
 		if (listaLeer11 != null) {
 			for (ServicioTecnico p : listaLeer11) {
