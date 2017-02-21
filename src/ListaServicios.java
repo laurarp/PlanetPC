@@ -25,8 +25,8 @@ public class ListaServicios {
 		ListaServicios.listaServicios = listaServicios;
 	}
 
-	public void crearServicio(String id, String idCiente, String estado, double precio, int diasEstimados) {
-		ServicioTecnico a = new ServicioTecnico(id, idCiente, precio, estado, diasEstimados);
+	public void crearServicio(String id, String descripcion, String idCiente, String estado, double precio, int diasEstimados) {
+		ServicioTecnico a = new ServicioTecnico(id, descripcion, idCiente, precio, estado, diasEstimados);
 		listaServicios = Arrays.copyOf(listaServicios, listaServicios.length + 1);
 		listaServicios[listaServicios.length - 1] = a;
 		escribirArchivoObjeto("C:\\Users\\Guillermo Uribe G\\Desktop\\fichero.txt", listaServicios);
@@ -145,9 +145,9 @@ public class ListaServicios {
 	public static void main(String[] args) {
 		ServicioTecnico[] listaServicios = new ServicioTecnico[0];
 		ListaServicios lista = new ListaServicios(listaServicios);
-		lista.crearServicio("12345", "1017196884", "activo", 35000, 10);
-		lista.crearServicio("12345", "1017196885", "activo", 35000,5);
-		lista.crearServicio("12345", "1017196883", "activo", 35000,4);
+		lista.crearServicio("12345","portatil dell", "1017196884", "activo", 35000, 10);
+		lista.crearServicio("12345","PC clon", "1017196885", "activo", 35000,5);
+		lista.crearServicio("12345","portatil panasonic", "1017196883", "activo", 35000,4);
 		ServicioTecnico[] listaLeer = leerArchivoObjeto("C:\\Users\\Guillermo Uribe G\\Desktop\\fichero.txt");
 		System.out.println(getFechaActual());
 		if (listaLeer != null) {
@@ -167,7 +167,7 @@ public class ListaServicios {
 				System.out.println(p);
 			}
 		}
-		lista.crearServicio("12345", "1017196883", "activo", 35000,3);
+		lista.crearServicio("12345","pantalla lg", "1017196883", "activo", 35000,3);
 		ServicioTecnico[] listaLeer11 = leerArchivoObjeto("C:\\Users\\Guillermo Uribe G\\Desktop\\fichero.txt");
 		if (listaLeer11 != null) {
 			for (ServicioTecnico p : listaLeer11) {

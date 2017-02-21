@@ -9,19 +9,28 @@ public class ServicioTecnico implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -4896187308543036429L;
-	private String idProducto;
+	private String idServicio;
+	private String descripcion;
 	private Date fechaEntrada;
 	private Date fechaSalida;
 	private String idCliente;
 	private double precio;
 	private String estado;
 
-	public String getIdProducto() {
-		return idProducto;
+	public String getIdServicio() {
+		return idServicio;
 	}
 
-	public void setIdProducto(String idProducto) {
-		this.idProducto = idProducto;
+	public void setIdServicio(String idServicio) {
+		this.idServicio = idServicio;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String idProducto) {
+		this.descripcion = idProducto;
 	}
 
 	public Date getFechaEntrada() {
@@ -76,10 +85,11 @@ public class ServicioTecnico implements Serializable {
     }
 
 
-	public ServicioTecnico(String idProducto, String idCliente, double precio,
+	public ServicioTecnico(String idServicio, String descripcion, String idCliente, double precio,
 			String estado, int diasEstimados) {
 		super();
-		this.idProducto = idProducto;
+		this.idServicio=idServicio;
+		this.descripcion = descripcion;
 		fechaSalida =sumarFechasDias(new Date(), diasEstimados);
 		this.idCliente = idCliente;
 		this.precio = precio;
@@ -87,11 +97,15 @@ public class ServicioTecnico implements Serializable {
 		fechaEntrada=new Date(System.currentTimeMillis());
 	}
 	SimpleDateFormat s=new SimpleDateFormat("dd-MM-yyyy");
+
 	@Override
 	public String toString() {
-		return "ServicioTecnico [idProducto=" + idProducto + ", fechaEntrada=" + s.format(fechaEntrada) + ", fechaSalida="
-				+ s.format(fechaSalida) + ", idCliente=" + idCliente + ", precio=" + precio + ", estado=" + estado + "]";
+		return "ServicioTecnico [idServicio=" + idServicio + ", descripcion=" + descripcion + ", fechaEntrada="
+				+ fechaEntrada + ", fechaSalida=" + fechaSalida + ", idCliente=" + idCliente + ", precio=" + precio
+				+ ", estado=" + estado + "]";
 	}
+
+	
 
 	
 
