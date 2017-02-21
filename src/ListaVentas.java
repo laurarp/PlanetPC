@@ -10,49 +10,44 @@ import java.util.Date;
 
 
 public class ListaVentas {
-	private ArrayList<Venta> listaVentas;
-	private String ruta="ListaVentas.txt";
+	private ArrayList<Venta> ventas;
+	private String ruta;
 	
 	public ListaVentas() throws Exception {
 		super();
-		if(ReadFileVentas(ruta)!=null)
-		{
-			this.listaVentas = (ArrayList<Venta>) (Arrays.asList(ReadFileVentas(ruta)));
-		}
-		else
-		{
-			this.listaVentas =null;
-		}
+		ruta="ListaVentas.txt";
 	}
 
 	public void añadirVenta (DescripcionProducto descripcionProducto, Date fechaVenta, String idCliente, String idVendedor, int Cantidad) throws Exception
 	{
 		if(ReadFileVentas(ruta)!=null)
 		{
-			this.listaVentas = (ArrayList<Venta>) (Arrays.asList(ReadFileVentas(ruta)));
+			this.ventas = (ArrayList<Venta>) (Arrays.asList(ReadFileVentas(ruta)));
 		}
 		else
 		{
-			this.listaVentas =null;
+			this.ventas =null;
 		}
 		Venta ventaNueva=new Venta();
-		this.listaVentas.add(ventaNueva);
-		Venta[] ventas = new Venta[listaVentas.size()];
-		ventas = listaVentas.toArray(ventas);
-		WriteFileVentas(ruta, ventas);
+		this.ventas.add(ventaNueva);
+		
+		//Convierte el arrayList en array para escribirlo en fichero
+		Venta[] arrayVentas = new Venta[ventas.size()];
+		arrayVentas = ventas.toArray(arrayVentas);
+		WriteFileVentas(ruta, arrayVentas);
 	}
 	
 	public ArrayList<Venta> getListaVentas() throws Exception
 	{
 		if(ReadFileVentas(ruta)!=null)
 		{
-			listaVentas = (ArrayList<Venta>) (Arrays.asList(ReadFileVentas(ruta)));
+			ventas = (ArrayList<Venta>) (Arrays.asList(ReadFileVentas(ruta)));
 		}
 		else
 		{
-			listaVentas =null;
+			ventas =null;
 		}
-		return listaVentas; 
+		return ventas; 
 	}
 	
 	public static Venta[] ReadFileVentas(String file) throws Exception 

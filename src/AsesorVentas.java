@@ -3,8 +3,8 @@ import java.util.Date;
 
 
 public class AsesorVentas {
-	private ListaCompras listaCompras;
-	private ListaVentas listaVentas;
+	private ListaCompras listaCompras=new ListaCompras();
+	private ListaVentas listaVentas=new ListaVentas();
 	private Inventario inventario;
 	
 	
@@ -25,31 +25,7 @@ public class AsesorVentas {
 	
 	public void modificarEstadoCompra(String idCompra,String estado) throws Exception
 	{
-		int i=0;
-		ArrayList<Compra> compras= new ArrayList<Compra>();
-		compras=listaCompras.getListaCompras();
-		
-		if(compras!=null)
-		{
-			while(i<compras.size() && String.valueOf(compras.get(i).getIdCompra())!=idCompra)
-			{
-				i++;
-			}
-			if(i<compras.size())
-			{
-				compras.get(i).setEstado("recibido");
-				listaCompras.setListaCompras(compras);
-				
-			}
-			else
-			{
-				throw new Exception ("La compra no existe");
-			}
-		}
-		else
-		{
-			throw new Exception("No hay compras disponibles");
-		}
+		listaCompras.modificarCompra(idCompra, estado);
 	}
 	
 	public ArrayList<Compra> obtenerPedidosPendientesProveedor(String idProveedor) throws Exception

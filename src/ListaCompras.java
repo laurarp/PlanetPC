@@ -10,22 +10,13 @@ import java.util.Date;
 
 
 public class ListaCompras {
-	private ArrayList<Compra> listaCompras;
+	private ArrayList<Compra> compras;
 	private String ruta;
 
-	public ListaCompras() throws Exception 
+	public ListaCompras() 
 	{
 		super();
 		ruta="ListaCompras.txt";
-		
-		if(ReadFileCompras(ruta)!=null)
-		{
-			this.listaCompras = (ArrayList<Compra>) (Arrays.asList(ReadFileCompras(ruta)));
-		}
-		else
-		{
-			this.listaCompras =null;
-		}
 	}
 
 	public void añadirCompra (DescripcionProducto  descripcionProducto, String idProveedor, int cantidad, int precioCompra, Date fechaPedido, Date fechaIngreso, String estado)
@@ -37,21 +28,49 @@ public class ListaCompras {
 	{
 		if(ReadFileCompras(ruta)!=null)
 		{
-			listaCompras = (ArrayList<Compra>) (Arrays.asList(ReadFileCompras(ruta)));
+			compras = (ArrayList<Compra>) (Arrays.asList(ReadFileCompras(ruta)));
 		}
 		else
 		{
-			listaCompras =null;
+			compras =null;
 		}
-		return listaCompras; 
-	}
-	
-	public void setListaCompras(ArrayList<Compra> listaCompras) throws Exception {
-		Compra[] compras = new Compra[listaCompras.size()];
-		compras = listaCompras.toArray(compras);
-		WriteFileCompras(ruta, compras);
+		return compras; 
 	}
 
+	public void modificarCompra(String idCompra,String estado) throws Exception
+	{
+		int i=0;
+		
+		if(ReadFileCompras(ruta)!=null)//Actualiza lista compras
+		{
+			compras = (ArrayList<Compra>) (Arrays.asList(ReadFileCompras(ruta)));
+		}
+		else
+		{
+			compras =null;
+		}
+		
+		if(compras!=null)
+		{
+			while(i<compras.size() && String.valueOf(compras.get(i).getIdCompra())!=idCompra)
+			{
+				i++;
+			}
+			if(i<compras.size())
+			{
+				compras.get(i).setEstado("recibido");//Cambia el estado de la compra a recibido			
+			}
+			else
+			{
+				throw new Exception ("La compra no existe");
+			}
+		}
+		else
+		{
+			throw new Exception("No hay compras disponibles");
+		}
+	}
+	
 	public static Compra[] ReadFileCompras(String file) throws Exception
 	{
 		FileInputStream fi=null;
