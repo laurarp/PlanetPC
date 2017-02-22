@@ -7,12 +7,11 @@ public class AsesorVentas {
 	private ListaVentas listaVentas;
 	private Inventario inventario;
 	
-	public AsesorVentas(ListaCompras listaCompras, ListaVentas listaVentas,
-			Inventario inventario) throws Exception {
+	public AsesorVentas() throws Exception {
 		super();
 		this.listaCompras = new ListaCompras();
 		this.listaVentas = new ListaVentas();
-		this.inventario = inventario;
+		this.inventario = new Inventario();
 	}
 
 	public ArrayList<Compra> reporteCompras() throws Exception
@@ -44,7 +43,7 @@ public class AsesorVentas {
 		{
 			for(int i=0;i<compras.size();i++)
 			{
-				if(compras.get(i).getEstado()=="Pendiente")
+				if(compras.get(i).getEstado()=="Pendiente" && compras.get(i).getIdProveedor()==idProveedor)
 				{
 					pendientes.add(compras.get(i));
 				}
