@@ -3,49 +3,59 @@ import java.util.Date;
 
 
 public class AsesorVentas {
-	private ListaCompras listaCompras=new ListaCompras();
-	private ListaVentas listaVentas=new ListaVentas();
+	private ListaCompras listaCompras;
+	private ListaVentas listaVentas;
+	private Inventario inventario;
 	
-	public ArrayList<Compra> reporteCompras()
+	public AsesorVentas() throws Exception {
+		super();
+		this.listaCompras = new ListaCompras();
+		this.listaVentas = new ListaVentas();
+		this.inventario = new Inventario();
+	}
+
+	public ArrayList<Compra> reporteCompras() throws Exception
 	{
 		return listaCompras.getListaCompras();
 	}
 	
-	public ArrayList<Venta> reporteVentas()
+	public ArrayList<Venta> reporteVentas() throws Exception
 	{
 		return listaVentas.getListaVentas();
 	}
 	
-	public Producto buscarProducto(Inventario inventario, String idProducto)
+	public Producto buscarProducto(String idProducto)
 	{
-		return null;
+		return inventario.buscarProducto(idProducto);
 	}
 	
-	public void modificarCompra(ListaCompras listaCompras, Compra compra)
+	public void modificarEstadoCompra(String idCompra,String estado) throws Exception
 	{
-		
+		listaCompras.modificarCompra(idCompra, estado);
 	}
 	
-	public ArrayList<Compra> obtenerPedidosPendientes()
+	public ArrayList<Compra> obtenerPedidosPendientesProveedor(String idProveedor) throws Exception
 	{
 		ArrayList<Compra> pendientes=null;
+		ArrayList<Compra> compras=listaCompras.getListaCompras();
 		
-		if(listaCompras.getListaCompras()!=null)
+		if(compras!=null)
 		{
-			for(int i=0;i<listaCompras.getListaCompras().size();i++)
+			for(int i=0;i<compras.size();i++)
 			{
-				if(listaCompras.getListaCompras().get(i).getEstado()=="Pendiente")
+				if(compras.get(i).getEstado()=="Pendiente" && compras.get(i).getIdProveedor()==idProveedor)
 				{
-					pendientes.add(listaCompras.getListaCompras().get(i));
+					pendientes.add(compras.get(i));
 				}
 			}
 		}
 		return pendientes;
 	}
 	
-	
-	public void registarVenta(ListaVentas listaVentas,DescripcionProducto descripcionProducto, Date fechaVenta, String idCliente, String idVendedor, int Cantidad)
+	public void registarVenta(DescripcionProducto descripcionProducto, Date fechaVenta, String idCliente, String idVendedor, int Cantidad) throws Exception
 	{
-		
+		listaVentas.añadirVenta(descripcionProducto, fechaVenta, idCliente, idVendedor, Cantidad);
 	}
+
+	
 }

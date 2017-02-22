@@ -39,7 +39,7 @@ public class ListaProveedores {
 			if (id.equals(a.getId())){
 				listaProveedores.remove(a);
 			}else{
-			throw new Exception("El proveedor no existe");
+			throw new Exception("La Id ingresada es incorrecta");
 			}
 	}
 	
@@ -47,6 +47,34 @@ public class ListaProveedores {
 	{
 		listaProveedores=new ArrayList<Proveedor>(Arrays.asList(ReadFileProveedores("ListaProveedores.txt")));
 		return listaProveedores; 
+	}
+	
+	public String buscarIdProveedor(String nombreProveedor) throws Exception
+	{
+		String idProveedor="";
+		
+		if(listaProveedores!=null)
+		{
+			int i=0;
+					
+			while(i<listaProveedores.size() && listaProveedores.get(i).getNombre()!=nombreProveedor)
+			{
+				i++;
+			}
+			if(i<listaProveedores.size())
+			{
+				idProveedor=listaProveedores.get(i).getId();
+			}
+			else
+			{
+				throw new Exception("El proveedor no se encontró");
+			}
+		}
+		else
+		{
+			throw new Exception("No existen proveedores");
+		}
+		return idProveedor;
 	}
 	
 	public static Proveedor[] ReadFileProveedores(String file)

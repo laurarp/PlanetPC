@@ -22,8 +22,7 @@ public class JefeBodega {
 		return null;
 	}
 	
-	public void registrarPedido(ListaCompras listaCompras, DescripcionProducto descripcionProducto, String idProveedor, int cantidad, int precioCompra, Date fechaPedido, Date fechaIngreso, String estado)
-	{
+	public void registrarPedido(ListaCompras listaCompras, DescripcionProducto descripcionProducto, String idProveedor, int cantidad, int precioCompra, Date fechaPedido, Date fechaIngreso, String estado){
 		
 	}
 

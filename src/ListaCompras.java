@@ -1,25 +1,28 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
 
 public class ListaCompras {
-	private ArrayList<Compra> listaCompras;
-	
+	private ArrayList<Compra> compras;
 
-	public ListaCompras() {
+	public ListaCompras() throws Exception 
+	{
 		super();
+		
 		if(ReadFileCompras("ListaCompras.txt")!=null)
 		{
-			this.listaCompras = (ArrayList<Compra>) (Arrays.asList(ReadFileCompras("ListaCompras.txt")));
+			this.compras = (ArrayList<Compra>) (Arrays.asList(ReadFileCompras("ListaCompras.txt")));
 		}
 		else
 		{
-			this.listaCompras =null;
+			this.compras =null;
 		}
 	}
 
@@ -28,25 +31,42 @@ public class ListaCompras {
 		
 	}
 	
-	public void modificarCompra(Compra compra)
+	public ArrayList<Compra> getListaCompras() throws Exception
 	{
-		
+		return compras; 
 	}
-	
-	public ArrayList<Compra> getListaCompras()
+
+	public void modificarCompra(String idCompra,String estado) throws Exception
 	{
-		if(ReadFileCompras("ListaCompras.txt")!=null)
+		int i=0;
+		
+		if(compras!=null)
 		{
-			listaCompras = (ArrayList<Compra>) (Arrays.asList(ReadFileCompras("ListaCompras.txt")));
+			while(i<compras.size() && String.valueOf(compras.get(i).getIdCompra())!=idCompra)
+			{
+				i++;
+			}
+			if(i<compras.size())
+			{
+				compras.get(i).setEstado("recibido");//Cambia el estado de la compra a recibido			
+			}
+			else
+			{
+				throw new Exception ("La compra no existe");
+			}
 		}
 		else
 		{
-			listaCompras =null;
+			throw new Exception("No hay compras disponibles");
 		}
-		return listaCompras; 
+		
+		//Modifica arrayList de compra en array para ingresar al fichero
+		Compra[] arrayCompras = new Compra[compras.size()];
+		arrayCompras = compras.toArray(arrayCompras);
+		WriteFileCompras("ListaCompras.txt", arrayCompras);
 	}
 	
-	public static Compra[] ReadFileCompras(String file)
+	public static Compra[] ReadFileCompras(String file) throws Exception
 	{
 		FileInputStream fi=null;
 		ObjectInputStream oi=null;
@@ -66,15 +86,15 @@ public class ListaCompras {
 		}
 		catch(FileNotFoundException e)
 		{
-			System.out.println("Problemas con la direccion para abrir el fichero");
+			throw new Exception("Problemas con la direccion para abrir el fichero");
 		}
 		catch(IOException e)
 		{
-			System.out.println("El fichero tiene problema al leer los objetos");
+			throw new Exception("El fichero tiene problema al leer los objetos");
 		}
 		catch(ClassNotFoundException e)
 		{
-			System.out.println("Problema al leer el fichero");
+			throw new Exception("Problema al leer el fichero");
 		}
 		finally
 		{
@@ -88,7 +108,7 @@ public class ListaCompras {
 			}
 			catch (IOException e) {
 				// TODO Auto-generated catch block
-				System.out.println("No se pudo cerrar el fichero");
+				throw new Exception("No se pudo cerrar el fichero");
 			}
 		}
 		if(listaCompras.length==0)
@@ -101,19 +121,50 @@ public class ListaCompras {
 		}
 	}
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public static void WriteFileCompras(String file, Compra[] Compras) throws Exception
+	{
+		FileOutputStream fo=null;
+		ObjectOutputStream ol=null;
 		
-		Compra[] listR=ReadFileCompras("ListaCompras.txt");
-		if(listR!=null)
-		{
-			for(Compra p:listR)
+		try{
+			fo=new FileOutputStream(file);
+			ol=new ObjectOutputStream(fo);
+			
+			for(Compra o:Compras)
 			{
-				//System.out.println(p.getNombre());
-				System.out.println(p.toString());
+				try
+				{
+					ol.writeObject(o);
+				}
+				catch(IOException e)
+				{
+					throw new Exception("Problema al crear las clases");
+				}
 			}
 		}
-
+		catch(FileNotFoundException e)
+		{
+			throw new Exception("Problemas con la direccion para crear el fichero");
+		}
+		catch(IOException e)
+		{
+			throw new Exception("El fichero tiene problema al crearse");
+		}
+		finally
+		{
+			try
+			{
+				if(fo!=null)
+				{
+					fo.close();
+					ol.close();
+				}
+			}
+			catch (IOException e) {
+				// TODO Auto-generated catch block
+				throw new Exception("No se pudo cerrar el fichero");
+			}
+		}
 	}
 
 }
