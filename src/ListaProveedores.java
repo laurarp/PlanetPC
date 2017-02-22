@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -17,7 +18,7 @@ public class ListaProveedores {
 		super();
 		if(ReadFileProveedores("ListaProveedores.txt")!=null)
 		{
-			this.listaProveedores = (ArrayList<Proveedor>) (Arrays.asList(ReadFileProveedores("ListaProveedores.txt")));
+			this.listaProveedores = ReadFileProveedores("ListaProveedores.txt");
 		}
 		else
 		{
@@ -89,7 +90,7 @@ public class ListaProveedores {
 	
 	public ArrayList<Proveedor> mostrarProveedores()
 	{
-		listaProveedores=new ArrayList<Proveedor>(Arrays.asList(ReadFileProveedores("ListaProveedores.txt")));
+		listaProveedores=ReadFileProveedores("ListaProveedores.txt");
 		return listaProveedores; 
 	}
 	
@@ -100,8 +101,8 @@ public class ListaProveedores {
 		if(listaProveedores!=null)
 		{
 			int i=0;
-					
-			while(i<listaProveedores.size() && listaProveedores.get(i).getNombre()!=nombreProveedor)
+				String l=listaProveedores.get(i).getNombre();
+			while(i<listaProveedores.size() && nombreProveedor.compareTo(listaProveedores.get(i).getNombre())!=0)
 			{
 				i++;
 			}
@@ -121,11 +122,11 @@ public class ListaProveedores {
 		return idProveedor;
 	}
 	
-	public static Proveedor[] ReadFileProveedores(String file)
+	public static ArrayList<Proveedor> ReadFileProveedores(String file)
 	{
 		FileInputStream fi=null;
 		ObjectInputStream oi=null;
-		Proveedor[] listaProveedores= new Proveedor[0];
+		ArrayList<Proveedor> listaProveedores= new ArrayList<Proveedor>();
 		
 		try{
 			fi=new FileInputStream(file);
@@ -135,8 +136,7 @@ public class ListaProveedores {
 			while(fi.available()>0)
 			{
 				Proveedor proveedor=(Proveedor) oi.readObject();
-				listaProveedores=Arrays.copyOf(listaProveedores, listaProveedores.length+1);
-				listaProveedores[i++]=proveedor;
+				listaProveedores.add(proveedor);
 			}
 		}
 		catch(FileNotFoundException e)
@@ -166,7 +166,7 @@ public class ListaProveedores {
 				System.out.println("No se pudo cerrar el fichero");
 			}
 		}
-		if(listaProveedores.length==0)
+		if(listaProveedores.size()==0)
 		{
 			return null;
 		}
@@ -221,5 +221,7 @@ public class ListaProveedores {
 			}
 		}
 	}
+	
+
 
 }

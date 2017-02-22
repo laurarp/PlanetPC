@@ -139,6 +139,10 @@ public class FormRegistrarCompra {
 						tableModel.addRow(objs);
 					}
 				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "No hay pedidos pendientes");
+				}
 			}
 		});
 		btnConsultar.setBounds(203, 18, 89, 23);
