@@ -11,6 +11,20 @@ import java.util.Arrays;
 
 public class ListaProveedores {
 	private ArrayList<Proveedor> listaProveedores; 
+	
+	
+
+	public ListaProveedores() {
+		super();
+		if(ReadFileProveedores("ListaProveedores.txt")!=null)
+		{
+			this.listaProveedores = (ArrayList<Proveedor>) (Arrays.asList(ReadFileProveedores("ListaProveedores.txt")));
+		}
+		else
+		{
+			this.listaProveedores =null;
+		}
+	}
 
 	public void nuevoProveedor(String nombre, String id){
 		Proveedor tempProveedor = new Proveedor(nombre, id);
@@ -19,6 +33,7 @@ public class ListaProveedores {
 		System.out.println("El proveedor"+listaProveedores.get(0).getNombre()+", con Id: "+listaProveedores.get(0).getId()+" ha sido creado.");
 	}
 	
+<<<<<<< HEAD
 	public static void writeFileObject(String file, ArrayList<Proveedor> listaProveedores){
 		FileOutputStream fo = null;
 		ObjectOutputStream oI = null;
@@ -48,6 +63,8 @@ public class ListaProveedores {
 		}
 	}
 	
+=======
+>>>>>>> origin/master
 	public String buscarProveedor(String id) throws Exception {
 		for (Proveedor a : listaProveedores)
 			if (id.equals(a.getId())){
@@ -55,6 +72,7 @@ public class ListaProveedores {
 			}else{
 			throw new Exception("El proveedor no existe");
 			}
+		return id;
 		}
 	
 	
@@ -76,6 +94,34 @@ public class ListaProveedores {
 	{
 		listaProveedores=new ArrayList<Proveedor>(Arrays.asList(ReadFileProveedores("ListaProveedores.txt")));
 		return listaProveedores; 
+	}
+	
+	public String buscarIdProveedor(String nombreProveedor) throws Exception
+	{
+		String idProveedor="";
+		
+		if(listaProveedores!=null)
+		{
+			int i=0;
+					
+			while(i<listaProveedores.size() && listaProveedores.get(i).getNombre()!=nombreProveedor)
+			{
+				i++;
+			}
+			if(i<listaProveedores.size())
+			{
+				idProveedor=listaProveedores.get(i).getId();
+			}
+			else
+			{
+				throw new Exception("El proveedor no se encontró");
+			}
+		}
+		else
+		{
+			throw new Exception("No existen proveedores");
+		}
+		return idProveedor;
 	}
 	
 	public static Proveedor[] ReadFileProveedores(String file)
@@ -130,6 +176,52 @@ public class ListaProveedores {
 		else
 		{
 			return listaProveedores;
+		}
+	}
+	
+	public static void WriteFileProveedores(String file, Proveedor[] listProveedores)
+	{
+		FileOutputStream fo=null;
+		ObjectOutputStream ol=null;
+		
+		try{
+			fo=new FileOutputStream(file);
+			ol=new ObjectOutputStream(fo);
+			
+			for(Proveedor o:listProveedores)
+			{
+				try
+				{
+					ol.writeObject(o);
+				}
+				catch(IOException e)
+				{
+					System.out.println("Problema al crear las clases");
+				}
+			}
+		}
+		catch(FileNotFoundException e)
+		{
+			System.out.println("Problemas con la direccion para crear el fichero");
+		}
+		catch(IOException e)
+		{
+			System.out.println("El fichero tiene problema al crearse");
+		}
+		finally
+		{
+			try
+			{
+				if(fo!=null)
+				{
+					fo.close();
+					ol.close();
+				}
+			}
+			catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("No se pudo cerrar el fichero");
+			}
 		}
 	}
 

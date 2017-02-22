@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -14,6 +15,7 @@ import java.awt.Font;
 import java.awt.Choice;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 
 public class FormRegistrarCompra {
@@ -24,6 +26,8 @@ public class FormRegistrarCompra {
 	private JTextField textIdCompra;
 	private JLabel lblNewLabel_1;
 	private JButton btnRegistrar;
+	AsesorVentas asesorVentas = null;
+	ListaProveedores lp=null;
 
 	/**
 	 * Launch the application.
@@ -52,7 +56,17 @@ public class FormRegistrarCompra {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		AsesorVentas asesorVentas= new AsesorVentas();
+			
+		try 
+		{
+			asesorVentas = new AsesorVentas();
+		} 
+		catch (Exception e) 
+		{
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+		
+		lp=new ListaProveedores();
 		
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
@@ -74,30 +88,6 @@ public class FormRegistrarCompra {
 		table = new JTable(tableModel);
 		scrollPane.setViewportView(table);
 		
-		JButton btnConsultar = new JButton("Consultar");
-		btnConsultar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				if(asesorVentas.obtenerPedidosPendientes()!=null)
-				{
-					for(int i=0;i<asesorVentas.obtenerPedidosPendientes().size();i++)
-					{
-						String idcompra=Integer.toString(asesorVentas.obtenerPedidosPendientes().get(i).getIdCompra());
-						String tipo=asesorVentas.obtenerPedidosPendientes().get(i).getDescripcionProducto().getTipo();
-						String cantidad=Integer.toString(asesorVentas.obtenerPedidosPendientes().get(i).getCantidad());
-						String valor=Integer.toString(asesorVentas.obtenerPedidosPendientes().get(i).getPrecioCompra());
-						String fechap=asesorVentas.obtenerPedidosPendientes().get(i).getFechaPedido().toString();
-						String estado=asesorVentas.obtenerPedidosPendientes().get(i).getEstado();
-						Object[] objs = {idcompra, tipo,cantidad,valor,fechap,estado};
-						//Object[] objs = {"1", "PC","2","3600","Hoy","Pendiente"};
-						tableModel.addRow(objs);
-					}
-				}
-			}
-		});
-		btnConsultar.setBounds(203, 18, 89, 23);
-		frame.getContentPane().add(btnConsultar);
-		
 		textIdCompra = new JTextField();
 		textIdCompra.setBounds(321, 108, 86, 20);
 		frame.getContentPane().add(textIdCompra);
@@ -111,8 +101,6 @@ public class FormRegistrarCompra {
 		btnRegistrar.setBounds(321, 151, 89, 23);
 		frame.getContentPane().add(btnRegistrar);
 		
-		ListaProveedores lp=new ListaProveedores();
-		
 		Choice chProveedores = new Choice();
 		for(int i=0;i<lp.mostrarProveedores().size();i++)
 		{
@@ -120,6 +108,41 @@ public class FormRegistrarCompra {
 		}
 		chProveedores.setBounds(99, 16, 79, 20);
 		frame.getContentPane().add(chProveedores);
+		
+		JButton btnConsultar = new JButton("Consultar");
+		btnConsultar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				ArrayList<Compra> pendientes = null;
+				
+				try 
+				{
+					pendientes = asesorVentas.obtenerPedidosPendientesProveedor(lp.buscarIdProveedor(chProveedores.getSelectedItem()));
+				} 
+				catch (Exception e) 
+				{
+					JOptionPane.showMessageDialog(null, e.getMessage());
+				}
+				
+				if(pendientes!=null)
+				{
+					for(int i=0;i<pendientes.size();i++)
+					{
+						String idcompra=Integer.toString(pendientes.get(i).getIdCompra());
+						String tipo=pendientes.get(i).getDescripcionProducto().getTipo();
+						String cantidad=Integer.toString(pendientes.get(i).getCantidad());
+						String valor=Integer.toString(pendientes.get(i).getPrecioCompra());
+						String fechap=pendientes.get(i).getFechaPedido().toString();
+						String estado=pendientes.get(i).getEstado();
+						Object[] objs = {idcompra, tipo,cantidad,valor,fechap,estado};
+						//Object[] objs = {"1", "PC","2","3600","Hoy","Pendiente"};
+						tableModel.addRow(objs);
+					}
+				}
+			}
+		});
+		btnConsultar.setBounds(203, 18, 89, 23);
+		frame.getContentPane().add(btnConsultar);
 		
 	}
 }
