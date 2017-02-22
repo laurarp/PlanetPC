@@ -26,6 +26,8 @@ public class FormRegistrarCompra {
 	private JTextField textIdCompra;
 	private JLabel lblNewLabel_1;
 	private JButton btnRegistrar;
+	AsesorVentas asesorVentas = null;
+	ListaProveedores lp=null;
 
 	/**
 	 * Launch the application.
@@ -54,8 +56,7 @@ public class FormRegistrarCompra {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		AsesorVentas asesorVentas = null;
-		
+			
 		try 
 		{
 			asesorVentas = new AsesorVentas();
@@ -65,11 +66,11 @@ public class FormRegistrarCompra {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		
-		ListaProveedores lp=new ListaProveedores();
+		lp=new ListaProveedores();
 		
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 581, 362);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -82,22 +83,26 @@ public class FormRegistrarCompra {
 		DefaultTableModel tableModel = new DefaultTableModel(titulos, 0);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(24, 62, 268, 170);
+		scrollPane.setBounds(24, 62, 506, 170);
 		frame.getContentPane().add(scrollPane);
 		table = new JTable(tableModel);
 		scrollPane.setViewportView(table);
 		
 		textIdCompra = new JTextField();
-		textIdCompra.setBounds(321, 108, 86, 20);
+		textIdCompra.setBounds(43, 289, 86, 20);
 		frame.getContentPane().add(textIdCompra);
 		textIdCompra.setColumns(10);
 		
 		lblNewLabel_1 = new JLabel("Id Compra");
-		lblNewLabel_1.setBounds(321, 83, 69, 14);
+		lblNewLabel_1.setBounds(43, 264, 69, 14);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		btnRegistrar = new JButton("Registrar");
-		btnRegistrar.setBounds(321, 151, 89, 23);
+		btnRegistrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnRegistrar.setBounds(176, 274, 89, 23);
 		frame.getContentPane().add(btnRegistrar);
 		
 		Choice chProveedores = new Choice();
@@ -113,6 +118,11 @@ public class FormRegistrarCompra {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				ArrayList<Compra> pendientes = null;
+				
+				for(int i=0;i<tableModel.getRowCount();i++)
+				{
+					tableModel.removeRow(i);
+				}
 				
 				try 
 				{
@@ -137,6 +147,10 @@ public class FormRegistrarCompra {
 						//Object[] objs = {"1", "PC","2","3600","Hoy","Pendiente"};
 						tableModel.addRow(objs);
 					}
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "No hay pedidos pendientes");
 				}
 			}
 		});

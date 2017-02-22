@@ -18,17 +18,47 @@ public class ListaCompras {
 		
 		if(ReadFileCompras("ListaCompras.txt")!=null)
 		{
-			this.compras = (ArrayList<Compra>) (Arrays.asList(ReadFileCompras("ListaCompras.txt")));
+			this.compras = ReadFileCompras("ListaCompras.txt");
 		}
 		else
 		{
-			this.compras =null;
+			this.compras =new ArrayList<Compra>();
 		}
 	}
 
-	public void añadirCompra (DescripcionProducto  descripcionProducto, String idProveedor, int cantidad, int precioCompra, Date fechaPedido, Date fechaIngreso, String estado)
-	{
-		
+	public void añadirCompra (DescripcionProducto  descripcionProducto, String idProveedor, int cantidad, int precioCompra, Date fechaPedido, Date fechaIngreso, String estado){
+		Compra tempCompra = new Compra(descripcionProducto, idProveedor, cantidad, precioCompra, fechaPedido, fechaIngreso, estado);
+		compras.add(tempCompra);
+		writeFileObject("ListaCompras.txt", compras);
+	}
+	
+	public static void writeFileObject(String file, ArrayList <Compra> listaCompras){
+		FileOutputStream fo = null;
+		ObjectOutputStream oI = null;
+		try{
+			fo = new FileOutputStream(file);
+			oI = new ObjectOutputStream(fo);
+			for (Compra o:listaCompras){
+				try{
+					oI.writeObject(o);
+				}catch (IOException e){
+					System.out.println("problema al crear las clases");
+				}
+			}
+		}catch (FileNotFoundException e){
+			System.out.println("Problemas con la direccion para crear e fichero");
+		}catch (IOException e){
+			System.out.println("El fichero tiene problema al crearse");
+		}finally{
+			try{
+				if (fo!=null){
+					fo.close();
+					oI.close();
+				}
+			}catch (IOException e){
+				
+			}
+		}
 	}
 	
 	public ArrayList<Compra> getListaCompras() throws Exception
@@ -66,11 +96,11 @@ public class ListaCompras {
 		WriteFileCompras("ListaCompras.txt", arrayCompras);
 	}
 	
-	public static Compra[] ReadFileCompras(String file) throws Exception
+	public static ArrayList<Compra> ReadFileCompras(String file) throws Exception
 	{
 		FileInputStream fi=null;
 		ObjectInputStream oi=null;
-		Compra[] listaCompras= new Compra[0];
+		ArrayList<Compra> listaCompras= new ArrayList<Compra>();
 		
 		try{
 			fi=new FileInputStream(file);
@@ -80,8 +110,7 @@ public class ListaCompras {
 			while(fi.available()>0)
 			{
 				Compra compra=(Compra) oi.readObject();
-				listaCompras=Arrays.copyOf(listaCompras, listaCompras.length+1);
-				listaCompras[i++]=compra;
+				listaCompras.add(compra);
 			}
 		}
 		catch(FileNotFoundException e)
@@ -111,7 +140,7 @@ public class ListaCompras {
 				throw new Exception("No se pudo cerrar el fichero");
 			}
 		}
-		if(listaCompras.length==0)
+		if(listaCompras.size()==0)
 		{
 			return null;
 		}
@@ -166,5 +195,32 @@ public class ListaCompras {
 			}
 		}
 	}
+	
+	public static void main(String[] args) {
+		ArrayList<Compra> compras=new ArrayList<Compra>();
+		try {
+			writeFileObject("ListaCompras.txt", compras);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		ListaCompras lc = null;
+		try {
+			lc = new ListaCompras();
+			DescripcionProducto dc=new DescripcionProducto("1", 25488, "PC", 0, "Apple", "2010");
+			
+			lc.añadirCompra(dc, "1", 2, 25412, new Date(5855), new Date(454), "Pendiente");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+		
+
+	}
+	
+	
 
 }

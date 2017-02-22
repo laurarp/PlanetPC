@@ -36,14 +36,18 @@ public class AsesorVentas {
 	
 	public ArrayList<Compra> obtenerPedidosPendientesProveedor(String idProveedor) throws Exception
 	{
-		ArrayList<Compra> pendientes=null;
+		ArrayList<Compra> pendientes=new ArrayList<Compra>();
 		ArrayList<Compra> compras=listaCompras.getListaCompras();
 		
 		if(compras!=null)
 		{
 			for(int i=0;i<compras.size();i++)
 			{
-				if(compras.get(i).getEstado()=="Pendiente" && compras.get(i).getIdProveedor()==idProveedor)
+				String l=compras.get(i).getEstado();
+				String d=compras.get(i).getIdProveedor();
+				Boolean a="Pendiente".compareTo(compras.get(i).getEstado())!=0;
+				Boolean b=idProveedor.compareTo(compras.get(i).getIdProveedor())!=0;
+				if("Pendiente".compareTo(compras.get(i).getEstado())==0 && idProveedor.compareTo(compras.get(i).getIdProveedor())==0)
 				{
 					pendientes.add(compras.get(i));
 				}
@@ -55,6 +59,19 @@ public class AsesorVentas {
 	public void registarVenta(DescripcionProducto descripcionProducto, Date fechaVenta, String idCliente, String idVendedor, int Cantidad) throws Exception
 	{
 		listaVentas.añadirVenta(descripcionProducto, fechaVenta, idCliente, idVendedor, Cantidad);
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try {
+			AsesorVentas av=new AsesorVentas();
+			
+			av.obtenerPedidosPendientesProveedor("1");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	

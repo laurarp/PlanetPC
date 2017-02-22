@@ -11,11 +11,56 @@ import java.util.Arrays;
 
 public class ListaProveedores {
 	private ArrayList<Proveedor> listaProveedores; 
+	
+	
+
+	public ListaProveedores() {
+		super();
+		if(ReadFileProveedores("ListaProveedores.txt")!=null)
+		{
+			this.listaProveedores = ReadFileProveedores("ListaProveedores.txt");
+		}
+		else
+		{
+			this.listaProveedores =null;
+		}
+	}
 
 	public void nuevoProveedor(String nombre, String id){
 		Proveedor tempProveedor = new Proveedor(nombre, id);
 		listaProveedores.add(tempProveedor);
+		writeFileObject("listaProveedores.txt", listaProveedores);
 		System.out.println("El proveedor"+listaProveedores.get(0).getNombre()+", con Id: "+listaProveedores.get(0).getId()+" ha sido creado.");
+	}
+	
+
+	public static void writeFileObject(String file, ArrayList<Proveedor> listaProveedores){
+		FileOutputStream fo=null;
+		ObjectOutputStream oI = null;
+		try{
+			fo = new FileOutputStream(file);
+			oI = new ObjectOutputStream(fo);
+			for (Proveedor o:listaProveedores){
+				try{
+					oI.writeObject(o);
+				}catch (IOException e){
+					System.out.println("problema al crear las clases");
+				}
+			}
+		}catch (FileNotFoundException e){
+			System.out.println("Problemas con la direccion para crear e fichero");
+		}catch (IOException e){
+			System.out.println("El fichero tiene problema al crearse");
+		}finally{
+			try{
+				if (fo!=null){
+					fo.close();
+					oI.close();
+				}
+			}catch (IOException e){
+				
+			}
+		}
 	}
 	
 	public String buscarProveedor(String id) throws Exception {
@@ -45,7 +90,7 @@ public class ListaProveedores {
 	
 	public ArrayList<Proveedor> mostrarProveedores()
 	{
-		listaProveedores=new ArrayList<Proveedor>(Arrays.asList(ReadFileProveedores("ListaProveedores.txt")));
+		listaProveedores=ReadFileProveedores("ListaProveedores.txt");
 		return listaProveedores; 
 	}
 	
@@ -56,8 +101,8 @@ public class ListaProveedores {
 		if(listaProveedores!=null)
 		{
 			int i=0;
-					
-			while(i<listaProveedores.size() && listaProveedores.get(i).getNombre()!=nombreProveedor)
+				String l=listaProveedores.get(i).getNombre();
+			while(i<listaProveedores.size() && nombreProveedor.compareTo(listaProveedores.get(i).getNombre())!=0)
 			{
 				i++;
 			}
@@ -77,11 +122,11 @@ public class ListaProveedores {
 		return idProveedor;
 	}
 	
-	public static Proveedor[] ReadFileProveedores(String file)
+	public static ArrayList<Proveedor> ReadFileProveedores(String file)
 	{
 		FileInputStream fi=null;
 		ObjectInputStream oi=null;
-		Proveedor[] listaProveedores= new Proveedor[0];
+		ArrayList<Proveedor> listaProveedores= new ArrayList<Proveedor>();
 		
 		try{
 			fi=new FileInputStream(file);
@@ -91,8 +136,7 @@ public class ListaProveedores {
 			while(fi.available()>0)
 			{
 				Proveedor proveedor=(Proveedor) oi.readObject();
-				listaProveedores=Arrays.copyOf(listaProveedores, listaProveedores.length+1);
-				listaProveedores[i++]=proveedor;
+				listaProveedores.add(proveedor);
 			}
 		}
 		catch(FileNotFoundException e)
@@ -122,7 +166,7 @@ public class ListaProveedores {
 				System.out.println("No se pudo cerrar el fichero");
 			}
 		}
-		if(listaProveedores.length==0)
+		if(listaProveedores.size()==0)
 		{
 			return null;
 		}
@@ -131,5 +175,53 @@ public class ListaProveedores {
 			return listaProveedores;
 		}
 	}
+	
+	public static void WriteFileProveedores(String file, Proveedor[] listProveedores)
+	{
+		FileOutputStream fo=null;
+		ObjectOutputStream ol=null;
+		
+		try{
+			fo=new FileOutputStream(file);
+			ol=new ObjectOutputStream(fo);
+			
+			for(Proveedor o:listProveedores)
+			{
+				try
+				{
+					ol.writeObject(o);
+				}
+				catch(IOException e)
+				{
+					System.out.println("Problema al crear las clases");
+				}
+			}
+		}
+		catch(FileNotFoundException e)
+		{
+			System.out.println("Problemas con la direccion para crear el fichero");
+		}
+		catch(IOException e)
+		{
+			System.out.println("El fichero tiene problema al crearse");
+		}
+		finally
+		{
+			try
+			{
+				if(fo!=null)
+				{
+					fo.close();
+					ol.close();
+				}
+			}
+			catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("No se pudo cerrar el fichero");
+			}
+		}
+	}
+	
+
 
 }

@@ -65,6 +65,15 @@ public class Compra implements Serializable{
 		this.estado = estado;
 	}
 	
-	
+	public Compra(DescripcionProducto descripcionProducto, String idProveedor, int cantidad, int precioCompra, Date fechaPedido, Date fechaIngreso, String estado){
+		this.descripcionProducto = descripcionProducto;
+		this.idCompra=1;
+		this.idProveedor = idProveedor;
+		this.cantidad = cantidad;
+		this.precioCompra = precioCompra;
+		this.fechaPedido = fechaPedido;
+		this.fechaIngreso = fechaIngreso;
+		this.estado = estado;
+	}
 
 }
