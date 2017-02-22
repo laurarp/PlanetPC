@@ -28,8 +28,8 @@ public class ListaCompras {
 
 	public void añadirCompra (DescripcionProducto  descripcionProducto, String idProveedor, int cantidad, int precioCompra, Date fechaPedido, Date fechaIngreso, String estado){
 		Compra tempCompra = new Compra(descripcionProducto, idProveedor, cantidad, precioCompra, fechaPedido, fechaIngreso, estado);
-		listaCompras.add(tempCompra);
-		writeFileObject("listaCompras.txt", listaCompras);
+		compras.add(tempCompra);
+		writeFileObject("listaCompras.txt", compras);
 		System.out.println("Su compra ha sido añadido");
 	}
 	

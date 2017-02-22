@@ -4,7 +4,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -33,7 +32,7 @@ public class ListaProveedores {
 		System.out.println("El proveedor"+listaProveedores.get(0).getNombre()+", con Id: "+listaProveedores.get(0).getId()+" ha sido creado.");
 	}
 	
-<<<<<<< HEAD
+
 	public static void writeFileObject(String file, ArrayList<Proveedor> listaProveedores){
 		FileOutputStream fo = null;
 		ObjectOutputStream oI = null;
@@ -63,8 +62,6 @@ public class ListaProveedores {
 		}
 	}
 	
-=======
->>>>>>> origin/master
 	public String buscarProveedor(String id) throws Exception {
 		for (Proveedor a : listaProveedores)
 			if (id.equals(a.getId())){
