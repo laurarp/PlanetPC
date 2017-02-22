@@ -2,6 +2,13 @@ import java.util.Date;
 
 
 public class JefeBodega {
+	
+	private ListaCompras listaCompras;
+	
+	public JefeBodega(ListaCompras listaCompras){
+		this.listaCompras = listaCompras;
+	}
+	
 	public void ingresarProducto(ListaDescProducto listaDescProducto,DescripcionProducto descripcionProducto)
 	{
 		
@@ -22,7 +29,7 @@ public class JefeBodega {
 		return null;
 	}
 	
-	public void registrarPedido(ListaCompras listaCompras, DescripcionProducto descripcionProducto, String idProveedor, int cantidad, int precioCompra, Date fechaPedido, Date fechaIngreso, String estado){
+	public void registrarPedido(DescripcionProducto descripcionProducto, String idProveedor, int cantidad, int precioCompra, Date fechaPedido, Date fechaIngreso, String estado){
 		
 	}
 

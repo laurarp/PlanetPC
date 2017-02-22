@@ -28,9 +28,40 @@ public class ListaCompras {
 		}
 	}
 
-	public void añadirCompra (DescripcionProducto  descripcionProducto, String idProveedor, int cantidad, int precioCompra, Date fechaPedido, Date fechaIngreso, String estado)
-	{
-		
+	public void añadirCompra (DescripcionProducto  descripcionProducto, String idProveedor, int cantidad, int precioCompra, Date fechaPedido, Date fechaIngreso, String estado){
+		Compra tempCompra = new Compra(descripcionProducto, idProveedor, cantidad, precioCompra, fechaPedido, fechaIngreso, estado);
+		listaCompras.add(tempCompra);
+		writeFileObject("listaCompras.txt", listaCompras);
+		System.out.println("Su compra ha sido añadido");
+	}
+	
+	public static void writeFileObject(String file, ArrayList <Compra> listaCompras){
+		FileOutputStream fo = null;
+		ObjectOutputStream oI = null;
+		try{
+			fo = new FileOutputStream(file);
+			oI = new ObjectOutputStream(fo);
+			for (Compra o:listaCompras){
+				try{
+					oI.writeObject(o);
+				}catch (IOException e){
+					System.out.println("problema al crear las clases");
+				}
+			}
+		}catch (FileNotFoundException e){
+			System.out.println("Problemas con la direccion para crear e fichero");
+		}catch (IOException e){
+			System.out.println("El fichero tiene problema al crearse");
+		}finally{
+			try{
+				if (fo!=null){
+					fo.close();
+					oI.close();
+				}
+			}catch (IOException e){
+				
+			}
+		}
 	}
 	
 	public ArrayList<Compra> getListaCompras() throws Exception

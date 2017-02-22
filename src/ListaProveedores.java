@@ -15,10 +15,40 @@ public class ListaProveedores {
 	public void nuevoProveedor(String nombre, String id){
 		Proveedor tempProveedor = new Proveedor(nombre, id);
 		listaProveedores.add(tempProveedor);
+		writeFileObject("listaProveedores.txt", listaProveedores);
 		System.out.println("El proveedor"+listaProveedores.get(0).getNombre()+", con Id: "+listaProveedores.get(0).getId()+" ha sido creado.");
 	}
 	
-	public Proveedor buscarProveedor(String id) throws Exception {
+	public static void writeFileObject(String file, ArrayList<Proveedor> listaProveedores){
+		FileOutputStream fo = null;
+		ObjectOutputStream oI = null;
+		try{
+			fo = new FileOutputStream(file);
+			oI = new ObjectOutputStream(fo);
+			for (Proveedor o:listaProveedores){
+				try{
+					oI.writeObject(o);
+				}catch (IOException e){
+					System.out.println("problema al crear las clases");
+				}
+			}
+		}catch (FileNotFoundException e){
+			System.out.println("Problemas con la direccion para crear e fichero");
+		}catch (IOException e){
+			System.out.println("El fichero tiene problema al crearse");
+		}finally{
+			try{
+				if (fo!=null){
+					fo.close();
+					oI.close();
+				}
+			}catch (IOException e){
+				
+			}
+		}
+	}
+	
+	public String buscarProveedor(String id) throws Exception {
 		for (Proveedor a : listaProveedores)
 			if (id.equals(a.getId())){
 				return a.getNombre();
