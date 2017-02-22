@@ -1,5 +1,11 @@
+import java.io.Serializable;
 
-public class DescripcionProducto {
+
+public class DescripcionProducto implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6774304565029299067L;
 	private String id;
 	private int precioVenta;
 	private String Tipo;
@@ -42,6 +48,18 @@ public class DescripcionProducto {
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
 	}
+	public DescripcionProducto(String id, int precioVenta, String tipo,
+			int diasGarantia, String marca, String modelo) {
+		super();
+		this.id = id;
+		this.precioVenta = precioVenta;
+		Tipo = tipo;
+		this.diasGarantia = diasGarantia;
+		this.marca = marca;
+		this.modelo = modelo;
+	}
+	
+	
 	
 	
 
