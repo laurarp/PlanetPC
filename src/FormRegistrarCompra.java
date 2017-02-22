@@ -26,6 +26,8 @@ public class FormRegistrarCompra {
 	private JTextField textIdCompra;
 	private JLabel lblNewLabel_1;
 	private JButton btnRegistrar;
+	AsesorVentas asesorVentas = null;
+	ListaProveedores lp=null;
 
 	/**
 	 * Launch the application.
@@ -54,8 +56,7 @@ public class FormRegistrarCompra {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		AsesorVentas asesorVentas = null;
-		
+			
 		try 
 		{
 			asesorVentas = new AsesorVentas();
@@ -65,7 +66,7 @@ public class FormRegistrarCompra {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		
-		ListaProveedores lp=new ListaProveedores();
+		lp=new ListaProveedores();
 		
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);

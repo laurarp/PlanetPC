@@ -11,6 +11,20 @@ import java.util.Arrays;
 
 public class ListaProveedores {
 	private ArrayList<Proveedor> listaProveedores; 
+	
+	
+
+	public ListaProveedores() {
+		super();
+		if(ReadFileProveedores("ListaProveedores.txt")!=null)
+		{
+			this.listaProveedores = (ArrayList<Proveedor>) (Arrays.asList(ReadFileProveedores("ListaProveedores.txt")));
+		}
+		else
+		{
+			this.listaProveedores =null;
+		}
+	}
 
 	public void nuevoProveedor(String nombre, String id){
 		Proveedor tempProveedor = new Proveedor(nombre, id);
@@ -128,6 +142,52 @@ public class ListaProveedores {
 		else
 		{
 			return listaProveedores;
+		}
+	}
+	
+	public static void WriteFileProveedores(String file, Proveedor[] listProveedores)
+	{
+		FileOutputStream fo=null;
+		ObjectOutputStream ol=null;
+		
+		try{
+			fo=new FileOutputStream(file);
+			ol=new ObjectOutputStream(fo);
+			
+			for(Proveedor o:listProveedores)
+			{
+				try
+				{
+					ol.writeObject(o);
+				}
+				catch(IOException e)
+				{
+					System.out.println("Problema al crear las clases");
+				}
+			}
+		}
+		catch(FileNotFoundException e)
+		{
+			System.out.println("Problemas con la direccion para crear el fichero");
+		}
+		catch(IOException e)
+		{
+			System.out.println("El fichero tiene problema al crearse");
+		}
+		finally
+		{
+			try
+			{
+				if(fo!=null)
+				{
+					fo.close();
+					ol.close();
+				}
+			}
+			catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("No se pudo cerrar el fichero");
+			}
 		}
 	}
 
