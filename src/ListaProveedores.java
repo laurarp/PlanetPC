@@ -18,13 +18,14 @@ public class ListaProveedores {
 		System.out.println("El proveedor"+listaProveedores.get(0).getNombre()+", con Id: "+listaProveedores.get(0).getId()+" ha sido creado.");
 	}
 	
-	public Proveedor buscarProveedor(String id) throws Exception {
+	public String buscarProveedor(String id) throws Exception {
 		for (Proveedor a : listaProveedores)
 			if (id.equals(a.getId())){
 				return a.getNombre();
 			}else{
 			throw new Exception("El proveedor no existe");
 			}
+		return id;
 		}
 	
 	
