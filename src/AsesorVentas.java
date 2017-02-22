@@ -3,11 +3,18 @@ import java.util.Date;
 
 
 public class AsesorVentas {
-	private ListaCompras listaCompras=new ListaCompras();
-	private ListaVentas listaVentas=new ListaVentas();
+	private ListaCompras listaCompras;
+	private ListaVentas listaVentas;
 	private Inventario inventario;
 	
-	
+	public AsesorVentas(ListaCompras listaCompras, ListaVentas listaVentas,
+			Inventario inventario) throws Exception {
+		super();
+		this.listaCompras = new ListaCompras();
+		this.listaVentas = new ListaVentas();
+		this.inventario = inventario;
+	}
+
 	public ArrayList<Compra> reporteCompras() throws Exception
 	{
 		return listaCompras.getListaCompras();
@@ -50,4 +57,6 @@ public class AsesorVentas {
 	{
 		listaVentas.añadirVenta(descripcionProducto, fechaVenta, idCliente, idVendedor, Cantidad);
 	}
+
+	
 }
