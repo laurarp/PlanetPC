@@ -89,12 +89,12 @@ public class FormRegistrarCompra {
 		scrollPane.setViewportView(table);
 		
 		textIdCompra = new JTextField();
-		textIdCompra.setBounds(43, 289, 86, 20);
+		textIdCompra.setBounds(24, 282, 86, 20);
 		frame.getContentPane().add(textIdCompra);
 		textIdCompra.setColumns(10);
 		
 		lblNewLabel_1 = new JLabel("Id Compra");
-		lblNewLabel_1.setBounds(43, 264, 69, 14);
+		lblNewLabel_1.setBounds(24, 257, 69, 14);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		btnRegistrar = new JButton("Registrar");
