@@ -34,7 +34,7 @@ public class ListaProveedores {
 	
 
 	public static void writeFileObject(String file, ArrayList<Proveedor> listaProveedores){
-		FileOutputStream fo = null;
+		FileOutputStream fo=null;
 		ObjectOutputStream oI = null;
 		try{
 			fo = new FileOutputStream(file);
