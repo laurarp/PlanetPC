@@ -85,15 +85,14 @@ public class ServicioTecnico implements Serializable {
     }
 
 
-	public ServicioTecnico(String idServicio, String descripcion, String idCliente, double precio,
-			String estado, int diasEstimados) {
+	public ServicioTecnico(String idServicio, String descripcion, String idCliente, double precio, int diasEstimados) {
 		super();
 		this.idServicio=idServicio;
 		this.descripcion = descripcion;
 		fechaSalida =sumarFechasDias(new Date(), diasEstimados);
 		this.idCliente = idCliente;
 		this.precio = precio;
-		this.estado = estado;
+		estado = "pendiente";
 		fechaEntrada=new Date(System.currentTimeMillis());
 	}
 	SimpleDateFormat s=new SimpleDateFormat("dd-MM-yyyy");

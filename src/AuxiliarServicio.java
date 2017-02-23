@@ -1,24 +1,32 @@
 import java.util.Date;
 
 
-public class AuxiliarServicio {
-	public void ingresarServicio(ListaServicios listaServicios,String idProducto, Date fechaEntrada, Date fechaSalida, String idCliente, int Precio, String estado)
-	{
-		
+public class AuxiliarServicio extends Actor {
+	private static ListaServicios lista;
+	public AuxiliarServicio(String nombre, String id, String contrasena) {
+		super(nombre, id, contrasena);
+		ListaServicios list =new ListaServicios();
+		lista=list;
+		// TODO Auto-generated constructor stub
 	}
 	
-	public ListaServicios generarReporteServicios()
+	public void ingresarServicio(String idServicio, String descripcion, String idCiente, double precio, int diasEstimados)
 	{
-		return null;
+		lista.crearServicio(idServicio, descripcion, idCiente, precio, diasEstimados);
 	}
 	
-	public void eliminarReporte(String idProducto, String idCliente)
+	public void generarReporteServicios()
 	{
-		
+		lista.mostrarServicios();
 	}
 	
-	public void modificarServicio(ServicioTecnico servicioTecnico)
+	public void eliminarServicio(String idServicio) throws Excepciones{
+		lista.eliminarServicio(idServicio);
+	}
+	
+	
+	public void modificarServicio(String id, String estado) throws Excepciones
 	{
-		
+		lista.modificarEstado(id, estado);
 	}
 }
