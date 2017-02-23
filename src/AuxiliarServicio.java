@@ -10,9 +10,9 @@ public class AuxiliarServicio extends Actor {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void ingresarServicio(String idServicio, String descripcion, String idCiente, double precio, int diasEstimados)
+	public void ingresarServicio(String descripcion, String idCiente, double precio, int diasEstimados)
 	{
-		lista.crearServicio(idServicio, descripcion, idCiente, precio, diasEstimados);
+		lista.crearServicio(descripcion, idCiente, precio, diasEstimados);
 	}
 	
 	public void generarReporteServicios()

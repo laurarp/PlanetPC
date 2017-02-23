@@ -85,9 +85,9 @@ public class ServicioTecnico implements Serializable {
     }
 
 
-	public ServicioTecnico(String idServicio, String descripcion, String idCliente, double precio, int diasEstimados) {
+	public ServicioTecnico(String descripcion, String idCliente, double precio, int diasEstimados) {
 		super();
-		this.idServicio=idServicio;
+		idServicio=ListaServicios.crearIdServicio();
 		this.descripcion = descripcion;
 		fechaSalida =sumarFechasDias(new Date(), diasEstimados);
 		this.idCliente = idCliente;

@@ -33,9 +33,13 @@ public class ListaServicios {
 		
 		
 	}
+	public static String crearIdServicio(){
+		String i=String.valueOf((int)(Math.random()*500000000));
+		return i;
+	}
 
-	public void crearServicio(String id, String descripcion, String idCiente, double precio, int diasEstimados) {
-		ServicioTecnico a = new ServicioTecnico(id, descripcion, idCiente, precio, diasEstimados);
+	public void crearServicio(String descripcion, String idCiente, double precio, int diasEstimados) {
+		ServicioTecnico a = new ServicioTecnico(descripcion, idCiente, precio, diasEstimados);
 		listaServicios.add(a);
 		escribirArchivoObjeto("ListaServicios.txt", listaServicios);
 	}
@@ -196,6 +200,9 @@ public class ListaServicios {
 			throw new Excepciones("El servicio no esta cargado en la lista");
 		}else{
 			listaServicios.get(indice).setEstado(estado);
+			File s=new File("ListaServicios.txt");
+			s.delete();
+			escribirArchivoObjeto("ListaServicios.txt", listaServicios);
 		}
 	}
 	public static void main(String[] args){
