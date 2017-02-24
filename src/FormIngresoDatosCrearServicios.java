@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class IngresoDatosCrearServicios extends JFrame {
+public class FormIngresoDatosCrearServicios extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtDescripcion;
 	private JTextField txtIdCliente;
@@ -25,7 +25,7 @@ public class IngresoDatosCrearServicios extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					IngresoDatosCrearServicios frame = new IngresoDatosCrearServicios();
+					FormIngresoDatosCrearServicios frame = new FormIngresoDatosCrearServicios();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +37,7 @@ public class IngresoDatosCrearServicios extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public IngresoDatosCrearServicios() {
+	public FormIngresoDatosCrearServicios() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 346, 358);
 		contentPane = new JPanel();

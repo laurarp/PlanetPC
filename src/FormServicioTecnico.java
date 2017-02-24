@@ -46,7 +46,7 @@ public class FormServicioTecnico {
 		JButton btnIngresarServicio = new JButton("Ingresar nuevo servicio");
 		btnIngresarServicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				IngresoDatosCrearServicios datos= new IngresoDatosCrearServicios();
+				FormIngresoDatosCrearServicios datos= new FormIngresoDatosCrearServicios();
 				datos.setVisible(true);
 			}
 		});
@@ -61,5 +61,14 @@ public class FormServicioTecnico {
 		});
 		btnModificarServicio.setBounds(405, 67, 145, 67);
 		FormAuxiliarServicio.getContentPane().add(btnModificarServicio);
+		JButton btnEliminarServicio = new JButton("Eliminar servicio");
+		btnEliminarServicio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FormIngresoEliminarServicio a= new FormIngresoEliminarServicio();
+				a.setVisible(true);
+			}
+		});
+		btnEliminarServicio.setBounds(90, 200, 145, 67);
+		FormAuxiliarServicio.getContentPane().add(btnEliminarServicio);
 	}
 }

@@ -26,15 +26,18 @@ public class ListaServicios {
 		File lista=new File("ListaServicios.txt");
 		if(lista.exists()==false){
 			crearArchivo("ListaServicios.txt", listaServicios);
-			this.listaServicios=new ArrayList <ServicioTecnico>();
+			listaServicios=new ArrayList <ServicioTecnico>();
 		}else{
-			this.listaServicios=leerArchivoObjeto("ListaServicios.txt");
+			listaServicios=leerArchivoObjeto("ListaServicios.txt");
+			if(listaServicios==null){
+				listaServicios=new ArrayList <ServicioTecnico>();
+			}
 		}
 		
 		
 	}
 	public static String crearIdServicio(){
-		String i=String.valueOf((int)(Math.random()*500000000));
+		String i=String.valueOf(500000000*Math.random());
 		return i;
 	}
 
@@ -54,9 +57,12 @@ public class ListaServicios {
 	}
 
 	public static int buscarServicio(String idServicio) {
+		//ArrayList<ServicioTecnico> auxiliar = new ArrayList <ServicioTecnico>();
+		//auxiliar=leerArchivoObjeto("ListaServicios.txt");
+		listaServicios=leerArchivoObjeto("ListaServicios.txt");
 		int indice = 0;
 		while (indice < listaServicios.size()) {
-			if (idServicio == (listaServicios.get(indice).getIdServicio())) {
+			if (idServicio.compareTo(listaServicios.get(indice).getIdServicio())==0) {
 				return indice;
 			} else {
 				indice++;
@@ -208,6 +214,13 @@ public class ListaServicios {
 	public static void main(String[] args){
 		ListaServicios lista = new ListaServicios();
 		lista.mostrarServicios();
+		/*try {
+			lista.eliminarServicio("3.53041002399089E8");
+		} catch (Excepciones e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+		lista.mostrarServicios();*/
 	}
 
 	/*public static void main(String[] args) {
@@ -232,5 +245,5 @@ public class ListaServicios {
 		
 	}
 */
-	
+		
 }
