@@ -30,7 +30,7 @@ public class JefeBodega {
 	}
 	
 	public void registrarPedido(DescripcionProducto descripcionProducto, String idProveedor, int cantidad, int precioCompra, Date fechaPedido, Date fechaIngreso, String estado){
-		
+		listaCompras.añadirCompra(descripcionProducto, idProveedor, cantidad, precioCompra, fechaPedido, fechaIngreso, estado);
 	}
 
 }
