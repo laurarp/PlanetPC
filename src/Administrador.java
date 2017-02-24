@@ -1,5 +1,6 @@
 
 public class Administrador {
+	private ListaProveedores listaProveedores;
 	public void crearUsuario(ListaActores listaActores,String Nombre, String id, String Contraseña)
 	{
 		
@@ -20,14 +21,12 @@ public class Administrador {
 		
 	}
 	
-	public void crearProveedor(ListaProveedores listaProveedores,String Nombre, String id)
-	{
-		
+	public void crearProveedor(ListaProveedores listaProveedores,String nombre, String id){
+		listaProveedores.nuevoProveedor(nombre, id);
 	}
 	
-	public Proveedor buscarProveedor(String id)
-	{
-		return null;
+	public void buscarProveedor(String id){
+		listaProveedores.buscarProveedor(id);
 	}
 	
 	public void modificarProveedor(Proveedor proveedor)
@@ -35,9 +34,8 @@ public class Administrador {
 		
 	}
 	
-	public void eliminarProveedor(String id)
-	{
-		
+	public void eliminarProveedor(String id) throws Exception{
+		listaProveedores.eliminarProveedor(id);
 	}
 	
 	public ListaServicios reporteTecnico()

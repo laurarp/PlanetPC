@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -63,14 +64,22 @@ public class ListaProveedores {
 		}
 	}
 	
-	public String buscarProveedor(String id) throws Exception {
-		for (Proveedor a : listaProveedores)
+	public int buscarProveedor(String id) {
+		/*for (Proveedor a : listaProveedores)
 			if (id.equals(a.getId())){
 				return a.getNombre();
 			}else{
 			throw new Exception("El proveedor no existe");
 			}
-		return id;
+		return id;*/
+		listaProveedores=ReadFileProveedores("ListaProveedores.txt");
+		int indice = 0;
+		while (indice < listaProveedores.size()) {
+			if (id.compareTo(listaProveedores.get(indice).getId())==0) {
+				return indice;
+			} else {
+				indice++;
+			}}
 		}
 	
 	
@@ -80,12 +89,21 @@ public class ListaProveedores {
 	}
 	
 	public void eliminarProveedor(String id) throws Exception{
-		for (Proveedor a : listaProveedores)
-			if (id.equals(a.getId())){
-				listaProveedores.remove(a);
-			}else{
-			throw new Exception("La Id ingresada es incorrecta");
+		ArrayList<Proveedor> auxiliar = new ArrayList <Proveedor>();
+		int posicionEliminar = buscarProveedor(id);
+		if (buscarProveedor(id) == -1) {
+			throw new Exception("el proveedor no se encuentra en la lista");
+		} else {
+			for (int i = 0; i < listaProveedores.size(); i++) {
+				if (posicionEliminar != i) {
+					auxiliar.add(listaProveedores.get(i));
+				}
 			}
+			listaProveedores = auxiliar;
+			File fichero= new File("ListaProveedores.txt");
+			fichero.delete();
+			writeFileObject("ListaProveedores.txt", listaProveedores);
+		}
 	}
 	
 	public ArrayList<Proveedor> mostrarProveedores()
