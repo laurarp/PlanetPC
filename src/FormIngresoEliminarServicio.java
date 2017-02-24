@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class FormIngresoEliminarServicio extends JFrame {
 
@@ -17,7 +18,7 @@ public class FormIngresoEliminarServicio extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -28,13 +29,13 @@ public class FormIngresoEliminarServicio extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
 	 */
 	public FormIngresoEliminarServicio() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -43,11 +44,12 @@ public class FormIngresoEliminarServicio extends JFrame {
 		contentPane.setLayout(null);
 		
 		txtEliminar = new JTextField();
-		txtEliminar.setBounds(55, 34, 86, 20);
+		txtEliminar.setBounds(233, 55, 86, 20);
 		contentPane.add(txtEliminar);
 		txtEliminar.setColumns(10);
 		AuxiliarServicio auxiliar=new AuxiliarServicio("guillermo", "1017196884", "12345");
-		JButton btnEliminar = new JButton("eliminar");
+		JButton btnEliminar = new JButton("Eliminar servicio");
+		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnEliminar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -60,7 +62,7 @@ public class FormIngresoEliminarServicio extends JFrame {
 				
 			}
 		});
-		btnEliminar.setBounds(73, 125, 89, 23);
+		btnEliminar.setBounds(140, 206, 141, 44);
 		contentPane.add(btnEliminar);
 	}
 }

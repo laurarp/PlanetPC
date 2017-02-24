@@ -15,9 +15,9 @@ public class AuxiliarServicio extends Actor {
 		lista.crearServicio(descripcion, idCiente, precio, diasEstimados);
 	}
 	
-	public void generarReporteServicios()
+	public String[][] generarReporteServicios(String estado)
 	{
-		lista.mostrarServicios();
+		return lista.mostrarServiciosTabla(estado);
 	}
 	
 	public void eliminarServicio(String idServicio) throws Excepciones{

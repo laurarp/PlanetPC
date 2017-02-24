@@ -37,7 +37,7 @@ public class ListaServicios {
 		
 	}
 	public static String crearIdServicio(){
-		String i=String.valueOf(500000000*Math.random());
+		String i=String.valueOf(System.currentTimeMillis()/10000);
 		return i;
 	}
 
@@ -54,6 +54,28 @@ public class ListaServicios {
 				System.out.println(p);
 			}
 		}
+	}
+	
+	public String[][] mostrarServiciosTabla(String estado){
+		ArrayList<ServicioTecnico> lista = leerArchivoObjeto("ListaServicios.txt");
+		String[][] auxiliar = new String[lista.size()][7];
+		
+		for(int i=0;i<lista.size(); i++){
+			if(lista.get(i).getEstado().compareTo(estado)==0){
+				for(int j=0; j<7;j++){
+					switch(j){
+					case 0: auxiliar[i][j]=lista.get(i).getIdServicio();break;
+					case 1: auxiliar[i][j]=lista.get(i).getDescripcion();break;
+					case 2: auxiliar[i][j]=lista.get(i).getIdCliente();break;
+					case 3: auxiliar[i][j]=lista.get(i).getFechaEntrada();break;
+					case 4: auxiliar[i][j]=lista.get(i).getFechaSalida();break;
+					case 5: auxiliar[i][j]=String.valueOf(lista.get(i).getPrecio());break;
+					case 6: auxiliar[i][j]=lista.get(i).getEstado();break;
+					}
+				}
+			}
+		}
+		return auxiliar;
 	}
 
 	public static int buscarServicio(String idServicio) {
@@ -214,6 +236,12 @@ public class ListaServicios {
 	public static void main(String[] args){
 		ListaServicios lista = new ListaServicios();
 		lista.mostrarServicios();
+		try {
+			lista.modificarEstado("148797846", "Activo");
+		} catch (Excepciones e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		/*try {
 			lista.eliminarServicio("3.53041002399089E8");
 		} catch (Excepciones e) {

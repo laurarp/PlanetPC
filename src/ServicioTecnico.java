@@ -11,8 +11,8 @@ public class ServicioTecnico implements Serializable {
 	private static final long serialVersionUID = -4896187308543036429L;
 	private String idServicio;
 	private String descripcion;
-	private Date fechaEntrada;
-	private Date fechaSalida;
+	private String fechaEntrada;
+	private String fechaSalida;
 	private String idCliente;
 	private double precio;
 	private String estado;
@@ -33,19 +33,19 @@ public class ServicioTecnico implements Serializable {
 		this.descripcion = idProducto;
 	}
 
-	public Date getFechaEntrada() {
+	public String getFechaEntrada() {
 		return fechaEntrada;
 	}
 
-	public void setFechaEntrada(Date fechaEntrada) {
+	public void setFechaEntrada(String fechaEntrada) {
 		this.fechaEntrada = fechaEntrada;
 	}
 
-	public Date getFechaSalida() {
+	public String getFechaSalida() {
 		return fechaSalida;
 	}
 
-	public void setFechaSalida(Date fechaSalida) {
+	public void setFechaSalida(String fechaSalida) {
 		this.fechaSalida = fechaSalida;
 	}
 
@@ -87,22 +87,18 @@ public class ServicioTecnico implements Serializable {
 
 	public ServicioTecnico(String descripcion, String idCliente, double precio, int diasEstimados) {
 		super();
+		SimpleDateFormat s=new SimpleDateFormat("dd-MM-yyyy");
 		idServicio=ListaServicios.crearIdServicio();
 		this.descripcion = descripcion;
-		fechaSalida =sumarFechasDias(new Date(), diasEstimados);
+		fechaSalida =s.format(sumarFechasDias(new Date(), diasEstimados));
 		this.idCliente = idCliente;
 		this.precio = precio;
-		estado = "pendiente";
-		fechaEntrada=new Date(System.currentTimeMillis());
+		estado = "Pendiente";
+		fechaEntrada=s.format(new Date(System.currentTimeMillis()));
 	}
-	SimpleDateFormat s=new SimpleDateFormat("dd-MM-yyyy");
+	
 
-	@Override
-	public String toString() {
-		return "ServicioTecnico [idServicio=" + idServicio + ", descripcion=" + descripcion + ", fechaEntrada="
-				+ s.format(fechaEntrada) + ", fechaSalida=" + s.format(fechaSalida) + ", idCliente=" + idCliente + ", precio=" + precio
-				+ ", estado=" + estado + "]";
-	}
+	
 
 	
 
