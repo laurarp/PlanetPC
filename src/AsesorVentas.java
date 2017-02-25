@@ -23,9 +23,9 @@ public class AsesorVentas {
 		return listaVentas.getListaVentas();
 	}
 	
-	public Producto buscarProducto(String idProducto)
+	public Producto buscarProducto(String idProducto,String tipo, String marca, String modelo) throws Exception
 	{
-		return inventario.buscarProducto(idProducto);
+		return inventario.buscarProducto(idProducto,tipo,marca,modelo);
 	}
 	
 	public void notificarCompraRecibida(String idCompra,String estado) throws Exception

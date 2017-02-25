@@ -28,40 +28,13 @@ public class ListaCompras {
 		}
 	}
 
-	public void añadirCompra (DescripcionProducto  descripcionProducto, String idProveedor, int cantidad, int precioCompra, Date fechaPedido, Date fechaIngreso, String estado){
+	public void añadirCompra (DescripcionProducto  descripcionProducto, String idProveedor, int cantidad, int precioCompra, Date fechaPedido, Date fechaIngreso, String estado) throws Exception{
+		
 		Compra tempCompra = new Compra(descripcionProducto, idProveedor, cantidad, precioCompra, fechaPedido, fechaIngreso, estado);
 		compras.add(tempCompra);
-		writeFileObject("ListaCompras.txt", compras);
+		WriteFileCompras(ruta, compras);
 	}
-	
-	public static void writeFileObject(String file, ArrayList <Compra> listaCompras){
-		FileOutputStream fo = null;
-		ObjectOutputStream oI = null;
-		try{
-			fo = new FileOutputStream(file);
-			oI = new ObjectOutputStream(fo);
-			for (Compra o:listaCompras){
-				try{
-					oI.writeObject(o);
-				}catch (IOException e){
-					System.out.println("problema al crear las clases");
-				}
-			}
-		}catch (FileNotFoundException e){
-			System.out.println("Problemas con la direccion para crear e fichero");
-		}catch (IOException e){
-			System.out.println("El fichero tiene problema al crearse");
-		}finally{
-			try{
-				if (fo!=null){
-					fo.close();
-					oI.close();
-				}
-			}catch (IOException e){
-				
-			}
-		}
-	}
+
 	
 	public ArrayList<Compra> getListaCompras() throws Exception
 	{
@@ -105,7 +78,6 @@ public class ListaCompras {
 		try{
 			fi=new FileInputStream(file);
 			oi=new ObjectInputStream(fi);
-			int i=0;
 			
 			while(fi.available()>0)
 			{
@@ -199,7 +171,7 @@ public class ListaCompras {
 	public static void main(String[] args) {
 		ArrayList<Compra> compras=new ArrayList<Compra>();
 		try {
-			writeFileObject("ListaCompras.txt", compras);
+			WriteFileCompras("ListaCompras.txt", compras);
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

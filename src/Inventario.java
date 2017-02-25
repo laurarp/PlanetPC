@@ -33,9 +33,43 @@ public class Inventario {
 		return null;
 	}
 	
-	public Producto buscarProducto(String idProducto)
+	public Producto buscarProducto(String idProducto,String tipo, String marca, String modelo) throws Exception
 	{
-		return null;
+		if(listaProductos!=null)
+		{
+			int i=0;
+			boolean comparaId=false;
+			boolean comparaDescripcion=false;
+			
+
+			if(listaProductos.get(i).getDescripcionProducto().getId().compareTo(idProducto) == 0)
+			{
+				comparaId=true;
+			}
+			
+			if(listaProductos.get(i).getDescripcionProducto().getTipo().compareTo(tipo)==0 && listaProductos.get(i).getDescripcionProducto().getMarca().compareTo(marca)==0 && listaProductos.get(i).getDescripcionProducto().getModelo().compareTo(modelo)==0)
+			{
+				comparaDescripcion=true;
+			}
+					
+			while(i<listaProductos.size() && comparaId==false && comparaDescripcion==false)
+			{
+				i++;
+			}
+			
+			if(i<listaProductos.size())
+			{
+				return listaProductos.get(i);
+			}
+			else
+			{
+				throw new Exception("El producto no se encuentra en el inventario");
+			}
+		}
+		else
+		{
+			throw new Exception("No existen productos en el inventario");
+		}
 	}
 	
 	public void añadirCantidad(DescripcionProducto descripcionProducto,int Cantidad)
@@ -57,7 +91,6 @@ public class Inventario {
 		try{
 			fi=new FileInputStream(file);
 			oi=new ObjectInputStream(fi);
-			int i=0;
 			
 			while(fi.available()>0)
 			{

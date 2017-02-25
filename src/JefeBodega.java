@@ -29,7 +29,7 @@ public class JefeBodega {
 		return null;
 	}
 	
-	public void registrarPedido(DescripcionProducto descripcionProducto, String idProveedor, int cantidad, int precioCompra, Date fechaPedido, Date fechaIngreso, String estado){
+	public void registrarPedido(DescripcionProducto descripcionProducto, String idProveedor, int cantidad, int precioCompra, Date fechaPedido, Date fechaIngreso, String estado) throws Exception{
 		listaCompras.añadirCompra(descripcionProducto, idProveedor, cantidad, precioCompra, fechaPedido, fechaIngreso, estado);
 	}
 

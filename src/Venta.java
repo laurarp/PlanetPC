@@ -10,7 +10,7 @@ public class Venta implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -2469525108621734286L;
-	private String idFecha;
+	private String idVenta;
 	private DescripcionProducto descripcionProducto;
 	private Date fechaVenta;
 	private String idCliente;
@@ -28,7 +28,7 @@ public class Venta implements Serializable{
 		minutos = Integer.toString(calendario.get(Calendar.MINUTE));
 		segundos = Integer.toString(calendario.get(Calendar.SECOND));
 		
-		this.idFecha=hora+minutos+segundos;
+		this.idVenta=hora+minutos+segundos;
 		this.descripcionProducto = descripcionProducto;
 		this.fechaVenta = fechaVenta;
 		this.idCliente = idCliente;

@@ -48,7 +48,6 @@ public class ListaVentas {
 		try{
 			fi=new FileInputStream(file);
 			oi=new ObjectInputStream(fi);
-			int i=0;
 			
 			while(fi.available()>0)
 			{
