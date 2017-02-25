@@ -63,7 +63,7 @@ public class ListaProveedores {
 			}
 		}
 	}
-	
+	//cuando se busca por parametro unico es mas eficiente un while....isis nos mata si buscamos con un for
 	public int buscarProveedor(String id) {
 		/*for (Proveedor a : listaProveedores)
 			if (id.equals(a.getId())){
