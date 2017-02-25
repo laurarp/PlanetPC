@@ -68,7 +68,7 @@ public class ListaCompras {
 		return compras; 
 	}
 
-	public void modificarCompra(String idCompra,String estado) throws Exception
+	public void notificarCompraRecibida(String idCompra) throws Exception
 	{
 		int i=0;
 		
@@ -80,7 +80,7 @@ public class ListaCompras {
 			}
 			if(i<compras.size())
 			{
-				compras.get(i).setEstado("recibido");//Cambia el estado de la compra a recibido			
+				compras.get(i).setEstado("Recibida");//Cambia el estado de la compra a recibida		
 			}
 			else
 			{
@@ -92,10 +92,8 @@ public class ListaCompras {
 			throw new Exception("No hay compras disponibles");
 		}
 		
-		//Modifica arrayList de compra en array para ingresar al fichero
-		Compra[] arrayCompras = new Compra[compras.size()];
-		arrayCompras = compras.toArray(arrayCompras);
-		WriteFileCompras("ListaCompras.txt", arrayCompras);
+		//Escribe en el fichero las compras con la modificación
+		WriteFileCompras(ruta, compras);
 	}
 	
 	public static ArrayList<Compra> ReadFileCompras(String file) throws Exception
@@ -152,7 +150,7 @@ public class ListaCompras {
 		}
 	}
 	
-	public static void WriteFileCompras(String file, Compra[] Compras) throws Exception
+	public static void WriteFileCompras(String file, ArrayList<Compra> comprasNuevas) throws Exception
 	{
 		FileOutputStream fo=null;
 		ObjectOutputStream ol=null;
@@ -161,7 +159,7 @@ public class ListaCompras {
 			fo=new FileOutputStream(file);
 			ol=new ObjectOutputStream(fo);
 			
-			for(Compra o:Compras)
+			for(Compra o:comprasNuevas)
 			{
 				try
 				{
@@ -169,7 +167,7 @@ public class ListaCompras {
 				}
 				catch(IOException e)
 				{
-					throw new Exception("Problema al crear las clases");
+					throw new Exception("Problema en la escritura del archivo");
 				}
 			}
 		}

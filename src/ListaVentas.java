@@ -27,39 +27,19 @@ public class ListaVentas {
 		}
 	}
 
-	public void añadirVenta (DescripcionProducto descripcionProducto, Date fechaVenta, String idCliente, String idVendedor, int Cantidad) throws Exception
+	public void añadirVenta (DescripcionProducto descripcionProducto, Date fechaVenta, String idCliente, String idVendedor, int cantidad) throws Exception
 	{
-		if(ReadFileVentas(ruta)!=null)
-		{
-			this.ventas =ReadFileVentas(ruta);
-		}
-		else
-		{
-			this.ventas =null;
-		}
-		Venta ventaNueva=new Venta();
-		this.ventas.add(ventaNueva);
-		
-		//Convierte el arrayList en array para escribirlo en fichero
-		Venta[] arrayVentas = new Venta[ventas.size()];
-		arrayVentas = ventas.toArray(arrayVentas);
-		WriteFileVentas(ruta, arrayVentas);
+		Venta ventaNueva=new Venta(descripcionProducto,fechaVenta,idCliente,idVendedor,cantidad);
+		ventas.add(ventaNueva);
+		WriteFileVentas(ruta, ventas);
 	}
 	
-	public ArrayList<Venta> getListaVentas() throws Exception
+	public ArrayList<Venta> getListaVentas()
 	{
-		if(ReadFileVentas(ruta)!=null)
-		{
-			ventas = ReadFileVentas(ruta);
-		}
-		else
-		{
-			ventas =null;
-		}
 		return ventas; 
 	}
 	
-	public static ArrayList<Venta> ReadFileVentas(String file) throws Exception 
+	public static ArrayList<Venta> ReadFileVentas(String file) throws Exception
 	{
 		FileInputStream fi=null;
 		ObjectInputStream oi=null;
@@ -113,7 +93,7 @@ public class ListaVentas {
 		}
 	}
 
-	public static void WriteFileVentas(String file, Venta[] ventas) throws Exception
+	public static void WriteFileVentas(String file, ArrayList<Venta> ventasNuevas) throws Exception
 	{
 		FileOutputStream fo=null;
 		ObjectOutputStream ol=null;
@@ -122,7 +102,7 @@ public class ListaVentas {
 			fo=new FileOutputStream(file);
 			ol=new ObjectOutputStream(fo);
 			
-			for(Venta o:ventas)
+			for(Venta o:ventasNuevas)
 			{
 				try
 				{
@@ -130,7 +110,7 @@ public class ListaVentas {
 				}
 				catch(IOException e)
 				{
-					throw new Exception("Problema al crear las clases");
+					throw new Exception("Problema en la escritura del archivo");
 				}
 			}
 		}
@@ -158,4 +138,5 @@ public class ListaVentas {
 			}
 		}
 	}
+	
 }

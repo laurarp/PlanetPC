@@ -28,9 +28,9 @@ public class AsesorVentas {
 		return inventario.buscarProducto(idProducto);
 	}
 	
-	public void modificarEstadoCompra(String idCompra,String estado) throws Exception
+	public void notificarCompraRecibida(String idCompra,String estado) throws Exception
 	{
-		listaCompras.modificarCompra(idCompra, estado);
+		listaCompras.notificarCompraRecibida(idCompra);
 	}
 	
 	public ArrayList<Compra> obtenerPedidosPendientesProveedor(String idProveedor) throws Exception
