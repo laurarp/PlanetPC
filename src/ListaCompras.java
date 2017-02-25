@@ -11,14 +11,16 @@ import java.util.Date;
 
 public class ListaCompras {
 	private ArrayList<Compra> compras;
+	private String ruta;
 
 	public ListaCompras() throws Exception 
 	{
 		super();
+		ruta="ListaCompras.txt";
 		
-		if(ReadFileCompras("ListaCompras.txt")!=null)
+		if(ReadFileCompras(ruta)!=null)
 		{
-			this.compras = ReadFileCompras("ListaCompras.txt");
+			this.compras = ReadFileCompras(ruta);
 		}
 		else
 		{

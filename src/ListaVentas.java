@@ -16,13 +16,22 @@ public class ListaVentas {
 	public ListaVentas() throws Exception {
 		super();
 		ruta="ListaVentas.txt";
+		
+		if(ReadFileVentas(ruta)!=null)
+		{
+			this.ventas = ReadFileVentas(ruta);
+		}
+		else
+		{
+			this.ventas =new ArrayList<Venta>();
+		}
 	}
 
 	public void añadirVenta (DescripcionProducto descripcionProducto, Date fechaVenta, String idCliente, String idVendedor, int Cantidad) throws Exception
 	{
 		if(ReadFileVentas(ruta)!=null)
 		{
-			this.ventas = (ArrayList<Venta>) (Arrays.asList(ReadFileVentas(ruta)));
+			this.ventas =ReadFileVentas(ruta);
 		}
 		else
 		{
@@ -41,7 +50,7 @@ public class ListaVentas {
 	{
 		if(ReadFileVentas(ruta)!=null)
 		{
-			ventas = (ArrayList<Venta>) (Arrays.asList(ReadFileVentas(ruta)));
+			ventas = ReadFileVentas(ruta);
 		}
 		else
 		{
@@ -50,11 +59,11 @@ public class ListaVentas {
 		return ventas; 
 	}
 	
-	public static Venta[] ReadFileVentas(String file) throws Exception 
+	public static ArrayList<Venta> ReadFileVentas(String file) throws Exception 
 	{
 		FileInputStream fi=null;
 		ObjectInputStream oi=null;
-		Venta[] listaVentas= new Venta[0];
+		ArrayList<Venta> listaVentas= new ArrayList<Venta>();
 		
 		try{
 			fi=new FileInputStream(file);
@@ -64,8 +73,7 @@ public class ListaVentas {
 			while(fi.available()>0)
 			{
 				Venta venta=(Venta) oi.readObject();
-				listaVentas=Arrays.copyOf(listaVentas, listaVentas.length+1);
-				listaVentas[i++]=venta;
+				listaVentas.add(venta);
 			}
 		}
 		catch(FileNotFoundException e)
@@ -95,7 +103,7 @@ public class ListaVentas {
 				throw new Exception("No se pudo cerrar el fichero");
 			}
 		}
-		if(listaVentas.length==0)
+		if(listaVentas.size()==0)
 		{
 			return null;
 		}
