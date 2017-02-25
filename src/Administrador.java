@@ -12,6 +12,7 @@ public class Administrador {
 	}
 	
 	public void modificarUsuario(Actor actor)
+	//Guillermo
 	{
 		
 	}
@@ -40,6 +41,7 @@ public class Administrador {
 	
 	public ListaServicios reporteTecnico()
 	{
+		//Guillermo
 		return null;
 	}
 	

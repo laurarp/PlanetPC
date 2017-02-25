@@ -127,9 +127,10 @@ public class FormLogin {
 				
 				if(usuarios!=null)
 				{
+					//¿la lista de usuarios comienza en -1?, BOOOM!!!!! xD
 					int i=-1;
-					
-					while( i<usuarios.length && usuarios[i].getId()!=textUsuario.getText() && usuarios[i].getContrasena()!=textContrasena.getText())
+					// linea anterior(i<usuarios.length && usuarios[i].getId()!=textUsuario.getText() && usuarios[i].getContrasena()!=textContrasena.getText())
+					while( i<usuarios.length && textUsuario.getText().compareTo(usuarios[i].getId())!=0 && textContrasena.getText().compareTo(usuarios[i].getContrasena())!=0)
 					{
 						i++;
 					}
@@ -138,6 +139,8 @@ public class FormLogin {
 					{
 						FormPrincipal principal=new FormPrincipal();
 						principal.setVisible(true);
+						//para que se cierre la ventana del login una vez ingrese
+						System.exit(0);
 					}
 					else
 					{

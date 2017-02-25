@@ -11,8 +11,9 @@ import java.util.Arrays;
 import java.util.Date;
 
 public class ListaServicios {
-	protected static ArrayList <ServicioTecnico> listaServicios;
+	protected static ArrayList<ServicioTecnico> listaServicios;
 
+	// gets y sets de la clase
 	public ArrayList<ServicioTecnico> getListaServicios() {
 		return listaServicios;
 	}
@@ -21,32 +22,36 @@ public class ListaServicios {
 		ListaServicios.listaServicios = listaServicios;
 	}
 
+	// --------------------------------------------------------------------------------------------------------
+	// Constructor de la clase
 	public ListaServicios() {
 		super();
-		File lista=new File("ListaServicios.txt");
-		if(lista.exists()==false){
+		File lista = new File("ListaServicios.txt");
+		if (lista.exists() == false) {
 			crearArchivo("ListaServicios.txt", listaServicios);
-			listaServicios=new ArrayList <ServicioTecnico>();
-		}else{
-			listaServicios=leerArchivoObjeto("ListaServicios.txt");
-			if(listaServicios==null){
-				listaServicios=new ArrayList <ServicioTecnico>();
+			listaServicios = new ArrayList<ServicioTecnico>();
+		} else {
+			listaServicios = leerArchivoObjeto("ListaServicios.txt");
+			if (listaServicios == null) {
+				listaServicios = new ArrayList<ServicioTecnico>();
 			}
 		}
-		
-		
 	}
-	public static String crearIdServicio(){
-		String i=String.valueOf(System.currentTimeMillis()/10000);
+//----------------------------------------------------------------------------------------------------------------
+	//metodo para crear numeros diferentes
+	public static String crearIdServicio() {
+		String i = String.valueOf(System.currentTimeMillis() / 10000);
 		return i;
 	}
-
+//----------------------------------------------------------------------------------------------------------------
+	//metodo para crear nuevos servicios y agregarlos a la lista
 	public void crearServicio(String descripcion, String idCiente, double precio, int diasEstimados) {
 		ServicioTecnico a = new ServicioTecnico(descripcion, idCiente, precio, diasEstimados);
 		listaServicios.add(a);
 		escribirArchivoObjeto("ListaServicios.txt", listaServicios);
 	}
-
+//----------------------------------------------------------------------------------------------------------------
+	//metodo para mostrar servicios de la lista (en consola)
 	public void mostrarServicios() {
 		ArrayList<ServicioTecnico> lista = leerArchivoObjeto("ListaServicios.txt");
 		if (lista != null) {
@@ -55,36 +60,53 @@ public class ListaServicios {
 			}
 		}
 	}
-	
-	public String[][] mostrarServiciosTabla(String estado){
+//-----------------------------------------------------------------------------------------------------------------
+	//metodo para mostrar la lista de servicios en una ventana, este metodo se ejecuta en la interfaz grafica
+	public String[][] mostrarServiciosTabla(String estado) {
 		ArrayList<ServicioTecnico> lista = leerArchivoObjeto("ListaServicios.txt");
 		String[][] auxiliar = new String[lista.size()][7];
-		
-		for(int i=0;i<lista.size(); i++){
-			if(lista.get(i).getEstado().compareTo(estado)==0){
-				for(int j=0; j<7;j++){
-					switch(j){
-					case 0: auxiliar[i][j]=lista.get(i).getIdServicio();break;
-					case 1: auxiliar[i][j]=lista.get(i).getDescripcion();break;
-					case 2: auxiliar[i][j]=lista.get(i).getIdCliente();break;
-					case 3: auxiliar[i][j]=lista.get(i).getFechaEntrada();break;
-					case 4: auxiliar[i][j]=lista.get(i).getFechaSalida();break;
-					case 5: auxiliar[i][j]=String.valueOf(lista.get(i).getPrecio());break;
-					case 6: auxiliar[i][j]=lista.get(i).getEstado();break;
+
+		for (int i = 0; i < lista.size(); i++) {
+			if (lista.get(i).getEstado().compareTo(estado) == 0) {
+				for (int j = 0; j < 7; j++) {
+					switch (j) {
+					case 0:
+						auxiliar[i][j] = lista.get(i).getIdServicio();
+						break;
+					case 1:
+						auxiliar[i][j] = lista.get(i).getDescripcion();
+						break;
+					case 2:
+						auxiliar[i][j] = lista.get(i).getIdCliente();
+						break;
+					case 3:
+						auxiliar[i][j] = lista.get(i).getFechaEntrada();
+						break;
+					case 4:
+						auxiliar[i][j] = lista.get(i).getFechaSalida();
+						break;
+					case 5:
+						auxiliar[i][j] = String.valueOf(lista.get(i).getPrecio());
+						break;
+					case 6:
+						auxiliar[i][j] = lista.get(i).getEstado();
+						break;
 					}
 				}
 			}
 		}
 		return auxiliar;
 	}
-
+//-------------------------------------------------------------------------------------------------------------------
+	//metodo auxiliar de busqueda por indice que es usado por los metodos eliminar y modificar
 	public static int buscarServicio(String idServicio) {
-		//ArrayList<ServicioTecnico> auxiliar = new ArrayList <ServicioTecnico>();
-		//auxiliar=leerArchivoObjeto("ListaServicios.txt");
-		listaServicios=leerArchivoObjeto("ListaServicios.txt");
+		// ArrayList<ServicioTecnico> auxiliar = new ArrayList
+		// <ServicioTecnico>();
+		// auxiliar=leerArchivoObjeto("ListaServicios.txt");
+		listaServicios = leerArchivoObjeto("ListaServicios.txt");
 		int indice = 0;
 		while (indice < listaServicios.size()) {
-			if (idServicio.compareTo(listaServicios.get(indice).getIdServicio())==0) {
+			if (idServicio.compareTo(listaServicios.get(indice).getIdServicio()) == 0) {
 				return indice;
 			} else {
 				indice++;
@@ -92,10 +114,11 @@ public class ListaServicios {
 		}
 		return -1;
 	}
-
+//-------------------------------------------------------------------------------------------------------------------
+	//metodo eliminar servicio de la lista y del fichero ListaServicios.txt
 	public void eliminarServicio(String idServicio) throws Excepciones {
 
-		ArrayList<ServicioTecnico> auxiliar = new ArrayList <ServicioTecnico>();
+		ArrayList<ServicioTecnico> auxiliar = new ArrayList<ServicioTecnico>();
 		int posicionEliminar = buscarServicio(idServicio);
 		if (buscarServicio(idServicio) == -1) {
 			throw new Excepciones("el usuario no se encuentra en la lista");
@@ -105,14 +128,15 @@ public class ListaServicios {
 					auxiliar.add(listaServicios.get(i));
 				}
 			}
-			listaServicios=auxiliar;
-			File fichero= new File("ListaServicios.txt");
+			listaServicios = auxiliar;
+			File fichero = new File("ListaServicios.txt");
 			fichero.delete();
 			escribirArchivoObjeto("ListaServicios.txt", listaServicios);
 		}
 
 	}
-
+//--------------------------------------------------------------------------------------------------------------------
+	//metodo para escribir objetos en el fichero
 	public static void escribirArchivoObjeto(String archivo, ArrayList<ServicioTecnico> listaServicios) {
 		FileOutputStream fo = null;
 		ObjectOutputStream oI = null;
@@ -133,7 +157,7 @@ public class ListaServicios {
 		} finally {
 			try {
 				if (fo != null) {
-					fo.close(); 
+					fo.close();
 				}
 				if (oI != null) {
 					oI.close();
@@ -144,14 +168,15 @@ public class ListaServicios {
 			}
 		}
 	}
-	
+//------------------------------------------------------------------------------------------------------------------------------
+	//metodo para crear archivos vacios en caso tal de que la lista no exista (este metodo es escencial al arrancar el programa)
 	public static void crearArchivo(String archivo, ArrayList<ServicioTecnico> listaServicios) {
 		FileOutputStream fo = null;
 		ObjectOutputStream oI = null;
 		try {
 			fo = new FileOutputStream(archivo);
 			oI = new ObjectOutputStream(fo);
-			
+
 		} catch (FileNotFoundException e) {
 			System.out.println("problemas con la direcion para crear el fichero");
 		} catch (IOException e) {
@@ -170,11 +195,12 @@ public class ListaServicios {
 			}
 		}
 	}
-	
+//--------------------------------------------------------------------------------------------------------------------------
+	//metodo para leer el fichero y pasarlos a la lista
 	public static ArrayList<ServicioTecnico> leerArchivoObjeto(String archivo) {
 		ObjectInputStream oI = null;
 		FileInputStream fI = null;
-		ArrayList<ServicioTecnico> listaServicios = new ArrayList <ServicioTecnico>();
+		ArrayList<ServicioTecnico> listaServicios = new ArrayList<ServicioTecnico>();
 		try {
 			fI = new FileInputStream(archivo);
 			oI = new ObjectInputStream(fI);
@@ -201,13 +227,15 @@ public class ListaServicios {
 			return listaServicios;
 		}
 	}
-	
-	
+//-----------------------------------------------------------------------------------------------------------------------------
+	//metodo que genera la fecha actual y le da formato de fecha dd-MM-yyyy
 	public static String getFechaActual() {
-        Date ahora = new Date();
-        SimpleDateFormat formateador = new SimpleDateFormat("dd-MM-yyyy");
-        return formateador.format(ahora);
-    }
+		Date ahora = new Date();
+		SimpleDateFormat formateador = new SimpleDateFormat("dd-MM-yyyy");
+		return formateador.format(ahora);
+	}
+//-----------------------------------------------------------------------------------------------------------------------------
+	//metodo para buscar servicios como objetos
 	public static ServicioTecnico buscarServicioOb(String idServicio) throws Excepciones {
 		if (listaServicios == null) {
 			throw new Excepciones("la lista de servicios esta vacia");
@@ -218,22 +246,26 @@ public class ListaServicios {
 		}
 		if (i < listaServicios.size()) {
 			return listaServicios.get(i);
-		} else{
+		} else {
 			throw new Excepciones("El servicio no esta en la lista");
 		}
 	}
-	public void modificarEstado(String idServicio,String estado) throws Excepciones{
-		int indice=buscarServicio(idServicio);
-		if(buscarServicio(idServicio)==-1){
+//-----------------------------------------------------------------------------------------------------------------------------
+	//metodo para modificar el estado de los servicios
+	public void modificarEstado(String idServicio, String estado) throws Excepciones {
+		int indice = buscarServicio(idServicio);
+		if (buscarServicio(idServicio) == -1) {
 			throw new Excepciones("El servicio no esta cargado en la lista");
-		}else{
+		} else {
 			listaServicios.get(indice).setEstado(estado);
-			File s=new File("ListaServicios.txt");
+			File s = new File("ListaServicios.txt");
 			s.delete();
 			escribirArchivoObjeto("ListaServicios.txt", listaServicios);
 		}
 	}
-	public static void main(String[] args){
+//-----------------------------------------------------------------------------------------------------------------------------
+	//metodo main para pruebas internas de la clase
+	public static void main(String[] args) {
 		ListaServicios lista = new ListaServicios();
 		lista.mostrarServicios();
 		try {
@@ -242,36 +274,30 @@ public class ListaServicios {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		/*try {
-			lista.eliminarServicio("3.53041002399089E8");
-		} catch (Excepciones e) {
-			// TODO Auto-generated catch block
-			System.out.println(e.getMessage());
-		}
-		lista.mostrarServicios();*/
+		/*
+		 * try { lista.eliminarServicio("3.53041002399089E8"); } catch
+		 * (Excepciones e) { // TODO Auto-generated catch block
+		 * System.out.println(e.getMessage()); } lista.mostrarServicios();
+		 */
 	}
 
-	/*public static void main(String[] args) {
-		ListaServicios lista = new ListaServicios();
-		lista.crearServicio("12345","portatil dell", "1017196884", 35000, 10);
-		lista.crearServicio("12346","PC clon", "1017196885", 35000,5);
-		lista.crearServicio("12347","portatil panasonic", "1017196883", 35000,4);
-		try {
-			lista.eliminarServicio("12346");
-			lista.eliminarServicio("12347");
-			System.out.println(buscarServicioOb("12345"));
-			lista.crearServicio("12348","pantalla lg", "1017196883", 35000,3);
-			lista.mostrarServicios();
-			lista.modificarEstado("12348", "activo");
-			
-			System.out.println(buscarServicioOb("12348"));
-			
-		} catch (Excepciones e) {
-			System.out.println(e.getMessage());
-		}
-		
-		
-	}
-*/
-		
+	/*
+	 * public static void main(String[] args) { ListaServicios lista = new
+	 * ListaServicios(); lista.crearServicio("12345","portatil dell",
+	 * "1017196884", 35000, 10); lista.crearServicio("12346","PC clon",
+	 * "1017196885", 35000,5); lista.crearServicio("12347","portatil panasonic",
+	 * "1017196883", 35000,4); try { lista.eliminarServicio("12346");
+	 * lista.eliminarServicio("12347");
+	 * System.out.println(buscarServicioOb("12345"));
+	 * lista.crearServicio("12348","pantalla lg", "1017196883", 35000,3);
+	 * lista.mostrarServicios(); lista.modificarEstado("12348", "activo");
+	 * 
+	 * System.out.println(buscarServicioOb("12348"));
+	 * 
+	 * } catch (Excepciones e) { System.out.println(e.getMessage()); }
+	 * 
+	 * 
+	 * }
+	 */
+
 }

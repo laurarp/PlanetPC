@@ -1,5 +1,7 @@
 import java.awt.EventQueue;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -156,17 +158,38 @@ public class FormPrincipal extends JFrame{
 		
 		JMenuItem mntmIngresarEquipo = new JMenuItem("Ingresar equipo");
 		mnServicioTcnico.add(mntmIngresarEquipo);
+		mntmIngresarEquipo.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				FormIngresoDatosCrearServicios ingreso= new FormIngresoDatosCrearServicios();
+				ingreso.setVisible(true);
+			}
+		});
 		
 		JMenuItem mntmEquiposPendientes = new JMenuItem("Equipos pendientes");
 		mnServicioTcnico.add(mntmEquiposPendientes);
 		
 		JMenuItem mntmEliminarEquipo = new JMenuItem("Eliminar equipo");
 		mnServicioTcnico.add(mntmEliminarEquipo);
+		mntmEliminarEquipo.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				FormIngresoEliminarServicio eliminar= new FormIngresoEliminarServicio();
+				eliminar.setVisible(true);				
+			}
+		});
 		
-		JMenuItem mntmModificarReporteEquipo = new JMenuItem("Modificar reporte equipo");
+		JMenuItem mntmModificarReporteEquipo = new JMenuItem("Modificar estado del equipo");
 		mnServicioTcnico.add(mntmModificarReporteEquipo);
 		
 		JMenuItem mntmGenerarReporteServicios = new JMenuItem("Generar reporte servicios realizados");
 		mnServicioTcnico.add(mntmGenerarReporteServicios);
+		mntmGenerarReporteServicios.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				FormBuscarServicios mostrar= new FormBuscarServicios();
+				mostrar.setVisible(true);
+			}
+		});
 	}
 }
