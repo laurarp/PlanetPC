@@ -48,7 +48,7 @@ public class FormReporteCompras {
 		
 		try 
 		{
-			asesorVentas = new AsesorVentas();
+			asesorVentas = new AsesorVentas(null, null, null);
 		} 
 		catch (Exception e) 
 		{

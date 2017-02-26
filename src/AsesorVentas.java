@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 import java.util.Date;
 
-public class AsesorVentas {
+public class AsesorVentas extends Actor {
 	private ListaCompras listaCompras;
 	private ListaVentas listaVentas;
 	private Inventario inventario;
 	
-	public AsesorVentas() throws Exception {
-		super();
+	public AsesorVentas(String id, String nombre, String contrasena) throws Exception {
+		super(id, nombre, contrasena);
 		this.listaCompras = new ListaCompras();
 		this.listaVentas = new ListaVentas();
 		this.inventario = new Inventario();
@@ -23,9 +23,9 @@ public class AsesorVentas {
 		return listaVentas.getListaVentas();
 	}
 	
-	public Producto buscarProducto(String idProducto)
+	public Producto buscarProducto(String idProducto,String tipo, String marca, String modelo) throws Exception
 	{
-		return inventario.buscarProducto(idProducto);
+		return inventario.buscarProducto(idProducto,tipo,marca,modelo);
 	}
 	
 	public void notificarCompraRecibida(String idCompra,String estado) throws Exception
@@ -61,15 +61,7 @@ public class AsesorVentas {
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		try {
-			AsesorVentas av=new AsesorVentas();
-			
-			av.obtenerPedidosPendientesProveedor("1");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 
 	}
 

@@ -1,9 +1,26 @@
+import java.io.Serializable;
+import java.util.ArrayList;
 
-public class Administrador {
+
+public class Administrador extends Actor implements Serializable{
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5631227700597205391L;
 	private ListaProveedores listaProveedores;
-	public void crearUsuario(ListaActores listaActores,String Nombre, String id, String Contraseña)
+	private ListaActores listaActores;
+	
+	public Administrador(String id, String nombre, String contrasena) throws Exception {
+		super(id, nombre, contrasena);
+		this.listaProveedores = new ListaProveedores();
+		this.listaActores = new ListaActores();
+	}
+
+	public void crearUsuario(String id,String nombre, String contrasena,String tipo) throws Exception
 	{
-		
+		listaActores.nuevoActor(id,nombre, contrasena, tipo);
 	}
 	
 	public Actor buscarUsuario(String id)
@@ -53,6 +70,21 @@ public class Administrador {
 	public ListaVentas reporteVentas()
 	{
 		return null;
+	}
+	
+	public static void main(String[] args) 
+	{
+		try 
+		{		
+			Administrador admin=new Administrador("1017217551","Laura Camila Rodriguez Peña", "123");
+			
+			admin.crearUsuario("1017217556","Paulina", "123", "Asistente de compras y ventas");
+			
+		} 
+		catch (Exception e) 
+		{
+			System.out.println(e.getMessage());
+		}
 	}
 
 }

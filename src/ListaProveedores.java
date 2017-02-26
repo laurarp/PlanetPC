@@ -5,11 +5,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ListaProveedores {
+public class ListaProveedores implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8874840702437700348L;
 	private ArrayList<Proveedor> listaProveedores;
 
 	public ListaProveedores() {

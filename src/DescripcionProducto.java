@@ -12,6 +12,7 @@ public class DescripcionProducto implements Serializable{
 	private int diasGarantia;
 	private String marca;
 	private String modelo;
+	
 	public String getId() {
 		return id;
 	}
