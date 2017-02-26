@@ -4,12 +4,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
 
-public class ListaVentas {
+public class ListaVentas implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5130292729510420277L;
 	private ArrayList<Venta> ventas;
 	private String ruta;
 	

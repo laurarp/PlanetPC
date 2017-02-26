@@ -4,11 +4,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
 
-public class ListaActores {
+public class ListaActores implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1467478525274105375L;
 	private ArrayList<Actor> actores;
 	private String ruta;
 	
@@ -25,16 +30,18 @@ public class ListaActores {
 		{
 			this.actores =new ArrayList<Actor>();
 		}
+	
 	}
 
 	public void nuevoActor(String id,String nombre, String contrasena,String tipo) throws Exception
 	{
-		try 
+		Actor a = null;
+		
+		try
 		{
-			Actor a=buscarActor(id);
-			throw new Exception("El usuario ya existe");
-		} 
-		catch (Exception e) 
+			a=buscarActor(id);
+		}
+		catch(Exception e)
 		{
 			if(id.compareTo("")!=0 && nombre.compareTo("")!=0 && contrasena.compareTo("")!=0)
 			{
@@ -43,14 +50,19 @@ public class ListaActores {
 				{
 					case "Administrador":
 						nuevoActor=new Administrador(id,nombre,contrasena);
+						break;
 					case "Jefe de bodega":
 						nuevoActor=new JefeBodega(id,nombre,contrasena);
+						break;
 					case "Auxiliar de almacenamiento":
 						nuevoActor=new AuxiliarAlmacenamiento(id,nombre,contrasena);
+						break;
 					case "Auxiliar de servicio técnico":
 						nuevoActor=new AuxiliarServicio(id,nombre,contrasena);
+						break;
 					case "Asistente de compras y ventas":
 						nuevoActor=new AsesorVentas(id,nombre,contrasena);
+						break;
 				}
 				if(nuevoActor != null)
 				{
@@ -66,7 +78,13 @@ public class ListaActores {
 			{
 				throw new Exception("Algunos atributos del actor están vacíos");
 			}
-		}	
+		}
+		
+		if(a!=null)
+		{
+			throw new Exception("El usuario ya existe");
+		}
+
 	}
 	
 	public Actor buscarActor(String id) throws Exception
@@ -213,17 +231,16 @@ public class ListaActores {
 	{
 		try 
 		{		
-			ArrayList<Actor> actores=new ArrayList<Actor>();
-			Actor a=new Administrador("1017217551","Laura Camila Rodriguez Peña", "123");
-			actores.add(a);
-			WriteFileActores("ListaActores.txt",actores);
 			ArrayList<Actor> lecturaActores=ReadFileActores("ListaActores.txt");
-			
-			int i=0;
-			for(i=0;i<lecturaActores.size();i++)
+			if(lecturaActores!=null)
 			{
-				System.out.println(lecturaActores.get(i).getNombre());
+				for(Actor a:lecturaActores)
+				{
+					System.out.println(a.getClass());
+					//System.out.println(p.toString());
+				}
 			}
+			
 		} 
 		catch (Exception e) 
 		{

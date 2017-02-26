@@ -1,11 +1,14 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
-public class Administrador extends Actor  implements Serializable{
+public class Administrador extends Actor implements Serializable{
+
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6744013657278938999L;
+	private static final long serialVersionUID = -5631227700597205391L;
 	private ListaProveedores listaProveedores;
 	private ListaActores listaActores;
 	
@@ -67,6 +70,21 @@ public class Administrador extends Actor  implements Serializable{
 	public ListaVentas reporteVentas()
 	{
 		return null;
+	}
+	
+	public static void main(String[] args) 
+	{
+		try 
+		{		
+			Administrador admin=new Administrador("1017217551","Laura Camila Rodriguez Peña", "123");
+			
+			admin.crearUsuario("1017217553","Maria Rodriguez Peña", "123", "Jefe de bodega");
+			
+		} 
+		catch (Exception e) 
+		{
+			System.out.println(e.getMessage());
+		}
 	}
 
 }

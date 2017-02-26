@@ -4,6 +4,7 @@ import java.util.GregorianCalendar;
 
 
 public abstract class Actor implements Serializable{
+
 	/**
 	 * 
 	 */
@@ -16,7 +17,7 @@ public abstract class Actor implements Serializable{
 		return nombre;
 	}
 	public void setNombre(String nombre) {
-		nombre = nombre;
+		this.nombre = nombre;
 	}
 	public String getId() {
 		return id;

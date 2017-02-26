@@ -2,10 +2,15 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Inventario {
+public class Inventario implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6701912040108424384L;
 	private ArrayList<Producto> listaProductos;
 	private String ruta;
 	

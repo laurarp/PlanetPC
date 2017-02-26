@@ -1,5 +1,11 @@
+import java.io.Serializable;
 
-public class Producto {
+
+public class Producto implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9107635776970541338L;
 	private DescripcionProducto descripcionProducto;
 	private int cantidad;
 	private String ubicacion;
