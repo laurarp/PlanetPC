@@ -67,7 +67,7 @@ public class ListaServicios {
 		String[][] auxiliar = new String[lista.size()][7];
 
 		for (int i = 0; i < lista.size(); i++) {
-			if (lista.get(i).getEstado().compareTo(estado) == 0) {
+			if (estado.compareTo(lista.get(i).getEstado()) == 0) {
 				for (int j = 0; j < 7; j++) {
 					switch (j) {
 					case 0:
@@ -97,6 +97,17 @@ public class ListaServicios {
 		}
 		return auxiliar;
 	}
+	
+	/*
+	public void mostrarServiciosEstado(){
+		ArrayList<ServicioTecnico> lista = leerArchivoObjeto("ListaServicios.txt");
+		ArrayList<ServicioTecnico> auxiliar1= new ArrayList<ServicioTecnico>();
+		ArrayList<ServicioTecnico> auxiliar2= new ArrayList<ServicioTecnico>();
+		for(int i=0; i<lista.size();i++){
+			if()
+		}
+	}*/
+	
 //-------------------------------------------------------------------------------------------------------------------
 	//metodo auxiliar de busqueda por indice que es usado por los metodos eliminar y modificar
 	public static int buscarServicio(String idServicio) {
