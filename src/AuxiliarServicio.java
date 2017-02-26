@@ -1,8 +1,13 @@
+import java.io.Serializable;
 import java.util.Date;
 
 
-public class AuxiliarServicio extends Actor {
+public class AuxiliarServicio extends Actor implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6073013571954600949L;
 	private static ListaServicios lista;
 	
 	public AuxiliarServicio(String nombre, String id, String contrasena) {

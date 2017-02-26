@@ -52,13 +52,24 @@ public class ListaCompras implements Serializable {
 		
 		if(compras!=null)
 		{
-			while(i<compras.size() && String.valueOf(compras.get(i).getIdCompra())!=idCompra)
+			while(i<compras.size() && String.valueOf(compras.get(i).getIdCompra()).compareTo(idCompra)!=0)
 			{
 				i++;
 			}
 			if(i<compras.size())
 			{
-				compras.get(i).setEstado("Recibida");//Cambia el estado de la compra a recibida		
+				if(compras.get(i).getEstado().compareTo("Recibida")!=0)
+				{
+					compras.get(i).setEstado("Recibida");//Cambia el estado de la compra a recibida	
+					compras.get(i).setFechaIngreso(new Date(System.currentTimeMillis()));	
+					
+					//Escribe en el fichero las compras con la modificación
+					WriteFileCompras(ruta, compras);
+				}
+				else
+				{
+					throw new Exception("La compra ya fue notificada como recibida");
+				}
 			}
 			else
 			{
@@ -69,9 +80,6 @@ public class ListaCompras implements Serializable {
 		{
 			throw new Exception("No hay compras disponibles");
 		}
-		
-		//Escribe en el fichero las compras con la modificación
-		WriteFileCompras(ruta, compras);
 	}
 	
 	public static ArrayList<Compra> ReadFileCompras(String file) throws Exception
@@ -175,24 +183,33 @@ public class ListaCompras implements Serializable {
 	
 	public static void main(String[] args) 
 	{
-		ArrayList<Compra> compras=new ArrayList<Compra>();
-		try {
-			WriteFileCompras("ListaCompras.txt", compras);
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+//		ArrayList<Compra> compras=new ArrayList<Compra>();
+//		try {
+//			WriteFileCompras("ListaCompras.txt", compras);
+//		} catch (Exception e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//		
+//		ListaCompras lc = null;
+//		try {
+//			lc = new ListaCompras();
+//			DescripcionProducto dc=new DescripcionProducto("1", 25488, "PC", 0, "Apple", "2010");
+//			
+//			lc.añadirCompra(dc, "1", 2, 25412, new Date(5855), new Date(454), "Pendiente");
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
-		ListaCompras lc = null;
 		try {
-			lc = new ListaCompras();
-			DescripcionProducto dc=new DescripcionProducto("1", 25488, "PC", 0, "Apple", "2010");
-			
-			lc.añadirCompra(dc, "1", 2, 25412, new Date(5855), new Date(454), "Pendiente");
+			ListaCompras lc=new ListaCompras();
+			lc.notificarCompraRecibida("1");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
+
 	}
 
 }

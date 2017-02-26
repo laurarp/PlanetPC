@@ -146,12 +146,44 @@ public class FormLogin {
 					
 					if(i<actores.getActores().size())
 					{
-						FormPrincipal principal=new FormPrincipal(actores.getActores().get(i));
+						Actor a=null;
 						
-						window.frame.setVisible(false);
-						
-						principal.getFrame().setVisible(true);
-
+						try
+						{
+							//Crea de nuevo el actor para actualizar las listas a las que accede
+							switch(actores.getActores().get(i).getClass().getName())
+							{
+								case "Administrador":
+									a=new Administrador(actores.getActores().get(i).getId(),actores.getActores().get(i).getNombre(),actores.getActores().get(i).getContrasena());
+									break;
+									
+								case "AuxiliarAlmacenamiento":
+									a=new AuxiliarAlmacenamiento(actores.getActores().get(i).getId(),actores.getActores().get(i).getNombre(),actores.getActores().get(i).getContrasena());
+									break;
+									
+								case "JefeBodega":
+									a=new JefeBodega(actores.getActores().get(i).getId(),actores.getActores().get(i).getNombre(),actores.getActores().get(i).getContrasena());
+									break;
+									
+								case "AsesorVentas":
+									a=new AsesorVentas(actores.getActores().get(i).getId(),actores.getActores().get(i).getNombre(),actores.getActores().get(i).getContrasena());
+									break;
+								
+								case "AuxiliarServicio":
+									a=new AuxiliarServicio(actores.getActores().get(i).getId(),actores.getActores().get(i).getNombre(),actores.getActores().get(i).getContrasena());
+									break;
+							}
+							
+							FormPrincipal principal=new FormPrincipal(a);
+							
+							window.frame.setVisible(false);
+							
+							principal.getFrame().setVisible(true);
+						}
+						catch(Exception e)
+						{
+							JOptionPane.showMessageDialog(null, "Error generando página principal");
+						}
 					}
 					else
 					{

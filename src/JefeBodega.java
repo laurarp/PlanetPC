@@ -4,6 +4,10 @@ import java.util.Date;
 
 public class JefeBodega extends Actor implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2532793658550877109L;
 	private ListaCompras listaCompras;
 	
 	public JefeBodega(String id, String nombre, String contrasena) throws Exception

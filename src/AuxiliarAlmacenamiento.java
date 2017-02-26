@@ -1,6 +1,13 @@
+import java.io.Serializable;
 
-public class AuxiliarAlmacenamiento extends Actor{
+
+public class AuxiliarAlmacenamiento extends Actor implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9013827925897536008L;
+
 	public AuxiliarAlmacenamiento(String nombre, String id, String contrasena) {
 		super(nombre, id, contrasena);
 		// TODO Auto-generated constructor stub

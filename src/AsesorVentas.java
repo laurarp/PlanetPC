@@ -1,7 +1,12 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class AsesorVentas extends Actor {
+public class AsesorVentas extends Actor implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1110176987574427259L;
 	private ListaCompras listaCompras;
 	private ListaVentas listaVentas;
 	private Inventario inventario;
@@ -28,7 +33,7 @@ public class AsesorVentas extends Actor {
 		return inventario.buscarProducto(idProducto,tipo,marca,modelo);
 	}
 	
-	public void notificarCompraRecibida(String idCompra,String estado) throws Exception
+	public void notificarCompraRecibida(String idCompra) throws Exception
 	{
 		listaCompras.notificarCompraRecibida(idCompra);
 	}
@@ -42,17 +47,24 @@ public class AsesorVentas extends Actor {
 		{
 			for(int i=0;i<compras.size();i++)
 			{
-				String l=compras.get(i).getEstado();
-				String d=compras.get(i).getIdProveedor();
-				Boolean a="Pendiente".compareTo(compras.get(i).getEstado())!=0;
-				Boolean b=idProveedor.compareTo(compras.get(i).getIdProveedor())!=0;
 				if("Pendiente".compareTo(compras.get(i).getEstado())==0 && idProveedor.compareTo(compras.get(i).getIdProveedor())==0)
 				{
 					pendientes.add(compras.get(i));
 				}
 			}
+			if(pendientes.size()!=0)
+			{
+				return pendientes;
+			}
+			else
+			{
+				throw new Exception("El proveedor no tiene pedidos pendientes");
+			}
 		}
-		return pendientes;
+		else
+		{
+			throw new Exception("No hay compras registradas");
+		}	
 	}
 	
 	public void registarVenta(DescripcionProducto descripcionProducto, Date fechaVenta, String idCliente, String idVendedor, int Cantidad) throws Exception
@@ -61,7 +73,17 @@ public class AsesorVentas extends Actor {
 	}
 	
 	public static void main(String[] args) {
-
+		AsesorVentas v;
+		try 
+		{
+			v = new AsesorVentas(null, null, null);
+			v.obtenerPedidosPendientesProveedor("1");
+		} 
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+		
 
 	}
 
