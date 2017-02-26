@@ -138,6 +138,13 @@ public class FormPrincipal extends JFrame{
 			{
 				JMenuItem mntmRegistrarVenta = new JMenuItem("Registrar venta");
 				mnVentas.add(mntmRegistrarVenta);
+				mntmRegistrarVenta.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						FormRegistrarVenta registrarVenta= new FormRegistrarVenta(actor);
+						registrarVenta.getFrame().setVisible(true);
+					}
+				});
 			}
 			
 			if(actor.getClass().getName().compareTo("Administrador")==0 || actor.getClass().getName().compareTo("AsesorVentas")==0 )
