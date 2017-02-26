@@ -111,9 +111,6 @@ public class ListaServicios {
 //-------------------------------------------------------------------------------------------------------------------
 	//metodo auxiliar de busqueda por indice que es usado por los metodos eliminar y modificar
 	public static int buscarServicio(String idServicio) {
-		// ArrayList<ServicioTecnico> auxiliar = new ArrayList
-		// <ServicioTecnico>();
-		// auxiliar=leerArchivoObjeto("ListaServicios.txt");
 		listaServicios = leerArchivoObjeto("ListaServicios.txt");
 		int indice = 0;
 		while (indice < listaServicios.size()) {
