@@ -194,7 +194,5 @@ public class ListaCompras implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
-	
 
 }

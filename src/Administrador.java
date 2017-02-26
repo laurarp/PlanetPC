@@ -78,7 +78,7 @@ public class Administrador extends Actor implements Serializable{
 		{		
 			Administrador admin=new Administrador("1017217551","Laura Camila Rodriguez Peña", "123");
 			
-			admin.crearUsuario("1017217553","Maria Rodriguez Peña", "123", "Jefe de bodega");
+			admin.crearUsuario("1017217556","Paulina", "123", "Asistente de compras y ventas");
 			
 		} 
 		catch (Exception e) 

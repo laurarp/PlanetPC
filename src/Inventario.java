@@ -1,9 +1,12 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class Inventario implements Serializable{
@@ -138,5 +141,63 @@ public class Inventario implements Serializable{
 		{
 			return inventario;
 		}
+	}
+	
+	public static void WriteFileInventario(String file, ArrayList<Producto> productosNuevos) throws Exception
+	{
+		FileOutputStream fo=null;
+		ObjectOutputStream ol=null;
+		
+		try{
+			fo=new FileOutputStream(file);
+			ol=new ObjectOutputStream(fo);
+			
+			for(Producto o:productosNuevos)
+			{
+				try
+				{
+					ol.writeObject(o);
+				}
+				catch(IOException e)
+				{
+					throw new Exception("Problema en la escritura del archivo");
+				}
+			}
+		}
+		catch(FileNotFoundException e)
+		{
+			throw new Exception("Problemas con la direccion para crear el fichero");
+		}
+		catch(IOException e)
+		{
+			throw new Exception("El fichero tiene problema al crearse");
+		}
+		finally
+		{
+			try
+			{
+				if(fo!=null)
+				{
+					fo.close();
+					ol.close();
+				}
+			}
+			catch (IOException e) {
+				// TODO Auto-generated catch block
+				throw new Exception("No se pudo cerrar el fichero");
+			}
+		}
+	}
+	
+	public static void main(String[] args) 
+	{
+		ArrayList<Producto> productos=new ArrayList<Producto>();
+		try {
+			WriteFileInventario("Inventario.txt",productos);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }

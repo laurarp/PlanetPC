@@ -143,4 +143,18 @@ public class ListaVentas implements Serializable{
 		}
 	}
 	
+	public static void main(String[] args) 
+	{
+		try 
+		{
+			ListaVentas lv= new ListaVentas();
+			DescripcionProducto descripcionProducto=new DescripcionProducto("1",52455,"PC",5,"Apple","2015");
+			lv.añadirVenta(descripcionProducto, new Date(154255), "159632", "542586", 5);
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	
 }

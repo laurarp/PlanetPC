@@ -16,9 +16,17 @@ public class ListaActores implements Serializable{
 	private static final long serialVersionUID = -1467478525274105375L;
 	private ArrayList<Actor> actores;
 	private String ruta;
-	
-	
-	public ListaActores() throws Exception {
+
+	public ArrayList<Actor> getActores() {
+		return actores;
+	}
+
+	public void setActores(ArrayList<Actor> actores) {
+		this.actores = actores;
+	}
+
+	public ListaActores() throws Exception 
+	{
 		super();
 		ruta="ListaActores.txt";
 		
@@ -30,7 +38,6 @@ public class ListaActores implements Serializable{
 		{
 			this.actores =new ArrayList<Actor>();
 		}
-	
 	}
 
 	public void nuevoActor(String id,String nombre, String contrasena,String tipo) throws Exception
@@ -236,7 +243,7 @@ public class ListaActores implements Serializable{
 			{
 				for(Actor a:lecturaActores)
 				{
-					System.out.println(a.getClass());
+					System.out.println(a.getId()+": "+a.getClass().getName());
 					//System.out.println(p.toString());
 				}
 			}

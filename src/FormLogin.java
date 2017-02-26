@@ -34,6 +34,8 @@ public class FormLogin {
 	private JFrame frame;
 	private JTextField textUsuario;
 	private JPasswordField textContrasena;
+	private ListaActores actores=null;
+	static FormLogin window;
 
 	/**
 	 * Launch the application.
@@ -47,7 +49,7 @@ public class FormLogin {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FormLogin window = new FormLogin();
+					window = new FormLogin();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -67,6 +69,15 @@ public class FormLogin {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		try 
+		{
+			actores = new ListaActores();
+		} 
+		catch (Exception e) 
+		{
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+		
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBackground(SystemColor.inactiveCaption);
@@ -123,24 +134,24 @@ public class FormLogin {
 		JButton btnIngresar = new JButton("Ingresar");
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Actor[] usuarios=ReadFileActores("ListaActores.txt");
 				
-				if(usuarios!=null)
+				if(actores!=null)
 				{
-					//¿la lista de usuarios comienza en -1?, BOOOM!!!!! xD
-					int i=-1;
-					// linea anterior(i<usuarios.length && usuarios[i].getId()!=textUsuario.getText() && usuarios[i].getContrasena()!=textContrasena.getText())
-					while( i<usuarios.length && textUsuario.getText().compareTo(usuarios[i].getId())!=0 && textContrasena.getText().compareTo(usuarios[i].getContrasena())!=0)
+					int i=0;
+							
+					while( i<actores.getActores().size() &&  (textUsuario.getText().compareTo(actores.getActores().get(i).getId())!=0 || String.valueOf(textContrasena.getPassword()).compareTo(actores.getActores().get(i).getContrasena())!=0 ))
 					{
 						i++;
 					}
 					
-					if(i>=0)
+					if(i<actores.getActores().size())
 					{
-						FormPrincipal principal=new FormPrincipal();
-						principal.setVisible(true);
-						//para que se cierre la ventana del login una vez ingrese
-						System.exit(0);
+						FormPrincipal principal=new FormPrincipal(actores.getActores().get(i));
+						
+						window.frame.setVisible(false);
+						
+						principal.getFrame().setVisible(true);
+
 					}
 					else
 					{
@@ -163,105 +174,5 @@ public class FormLogin {
 		btnIngresar.setBounds(34, 315, 295, 36);
 		frame.getContentPane().add(btnIngresar);
 	}
-	
-	public static Actor[] ReadFileActores(String file)
-	{
-		FileInputStream fi=null;
-		ObjectInputStream oi=null;
-		Actor[] listaActores= new Actor[0];
-		
-		try{
-			fi=new FileInputStream(file);
-			oi=new ObjectInputStream(fi);
-			int i=0;
-			
-			while(fi.available()>0)
-			{
-				Actor actor=(Actor) oi.readObject();
-				listaActores=Arrays.copyOf(listaActores, listaActores.length+1);
-				listaActores[i++]=actor;
-			}
-		}
-		catch(FileNotFoundException e)
-		{
-			System.out.println("Problemas con la direccion para abrir el fichero");
-		}
-		catch(IOException e)
-		{
-			System.out.println("El fichero tiene problema al leer los objetos");
-		}
-		catch(ClassNotFoundException e)
-		{
-			System.out.println("Problema al leer el fichero");
-		}
-		finally
-		{
-			try
-			{
-				if(fi!=null)
-				{
-					fi.close();
-					oi.close();
-				}
-			}
-			catch (IOException e) {
-				// TODO Auto-generated catch block
-				System.out.println("No se pudo cerrar el fichero");
-			}
-		}
-		if(listaActores.length==0)
-		{
-			return null;
-		}
-		else
-		{
-			return listaActores;
-		}
-	}
-	
-	public static void WriteFileObject(String file, Administrador[] listPersonas)
-	{
-		FileOutputStream fo=null;
-		ObjectOutputStream ol=null;
-		
-		try{
-			fo=new FileOutputStream(file);
-			ol=new ObjectOutputStream(fo);
-			
-			for(Administrador o:listPersonas)
-			{
-				try
-				{
-					ol.writeObject(o);
-				}
-				catch(IOException e)
-				{
-					System.out.println("Problema al crear las clases");
-				}
-			}
-		}
-		catch(FileNotFoundException e)
-		{
-			System.out.println("Problemas con la direccion para crear el fichero");
-		}
-		catch(IOException e)
-		{
-			System.out.println("El fichero tiene problema al crearse");
-		}
-		finally
-		{
-			try
-			{
-				if(fo!=null)
-				{
-					fo.close();
-					ol.close();
-				}
-			}
-			catch (IOException e) {
-				// TODO Auto-generated catch block
-				System.out.println("No se pudo cerrar el fichero");
-			}
-		}
-	}
+
 }
