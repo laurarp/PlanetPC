@@ -1,14 +1,17 @@
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 
 public abstract class Actor {
-	private String Nombre;
+	private String nombre;
 	private String id;
 	private String contrasena;
 	
 	public String getNombre() {
-		return Nombre;
+		return nombre;
 	}
 	public void setNombre(String nombre) {
-		Nombre = nombre;
+		nombre = nombre;
 	}
 	public String getId() {
 		return id;
@@ -22,16 +25,13 @@ public abstract class Actor {
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
-	public Actor(String nombre, String id, String contrasena) {
+	
+	public Actor(String id,String nombre, String contrasena) {
 		super();
-		Nombre = nombre;
-		this.id = id;
+		
+		this.id=id;
+		this.nombre = nombre;
 		this.contrasena = contrasena;
 	}
-	public void borrar4()
-	{
-		//esta es una prueba de gitHub para subir cambios al programa
-	}
-	
 
 }

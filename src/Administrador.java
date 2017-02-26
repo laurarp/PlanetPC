@@ -1,9 +1,17 @@
 
 public class Administrador {
 	private ListaProveedores listaProveedores;
-	public void crearUsuario(ListaActores listaActores,String Nombre, String id, String Contraseña)
+	private ListaActores listaActores;
+	
+	public Administrador() throws Exception {
+		super();
+		this.listaProveedores = new ListaProveedores();
+		this.listaActores = new ListaActores();
+	}
+	
+	public void crearUsuario(String id,String nombre, String contrasena,String tipo)
 	{
-		
+		listaActores.nuevoActor(id,nombre, contrasena, tipo);
 	}
 	
 	public Actor buscarUsuario(String id)
