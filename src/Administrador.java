@@ -1,15 +1,21 @@
+import java.io.Serializable;
 
-public class Administrador {
+
+public class Administrador extends Actor  implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6744013657278938999L;
 	private ListaProveedores listaProveedores;
 	private ListaActores listaActores;
 	
-	public Administrador() throws Exception {
-		super();
+	public Administrador(String id, String nombre, String contrasena) throws Exception {
+		super(id, nombre, contrasena);
 		this.listaProveedores = new ListaProveedores();
 		this.listaActores = new ListaActores();
 	}
-	
-	public void crearUsuario(String id,String nombre, String contrasena,String tipo)
+
+	public void crearUsuario(String id,String nombre, String contrasena,String tipo) throws Exception
 	{
 		listaActores.nuevoActor(id,nombre, contrasena, tipo);
 	}

@@ -168,7 +168,8 @@ public class ListaCompras {
 		}
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		ArrayList<Compra> compras=new ArrayList<Compra>();
 		try {
 			WriteFileCompras("ListaCompras.txt", compras);
@@ -187,10 +188,6 @@ public class ListaCompras {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-
-		
-
 	}
 	
 	

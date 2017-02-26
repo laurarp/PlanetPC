@@ -1,10 +1,15 @@
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 
-public abstract class Actor {
-	private String nombre;
+public abstract class Actor implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3788453226787490937L;
 	private String id;
+	private String nombre;
 	private String contrasena;
 	
 	public String getNombre() {

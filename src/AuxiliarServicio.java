@@ -2,7 +2,9 @@ import java.util.Date;
 
 
 public class AuxiliarServicio extends Actor {
+	
 	private static ListaServicios lista;
+	
 	public AuxiliarServicio(String nombre, String id, String contrasena) {
 		super(nombre, id, contrasena);
 		ListaServicios list =new ListaServicios();

@@ -1,12 +1,15 @@
+import java.io.Serializable;
 import java.util.Date;
 
 
-public class JefeBodega {
+public class JefeBodega extends Actor implements Serializable{
 	
 	private ListaCompras listaCompras;
 	
-	public JefeBodega(ListaCompras listaCompras){
-		this.listaCompras = listaCompras;
+	public JefeBodega(String id, String nombre, String contrasena) throws Exception
+	{
+		super(id, nombre, contrasena);
+		this.listaCompras = new ListaCompras();
 	}
 	
 	public void ingresarProducto(ListaDescProducto listaDescProducto,DescripcionProducto descripcionProducto)
