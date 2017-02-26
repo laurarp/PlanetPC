@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -119,15 +120,62 @@ public class ListaActores implements Serializable{
 			throw new Exception("El sistema no contiene usuarios");
 		}
 	}
-	
-	public void modificarActor(Actor actor)
-	{
-		
+//---------------------------------------------------------------------------------------------------------------------------------	
+	public static int buscarIndice(String id) throws Exception {
+		ArrayList<Actor> auxiliar= new ArrayList<Actor>();
+		auxiliar= ReadFileActores("ListaActores.txt");
+		int indice = 0;
+		while (indice < auxiliar.size()) {
+			if (id.compareTo(auxiliar.get(indice).getId()) == 0) {
+				return indice;
+			} else {
+				indice++;
+			}
+		}
+		return -1;
 	}
 	
-	public void eliminarActor(String id)
+	public void modificarActor(String contrasena, String id, String newContrasena, String validContrasena) throws Exception
 	{
+		int indice = buscarIndice(id);
+		if (buscarIndice(id) == -1) {
+			throw new Excepciones("El usuario no esta cargado en la lista");
+		} else {
+			if(contrasena.compareTo(actores.get(indice).getContrasena())==0){
+				if(validContrasena.compareTo(newContrasena)==0){
+					actores.get(indice).setContrasena(validContrasena);
+				}
+				else{
+					throw new Excepciones("no se puede cambiar la contraseña");
+				}
+			}else{
+				throw new Excepciones("la contraseña anterior es incorrecta");
+			}
+			File s = new File("ListaActores.txt");
+			s.delete();
+			WriteFileActores("ListaActores.txt", actores);
+		}
 		
+		
+	}
+//---------------------------------------------------------------------------------------------------------------------------------
+	public void eliminarActor(String id) throws Exception
+	{
+		ArrayList<Actor> auxiliar = new ArrayList<Actor>();
+		int posicionEliminar = buscarIndice(id);
+		if (buscarIndice(id) == -1) {
+			throw new Excepciones("el usuario no se encuentra en la lista");
+		} else {
+			for (int i = 0; i < actores.size(); i++) {
+				if (posicionEliminar != i) {
+					auxiliar.add(actores.get(i));
+				}
+			}
+			actores = auxiliar;
+			File fichero = new File("ListaActores.txt");
+			fichero.delete();
+			WriteFileActores("ListaActores.txt", actores);
+		}
 	}
 	
 	public ArrayList <Actor> mostrarActores()
@@ -243,10 +291,14 @@ public class ListaActores implements Serializable{
 			{
 				for(Actor a:lecturaActores)
 				{
-					System.out.println(a.getId()+": "+a.getClass().getName());
+					System.out.println(a.getId()+": "+a.getClass().getName()+ " "+a.getContrasena());
 					//System.out.println(p.toString());
 				}
 			}
+			
+			ListaActores b= new ListaActores();
+			//b.modificarActor("12345", "1017217553", "12345", "12345");
+			b.eliminarActor("1017217552");
 			
 		} 
 		catch (Exception e) 
