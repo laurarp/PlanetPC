@@ -124,7 +124,7 @@ public class FormRegistrarCompra  extends JFrame{
 						{
 							for(int i=0;i<pendientes.size();i++)
 							{
-								String idcompra=Integer.toString(pendientes.get(i).getIdCompra());
+								String idcompra=(pendientes.get(i).getIdCompra());
 								String tipo=pendientes.get(i).getDescripcionProducto().getTipo();
 								String cantidad=Integer.toString(pendientes.get(i).getCantidad());
 								String valor=Integer.toString(pendientes.get(i).getPrecioCompra());
