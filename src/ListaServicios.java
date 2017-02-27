@@ -8,7 +8,9 @@ import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class ListaServicios {
 	protected static ArrayList<ServicioTecnico> listaServicios;
@@ -40,7 +42,13 @@ public class ListaServicios {
 //----------------------------------------------------------------------------------------------------------------
 	//metodo para crear numeros diferentes
 	public static String crearIdServicio() {
-		String i = String.valueOf(System.currentTimeMillis() / 10000);
+		Calendar calendario = Calendar.getInstance();
+		calendario = new GregorianCalendar();
+		String hora, minutos, segundos;
+		hora =Integer.toString(calendario.get(Calendar.HOUR_OF_DAY));
+		minutos = Integer.toString(calendario.get(Calendar.MINUTE));
+		segundos = Integer.toString(calendario.get(Calendar.SECOND));
+		String i = hora+minutos+segundos;
 		return i;
 	}
 //----------------------------------------------------------------------------------------------------------------
