@@ -17,6 +17,54 @@ public class Venta implements Serializable{
 	private String idVendedor;
 	private int cantidad;
 	
+	public String getIdVenta() {
+		return idVenta;
+	}
+
+	public void setIdVenta(String idVenta) {
+		this.idVenta = idVenta;
+	}
+
+	public DescripcionProducto getDescripcionProducto() {
+		return descripcionProducto;
+	}
+
+	public void setDescripcionProducto(DescripcionProducto descripcionProducto) {
+		this.descripcionProducto = descripcionProducto;
+	}
+
+	public Date getFechaVenta() {
+		return fechaVenta;
+	}
+
+	public void setFechaVenta(Date fechaVenta) {
+		this.fechaVenta = fechaVenta;
+	}
+
+	public String getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(String idCliente) {
+		this.idCliente = idCliente;
+	}
+
+	public String getIdVendedor() {
+		return idVendedor;
+	}
+
+	public void setIdVendedor(String idVendedor) {
+		this.idVendedor = idVendedor;
+	}
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+
 	public Venta(DescripcionProducto descripcionProducto, Date fechaVenta,
 			String idCliente, String idVendedor, int cantidad) {
 		super();

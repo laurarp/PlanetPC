@@ -34,9 +34,8 @@ public class Administrador extends Actor implements Serializable{
 		
 	}
 	
-	public void eliminarUsuario(String id)
-	{
-		
+	public void eliminarUsuario(String id) throws Exception{
+		listaActores.eliminarActor(id);
 	}
 	
 	public void crearProveedor(String nombre, String id){

@@ -88,6 +88,13 @@ public class FormRegistrarPedido {
 		btnRegistrar = new JButton("Registrar");
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					JefeBodega a = new JefeBodega("1037657390","juan","1234");
+					a.registrarPedido(textField.getText(), textField_1.getText(), Integer.parseInt(textField_2.getText()), Integer.parseInt(textField_3.getText()), "pendiente");
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnRegistrar.setBounds(187, 213, 115, 29);

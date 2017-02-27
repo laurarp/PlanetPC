@@ -16,7 +16,7 @@ public class FormReporteCompras {
 
 	private JFrame frame;
 	private JTable table;
-	AsesorVentas asesorVentas = null;
+	private AsesorVentas asesorVentas = null;
 
 	/**
 	 * Create the application.
@@ -30,8 +30,7 @@ public class FormReporteCompras {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		}	
 	}
 
 	/**
@@ -41,7 +40,7 @@ public class FormReporteCompras {
 		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 583, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		String titulos[] = { "Tipo","Marca","Modelo", "Proveedor", "Cantidad", "Valor","Fecha pedido","Fecha ingreso","Estado"};

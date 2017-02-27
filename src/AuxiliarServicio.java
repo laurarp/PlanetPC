@@ -41,6 +41,10 @@ public class AuxiliarServicio extends Actor implements Serializable{
 	
 	public void modificarServicio(String id, String estado) throws Excepciones
 	{
+		if(id.compareTo("")!=0){
 		lista.modificarEstado(id, estado);
+		}else{
+			throw new Excepciones("No hay un Id de servicio que modificar, por favor rellene el campo con un Id válido");
+		}
 	}
 }

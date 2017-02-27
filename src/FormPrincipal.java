@@ -158,6 +158,13 @@ public class FormPrincipal extends JFrame{
 			{
 				JMenuItem mntmGenerarReporteVentas = new JMenuItem("Generar reporte ventas");
 				mnVentas.add(mntmGenerarReporteVentas);
+				mntmGenerarReporteVentas.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						FormReporteVentas reporteVentas= new FormReporteVentas(actor);
+						reporteVentas.getFrame().setVisible(true);
+					}
+				});
 			}
 		}
 		
