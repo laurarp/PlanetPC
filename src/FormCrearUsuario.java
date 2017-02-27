@@ -75,6 +75,10 @@ public class FormCrearUsuario {
 		
 		Choice choice = new Choice();
 		choice.addItem("Administrador");
+		choice.addItem("Jefe de bodega");
+		choice.addItem("Auxiliar de almacenamiento");
+		choice.addItem("Auxiliar de servicio técnico");
+		choice.addItem("Asistente de compras y ventas");
 		choice.setBounds(145, 170, 86, 20);
 		frame.getContentPane().add(choice);
 		
