@@ -53,7 +53,6 @@
 /Proveedor.class
 /ServicioTecnico.class
 /Venta.class
-/FormPrincipal$6.class
 /FormCrearProveedor$1.class
 /FormCrearProveedor.class
 /FormCrearProveedor$2.class
@@ -68,3 +67,6 @@
 /FormEliminarProveedor$1.class
 /FormEliminarProveedor.class
 /FormEliminarProveedor$2.class
+/FormRegistrarPedido$1.class
+/FormRegistrarPedido.class
+/FormRegistrarPedido$2.class

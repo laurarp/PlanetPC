@@ -12,26 +12,33 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 
-public class FormReporteCompras extends JFrame{
+public class FormReporteCompras {
 
 	private JFrame frame;
 	private JTable table;
 	AsesorVentas asesorVentas = null;
 
 	/**
-	 * Create the application.
-	 * @param actor 
+	 * Launch the application.
 	 */
-	public FormReporteCompras(Actor actor) {
-		try 
-		{
-			this.asesorVentas=new AsesorVentas(actor.getId(), actor.getNombre(), actor.getContrasena());
-			initialize();
-		} 
-		catch (Exception e) 
-		{
-			JOptionPane.showMessageDialog(null, e.getMessage());
-		}
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					FormReporteCompras window = new FormReporteCompras();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public FormReporteCompras() {
+		initialize();
 	}
 
 	/**
@@ -39,18 +46,31 @@ public class FormReporteCompras extends JFrame{
 	 */
 	private void initialize() {
 		
-		setFrame(new JFrame());
-		getFrame().setBounds(100, 100, 583, 300);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		getFrame().getContentPane().setLayout(null);
+		try 
+		{
+			asesorVentas = new AsesorVentas(null, null, null);
+		} 
+		catch (Exception e) 
+		{
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 		
+		frame = new JFrame();
+		frame.setBounds(100, 100, 583, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+<<<<<<< HEAD
 		String titulos[] = { "Tipo","Marca","Modelo", "Proveedor", "Cantidad", "Valor","Fecha pedido","Fecha ingreso","Estado"};
+=======
+		String titulos[] = { "Producto", "Proveedor", "Cantidad", "Valor","Fecha pedido","Fecha ingreso"};
+>>>>>>> origin/master
 		
 		DefaultTableModel tableModel = new DefaultTableModel(titulos, 0);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(26, 25, 506, 170);
-		getFrame().getContentPane().add(scrollPane);
+		frame.getContentPane().add(scrollPane);
 		table = new JTable(tableModel);
 		scrollPane.setViewportView(table);
 		
@@ -59,9 +79,7 @@ public class FormReporteCompras extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Compra> compras = null;
 
-				int rowCount = tableModel.getRowCount();
-
-				for (int i = rowCount - 1; i >= 0; i--) 
+				for (int i = 0; i < tableModel.getRowCount(); i++) 
 				{
 					tableModel.removeRow(i);
 				}
@@ -69,6 +87,7 @@ public class FormReporteCompras extends JFrame{
 				try 
 				{
 					compras = asesorVentas.reporteCompras();
+<<<<<<< HEAD
 					if (compras.size()!=0) {
 						for (int i = 0; i < compras.size(); i++) {
 							String tipo = compras.get(i).getDescripcionProducto().getTipo();
@@ -91,23 +110,38 @@ public class FormReporteCompras extends JFrame{
 					{
 						JOptionPane.showMessageDialog(null, "No existen compras");
 					}
+=======
+>>>>>>> origin/master
 				} 
 				catch (Exception e1) 
 				{
-					JOptionPane.showMessageDialog(null, e1.getMessage());
-				}					
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "No se pudo generar el reporte");
+				}				
+
+				if (compras != null) {
+					for (int i = 0; i < compras.size(); i++) {
+						String producto = compras.get(i).getDescripcionProducto().getTipo();
+						String proveedor = compras.get(i).getIdProveedor();
+						String cantidad = Integer.toString(compras.get(i).getCantidad());
+						String valor = Integer.toString(compras.get(i).getPrecioCompra());
+						String fechap = compras.get(i).getFechaPedido().toString();
+						String fechai = compras.get(i).getFechaIngreso().toString();
+						
+						Object[] objs = { producto, proveedor, cantidad, valor,
+								fechap, fechai };
+						// Object[] objs = {"1",
+						// "PC","2","3600","Hoy","Pendiente"};
+						tableModel.addRow(objs);
+					}
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"No hay pedidos pendientes");
+				}
 			}
 		});
 		btnConsultar.setBounds(30, 226, 89, 23);
-		getFrame().getContentPane().add(btnConsultar);
-	}
-
-	public JFrame getFrame() {
-		return frame;
-	}
-
-	public void setFrame(JFrame frame) {
-		this.frame = frame;
+		frame.getContentPane().add(btnConsultar);
 	}
 
 }
