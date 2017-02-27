@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 
 public class ListaDescProducto {
-	private ArrayList<Producto> productos;
+	private ArrayList<DescripcionProducto> catalogo;
 
 	public void nuevoProducto(DescripcionProducto descripcionProducto)
 	{
@@ -19,13 +19,10 @@ public class ListaDescProducto {
 		
 	}
 	
-	public ArrayList<Producto> mostrarProductos()
+	public ArrayList<DescripcionProducto> mostrarProductos()
 	{
-		return null;
+		return catalogo;
 	}
 	
-	public DescripcionProducto buscarProducto(String id)
-	{
-		return null;
-	}
+
 }
