@@ -247,14 +247,6 @@ public class FormPrincipal extends JFrame{
 				
 				JMenuItem mntmEquiposPendientes = new JMenuItem("Equipos pendientes");
 				mnServicioTcnico.add(mntmEquiposPendientes);
-				mntmEquiposPendientes.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						FormEquiposPendientes mostrar= new FormEquiposPendientes(actor);
-						mostrar.setVisible(true);
-						
-					}
-				});
 				
 				JMenuItem mntmEliminarEquipo = new JMenuItem("Eliminar equipo");
 				mnServicioTcnico.add(mntmEliminarEquipo);
@@ -269,6 +261,7 @@ public class FormPrincipal extends JFrame{
 				JMenuItem mntmModificarReporteEquipo = new JMenuItem("Modificar estado del equipo");
 				mnServicioTcnico.add(mntmModificarReporteEquipo);
 				mntmModificarReporteEquipo.addActionListener(new ActionListener() {
+					
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						FormModificarEstadoServicioTecnico mostrar= new FormModificarEstadoServicioTecnico(actor);
