@@ -208,6 +208,7 @@ public class ListaDescProducto {
 	{
 		return productos;
 	}
-	
+	public static void main(String[] args){
+	}
 
 }
