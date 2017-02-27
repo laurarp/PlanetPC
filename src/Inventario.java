@@ -47,10 +47,21 @@ public class Inventario implements Serializable{
 		{
 			int i=0;
 				
-			while(i<listaProductos.size() && (listaProductos.get(i).getDescripcionProducto().getId().compareTo(idProducto) != 0) && (listaProductos.get(i).getDescripcionProducto().getTipo().compareTo(tipo)!=0 || listaProductos.get(i).getDescripcionProducto().getMarca().compareTo(marca)!=0 || listaProductos.get(i).getDescripcionProducto().getModelo().compareTo(modelo)!=0))
+			if(idProducto.compareTo("")!=0)
 			{
-				i++;
+				while(i<listaProductos.size() && (listaProductos.get(i).getDescripcionProducto().getId().compareTo(idProducto) != 0))
+				{
+					i++;
+				}
 			}
+			else
+			{
+				while(i<listaProductos.size() && (listaProductos.get(i).getDescripcionProducto().getTipo().compareTo(tipo)!=0 || listaProductos.get(i).getDescripcionProducto().getMarca().compareTo(marca)!=0 || listaProductos.get(i).getDescripcionProducto().getModelo().compareTo(modelo)!=0))
+				{
+					i++;
+				}
+			}
+			
 
 			if(i<listaProductos.size())
 			{
