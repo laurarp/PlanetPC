@@ -286,6 +286,7 @@ public class ListaActores implements Serializable{
 	{
 		try 
 		{		
+			//WriteFileActores("ListaActores.txt",new ArrayList<Actor>());
 			ArrayList<Actor> lecturaActores=ReadFileActores("ListaActores.txt");
 			if(lecturaActores!=null)
 			{
