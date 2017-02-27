@@ -125,6 +125,13 @@ public class FormPrincipal extends JFrame{
 			{
 				JMenuItem mntmGenerarReporteCompras = new JMenuItem("Generar reporte compras");
 				mnCompras.add(mntmGenerarReporteCompras);
+				mnCompras.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						FormReporteCompras reporteCompras= new FormReporteCompras(actor);
+						reporteCompras.getFrame().setVisible(true);
+					}
+				});
 			}
 		}
 		
@@ -151,6 +158,7 @@ public class FormPrincipal extends JFrame{
 			{
 				JMenuItem mntmGenerarReporteVentas = new JMenuItem("Generar reporte ventas");
 				mnVentas.add(mntmGenerarReporteVentas);
+				
 			}
 		}
 		
