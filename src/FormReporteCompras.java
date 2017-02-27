@@ -41,7 +41,7 @@ public class FormReporteCompras {
 		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 583, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		String titulos[] = { "Tipo","Marca","Modelo", "Proveedor", "Cantidad", "Valor","Fecha pedido","Fecha ingreso","Estado"};
