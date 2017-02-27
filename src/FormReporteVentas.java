@@ -41,10 +41,10 @@ public class FormReporteVentas {
 	private void initialize() {
 		setFrame(new JFrame());
 		getFrame().setBounds(100, 100, 481, 300);
-		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getFrame().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getFrame().getContentPane().setLayout(null);
 		
-		String titulos[] = { "Producto", "Fecha", "Cliente", "Vendedor","Cantidad" };
+		String titulos[] = { "Tipo","Marca","Modelo", "Fecha", "Cliente", "Vendedor","Cantidad" };
 		
 		DefaultTableModel tableModel = new DefaultTableModel(titulos, 0);
 		
@@ -71,13 +71,13 @@ public class FormReporteVentas {
 
 					if (ventas.size()!=0) {
 						for (int i = 0; i < ventas.size(); i++) {
-							String tipo = "";
-							String marca = "";
-							String modelo = "";
-							String fecha = "";
-							String cliente = "";
-							String vendedor = "";
-							String cantidad = "";
+							String tipo = ventas.get(i).getDescripcionProducto().getTipo();
+							String marca = ventas.get(i).getDescripcionProducto().getMarca();
+							String modelo = ventas.get(i).getDescripcionProducto().getModelo();
+							String fecha = ventas.get(i).getFechaVenta().toString();
+							String cliente = ventas.get(i).getIdCliente();
+							String vendedor = ventas.get(i).getIdVendedor();
+							String cantidad = String.valueOf(ventas.get(i).getCantidad());
 
 							Object[] objs = { tipo,marca,modelo, fecha, cliente, vendedor,cantidad};
 							
