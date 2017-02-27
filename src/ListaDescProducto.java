@@ -140,21 +140,10 @@ public class ListaDescProducto implements Serializable{
 		}
 	}
 
-	public void mostrarServicios() {
+	public ArrayList<DescripcionProducto> mostrarCatalogo() throws Exception {
 		ArrayList<DescripcionProducto> lista;
-		try {
 			lista = ReadFileCatalogo("Catalogo.txt");
-			
-			if (lista != null) {
-				for (DescripcionProducto p : lista) {
-					System.out.println(p);
-				}
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+			return lista;
 	}
 
 	public static int buscarCatalogo(String id) {

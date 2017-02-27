@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
 public class AuxiliarAlmacenamiento extends Actor implements Serializable{
@@ -30,6 +31,10 @@ public class AuxiliarAlmacenamiento extends Actor implements Serializable{
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public ArrayList<DescripcionProducto> mostrarCatalogo() throws Exception{
+		return catalogo.mostrarCatalogo();
 	}
 	
 	public void modificarProductoCatalogo(ListaDescProducto listaDescProductos,DescripcionProducto descProducto)
