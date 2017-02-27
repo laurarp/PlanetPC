@@ -2,37 +2,30 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class FormEliminarUsuario {
+public class FormEliminarUsuario extends JFrame {
 
 	private JFrame frmEliminarUsuario;
 	private JTextField textField;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FormEliminarUsuario window = new FormEliminarUsuario();
-					window.frmEliminarUsuario.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private Administrador Admin;
 
 	/**
 	 * Create the application.
 	 */
-	public FormEliminarUsuario() {
-		initialize();
+	public FormEliminarUsuario(Actor actor) {
+		try 
+		{
+			Admin = new Administrador(actor.getId(),actor.getNombre(),actor.getContrasena());
+			initialize();
+		} 
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 	}
 
 	/**
@@ -42,7 +35,7 @@ public class FormEliminarUsuario {
 		frmEliminarUsuario = new JFrame();
 		frmEliminarUsuario.setTitle("Eliminar usuario");
 		frmEliminarUsuario.setBounds(100, 100, 450, 228);
-		frmEliminarUsuario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmEliminarUsuario.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmEliminarUsuario.getContentPane().setLayout(null);
 		
 		JLabel lblIngreseElId = new JLabel("Ingrese el id del usuario a eliminar");
@@ -57,17 +50,27 @@ public class FormEliminarUsuario {
 		JButton btnEliminar = new JButton("Eliminar");
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Administrador a;
 				try {
-					a = new Administrador("1037657390","juan","1234");
-					a.eliminarUsuario(textField.getText());
-				} catch (Exception e1) {
+					if (textField.getText()==null){
+						JOptionPane.showMessageDialog(null, "Rellene todos los campos");
+					}else{
+					Admin.eliminarUsuario(textField.getText());
+					JOptionPane.showMessageDialog(null, "Usuario eliminado");
+					}
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, e.getMessage());
 				}
 			}
 		});
 		btnEliminar.setBounds(149, 118, 115, 29);
 		frmEliminarUsuario.getContentPane().add(btnEliminar);
+	}
+	public JFrame getFrmEliminarUsuario() {
+		return frmEliminarUsuario;
+	}
+
+	public void setFrmCrearProveedor(JFrame frmEliminarUsuario) {
+		this.frmEliminarUsuario = frmEliminarUsuario;
 	}
 }
