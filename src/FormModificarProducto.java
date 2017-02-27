@@ -5,10 +5,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
@@ -80,7 +82,36 @@ public class FormModificarProducto extends JFrame {
 		JButton btnSeleccionar = new JButton("Mostrar");
 		btnSeleccionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				auxiliar.mostrarCatalogo();
+				ArrayList<ServicioTecnico> reportes = null;
+
+				int rowCount = tableModel.getRowCount();
+
+				for (int i = rowCount - 1; i >= 0; i--) {
+					tableModel.removeRow(i);
+				}
+
+				try {
+					reportes = x.mostrarServicios();
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, e.getMessage());
+				}
+
+				if (reportes != null) {
+					for (int i = 0; i < reportes.size(); i++) {
+						String idServicio = reportes.get(i).getIdServicio();
+						String descripcion = reportes.get(i).getDescripcion();
+						String idCliente = reportes.get(i).getIdCliente();
+						String fechaEntrada = reportes.get(i).getFechaEntrada();
+						String fechaSalida = reportes.get(i).getFechaSalida();
+						String precio = String.valueOf(reportes.get(i).getPrecio());
+						String estado = reportes.get(i).getEstado();
+						Object[] objs = { idServicio, descripcion, idCliente, fechaEntrada, fechaSalida, precio,
+								estado };
+						tableModel.addRow(objs);
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "no hay servicios en la lista");
+				}
 			}
 		});
 		btnSeleccionar.setBounds(10, 377, 89, 23);
