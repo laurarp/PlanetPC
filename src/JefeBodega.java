@@ -9,7 +9,9 @@ public class JefeBodega extends Actor implements Serializable{
 	 */
 	private static final long serialVersionUID = -2532793658550877109L;
 	private ListaCompras listaCompras;
-	
+	private ListaDescProducto catalogo;
+	private Inventario inventario;
+
 	public JefeBodega(String id, String nombre, String contrasena) throws Exception
 	{
 		super(id, nombre, contrasena);

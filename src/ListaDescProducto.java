@@ -157,27 +157,19 @@ public class ListaDescProducto implements Serializable{
 		}
 		return -1;
 	}
-
-	
-
-	public static ArrayList<DescripcionProducto> getListaDescProducto() {
+	public static ArrayList<DescripcionProducto> getProductos() {
 		return productos;
 	}
 
-	public static void setListaDescProducto(ArrayList<DescripcionProducto> listaDescProducto) {
-		ListaDescProducto.productos = listaDescProducto;
+	public static void setProductos(ArrayList<DescripcionProducto> productos) {
+		ListaDescProducto.productos = productos;
 	}
+
 	public void nuevoProducto(String id, int precioVenta, String tipo, int diasGarantia, String marca, String modelo) {
 		DescripcionProducto s= new DescripcionProducto(id, precioVenta, tipo, diasGarantia, marca, modelo);
 		productos.add(s);
 		escribirArchivoObjeto("Catalogo.txt", productos);
 	}
-	
-	public void modificarProducto(DescripcionProducto descripcionProducto)
-	{
-		
-	}
-	
 	public void eliminarProducto(String id) throws Excepciones {
 
 		ArrayList<DescripcionProducto> auxiliar = new ArrayList<DescripcionProducto>();
@@ -196,6 +188,35 @@ public class ListaDescProducto implements Serializable{
 			escribirArchivoObjeto("Catalogo.txt", productos);
 		}
 
+	}
+	public void modificarProducto(String id, String nuevoId, String nuevoPrecio, String nuevoTipo, String nuevaGarantia, String nuevaMarca, String nuevoModelo) throws Excepciones {
+		//
+		int indice = buscarCatalogo(id);
+		if (buscarCatalogo(id) == -1) {
+			throw new Excepciones("El servicio no esta cargado en la lista");
+		} else {
+			if (nuevoId!=null){
+				productos.get(indice).setId(nuevoId);
+			}
+			if (nuevoPrecio!=null){
+				productos.get(indice).setPrecioVenta(Integer.parseInt(nuevoPrecio));
+			}
+			if (nuevoTipo!=null){
+				productos.get(indice).setTipo(nuevoTipo);
+			}
+			if (nuevaGarantia!=null && nuevaGarantia.isEmpty()){
+				productos.get(indice).setDiasGarantia(Integer.parseInt(nuevaGarantia));
+			}
+			if (nuevaMarca!=null){
+				productos.get(indice).setMarca(nuevaMarca);
+			}
+			if (nuevoModelo!=null){
+				productos.get(indice).setModelo(nuevoModelo);
+			}
+			File s = new File("Catalogo.txt");
+			s.delete();
+			escribirArchivoObjeto("Catalogo.txt", productos);
+		}
 	}
 	
 	public ArrayList<DescripcionProducto> mostrarProductos()

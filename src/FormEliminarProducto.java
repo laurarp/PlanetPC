@@ -67,10 +67,21 @@ public class FormEliminarProducto extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				auxiliar.eliminarProductoCatalogo(textField.getText());
+				textField.setText("");
 				}
 			});
 			btnNewButton.setBounds(20, 62, 89, 23);
 			contentPane.add(btnNewButton);
+			
+			JButton btnNewButton_1 = new JButton("Cerrar");
+			btnNewButton_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					setVisible(false);
+					dispose();
+				}
+			});
+			btnNewButton_1.setBounds(323, 62, 89, 23);
+			contentPane.add(btnNewButton_1);
 		
 	}
 }

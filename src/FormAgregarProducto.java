@@ -5,10 +5,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.InputMismatchException;
 import java.awt.event.ActionEvent;
 
 public class FormAgregarProducto extends JFrame {
@@ -117,16 +120,50 @@ public class FormAgregarProducto extends JFrame {
 		JButton btnNewButton = new JButton("Guardar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				auxiliar.ingresarProductoCatalogo(textId.getText(), Integer.parseInt(textprecioVenta.getText()), textTipo.getText(), Integer.parseInt(textGarantia.getText()),textMarca.getText(),textModelo.getText());
-				textId.setText("");
-				textprecioVenta.setText("");
-				textTipo.setText("");
-				textGarantia.setText("");
-				textMarca.setText("");
-				textModelo.setText("");
+				int pv = 0;
+				int dg = 0;
+				boolean intentar = true;
+					try{
+						pv = Integer.parseInt(textprecioVenta.getText());
+						dg = Integer.parseInt(textGarantia.getText());
+						intentar = true;
+					}catch (NumberFormatException e){
+						  intentar = false;
+						  JOptionPane.showMessageDialog(contentPane, "Precio o garantia deben ser numeros enteros");
+						  textprecioVenta.setText("");
+						  textGarantia.setText("");
+					}
+				if (intentar == true){
+					try{
+						auxiliar.ingresarProductoCatalogo(textId.getText(), pv, textTipo.getText(), dg,textMarca.getText(),textModelo.getText());
+						textId.setText("");
+						textprecioVenta.setText("");
+						textTipo.setText("");
+						textGarantia.setText("");
+						textMarca.setText("");
+						textModelo.setText("");
+						intentar = true;
+					} catch (NumberFormatException e){
+						  intentar = false;
+						  JOptionPane.showMessageDialog(contentPane, "Precio o garantia deben ser numeros enteros");
+						  textprecioVenta.setText("");
+						  textGarantia.setText("");
+					  }	  
+				}
+	
 			}
 		});
 		btnNewButton.setBounds(30, 188, 89, 23);
 		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Cerrar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				dispose();
+			}
+		});
+		btnNewButton_1.setBounds(335, 228, 89, 23);
+		contentPane.add(btnNewButton_1);
 	}
 }
