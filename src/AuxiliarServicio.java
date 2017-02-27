@@ -18,7 +18,7 @@ public class AuxiliarServicio extends Actor implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void ingresarServicio(String descripcion, String idCiente, double precio, int diasEstimados)
+	public void ingresarServicio(String descripcion, String idCiente, Double precio, Integer diasEstimados) throws Excepciones
 	{
 		lista.crearServicio(descripcion, idCiente, precio, diasEstimados);
 	}

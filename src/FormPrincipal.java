@@ -208,6 +208,13 @@ public class FormPrincipal extends JFrame{
 			
 			JMenuItem mntmCrearProveedor = new JMenuItem("Crear proveedor");
 			mnProveedores.add(mntmCrearProveedor);
+			mntmCrearProveedor.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					FormCrearProveedor CrearProveedor= new FormCrearProveedor(actor);
+					CrearProveedor.getFrmCrearProveedor().setVisible(true);
+				}
+			});
 			
 			JMenuItem mntmBuscarProveedor = new JMenuItem("Buscar proveedor");
 			mnProveedores.add(mntmBuscarProveedor);

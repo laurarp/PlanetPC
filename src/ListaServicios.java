@@ -53,10 +53,14 @@ public class ListaServicios {
 	}
 //----------------------------------------------------------------------------------------------------------------
 	//metodo para crear nuevos servicios y agregarlos a la lista
-	public void crearServicio(String descripcion, String idCiente, double precio, int diasEstimados) {
+	public void crearServicio(String descripcion, String idCiente, Double precio, Integer diasEstimados)throws Excepciones {
+		if(descripcion.compareTo("")!=0 && idCiente.compareTo("")!=0 && precio!=null && diasEstimados!=null){
 		ServicioTecnico a = new ServicioTecnico(descripcion, idCiente, precio, diasEstimados);
 		listaServicios.add(a);
 		escribirArchivoObjeto("ListaServicios.txt", listaServicios);
+		}else{
+			throw new Excepciones("Todos los campos deben llenarse");
+		}
 	}
 //----------------------------------------------------------------------------------------------------------------
 	//metodo para mostrar servicios de la lista (en consola)
