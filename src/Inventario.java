@@ -36,38 +36,33 @@ public class Inventario implements Serializable{
 		
 	}
 	
-	public ArrayList<Producto> getListaProductos() {
-		return listaProductos;
+	public ArrayList<Producto> getListaProductos()
+	{
+		return null;
 	}
-
-	public void setListaProductos(ArrayList<Producto> listaProductos) {
-		this.listaProductos = listaProductos;
-	}
-
+	
 	public Producto buscarProducto(String idProducto,String tipo, String marca, String modelo) throws Exception
 	{
-		if(listaProductos!=null)
+		if(listaProductos.size()!=0)
 		{
-			int i=-1;
-			boolean comparaId=false;
-			boolean comparaDescripcion=false;
-			
-			do
-			{
-				i++;
-				if(listaProductos.get(i).getDescripcionProducto().getId().compareTo(idProducto) == 0)
-				{
-					comparaId=true;
-				}
+			int i=0;
 				
-				if(listaProductos.get(i).getDescripcionProducto().getTipo().compareTo(tipo)==0 && listaProductos.get(i).getDescripcionProducto().getMarca().compareTo(marca)==0 && listaProductos.get(i).getDescripcionProducto().getModelo().compareTo(modelo)==0)
+			if(idProducto.compareTo("")!=0)
+			{
+				while(i<listaProductos.size() && (listaProductos.get(i).getDescripcionProducto().getId().compareTo(idProducto) != 0))
 				{
-					comparaDescripcion=true;
+					i++;
 				}
-			}		
-			while(i<listaProductos.size() && comparaId==false && comparaDescripcion==false);
-
+			}
+			else
+			{
+				while(i<listaProductos.size() && (listaProductos.get(i).getDescripcionProducto().getTipo().compareTo(tipo)!=0 || listaProductos.get(i).getDescripcionProducto().getMarca().compareTo(marca)!=0 || listaProductos.get(i).getDescripcionProducto().getModelo().compareTo(modelo)!=0))
+				{
+					i++;
+				}
+			}
 			
+
 			if(i<listaProductos.size())
 			{
 				return listaProductos.get(i);

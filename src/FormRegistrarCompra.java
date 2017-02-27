@@ -83,7 +83,9 @@ public class FormRegistrarCompra  extends JFrame{
 				try {
 					asesorVentas.notificarCompraRecibida(textIdCompra.getText());
 
-					for (int i = 0; i < tableModel.getRowCount(); i++) {
+					int rowCount = tableModel.getRowCount();
+					
+					for (int i = rowCount - 1; i >= 0; i--) {
 						tableModel.removeRow(i);
 					}
 					textIdCompra.setText("");
