@@ -47,7 +47,7 @@ public class Administrador extends Actor implements Serializable{
 		listaProveedores.buscarProveedor(id);
 	}
 	
-	public void modificarProveedor(Proveedor proveedor)
+	public void modificarProveedor(String id, String nombre)
 	{
 		
 	}

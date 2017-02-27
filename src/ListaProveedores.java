@@ -77,7 +77,7 @@ public class ListaProveedores implements Serializable {
 		return -1;
 	}
 
-	public void modificarProveedor(Proveedor proveedor, String id, String nombre) throws Excepciones {
+	public void modificarProveedor(String id, String nombre) throws Excepciones {
 		int indice = buscarProveedor(id);
 		if (buscarProveedor(id) == -1) {
 			throw new Excepciones("El proveedor no esta cargado en la lista");
