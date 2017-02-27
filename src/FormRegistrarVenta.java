@@ -1,10 +1,16 @@
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+
 import java.awt.Choice;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class FormRegistrarVenta extends JFrame{
@@ -12,15 +18,22 @@ public class FormRegistrarVenta extends JFrame{
 	private JFrame frame;
 	private JTextField textIdCliente;
 	private JTextField textCantidad;
-	private Actor actor;
+	private JTextField textIdProducto;
+	private AsesorVentas asesorVentas;;
 
 	/**
 	 * Create the application.
 	 * @param actor 
 	 */
 	public FormRegistrarVenta(Actor actor) {
-		this.actor=actor;
-		initialize();
+		try 
+		{
+			this.asesorVentas=new AsesorVentas(actor.getId(),actor.getNombre(),actor.getContrasena()) ;
+			initialize();
+		} 
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 	}
 
 	/**
@@ -32,11 +45,7 @@ public class FormRegistrarVenta extends JFrame{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getFrame().getContentPane().setLayout(null);
 		
-		Choice chProductos = new Choice();
-		chProductos.setBounds(93, 27, 163, 20);
-		getFrame().getContentPane().add(chProductos);
-		
-		JLabel lblProducto = new JLabel("Producto");
+		JLabel lblProducto = new JLabel("id Producto");
 		lblProducto.setBounds(24, 27, 46, 14);
 		getFrame().getContentPane().add(lblProducto);
 		
@@ -54,6 +63,18 @@ public class FormRegistrarVenta extends JFrame{
 		getFrame().getContentPane().add(lblCantidad);
 		
 		JButton btnRegistrar = new JButton("Registrar");
+		btnRegistrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try 
+				{
+					asesorVentas.registarVenta(textIdProducto.getText(), textIdCliente.getText(), asesorVentas.getId(), textCantidad.getText());
+					JOptionPane.showMessageDialog(null, "Venta creada correctamente");
+				} 
+				catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
+			}
+		});
 		btnRegistrar.setBounds(71, 170, 89, 23);
 		getFrame().getContentPane().add(btnRegistrar);
 		
@@ -61,6 +82,11 @@ public class FormRegistrarVenta extends JFrame{
 		textCantidad.setBounds(93, 119, 86, 20);
 		getFrame().getContentPane().add(textCantidad);
 		textCantidad.setColumns(10);
+		
+		textIdProducto = new JTextField();
+		textIdProducto.setBounds(93, 24, 86, 20);
+		frame.getContentPane().add(textIdProducto);
+		textIdProducto.setColumns(10);
 	}
 
 	public JFrame getFrame() {

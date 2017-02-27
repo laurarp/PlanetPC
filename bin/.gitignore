@@ -1,3 +1,4 @@
+/Logo.png
 /Actor.class
 /Administrador.class
 /AsesorVentas.class
@@ -12,7 +13,6 @@
 /FormBuscarProducto$1.class
 /FormBuscarProducto.class
 /FormBuscarServicios$1.class
-/FormBuscarServicios$2.class
 /FormBuscarServicios.class
 /FormCrearProveedor$1.class
 /FormCrearProveedor$2.class
@@ -22,13 +22,20 @@
 /FormEliminarProveedor$1.class
 /FormEliminarProveedor$2.class
 /FormEliminarProveedor.class
+/FormEliminarUsuario$1.class
+/FormEliminarUsuario$2.class
+/FormEliminarUsuario.class
 /FormIngresoDatosCrearServicios$1.class
 /FormIngresoDatosCrearServicios.class
 /FormIngresoEliminarServicio$1.class
+/FormIngresoEliminarServicio$2.class
 /FormIngresoEliminarServicio.class
 /FormLogin$1.class
 /FormLogin$2.class
 /FormLogin.class
+/FormModificarEstadoServicioTecnico$1.class
+/FormModificarEstadoServicioTecnico$2.class
+/FormModificarEstadoServicioTecnico.class
 /FormModificarProveedor$1.class
 /FormModificarProveedor$2.class
 /FormModificarProveedor.class
@@ -38,6 +45,9 @@
 /FormPrincipal$4.class
 /FormPrincipal$5.class
 /FormPrincipal$6.class
+/FormPrincipal$7.class
+/FormPrincipal$8.class
+/FormPrincipal$9.class
 /FormPrincipal.class
 /FormRegistrarCompra$1.class
 /FormRegistrarCompra$2.class
@@ -50,11 +60,6 @@
 /FormReporteCompras.class
 /FormReporteVentas$1.class
 /FormReporteVentas.class
-/FormServicioTecnico$1.class
-/FormServicioTecnico$2.class
-/FormServicioTecnico$3.class
-/FormServicioTecnico$4.class
-/FormServicioTecnico.class
 /Inventario.class
 /JefeBodega.class
 /ListaActores.class
@@ -63,11 +68,11 @@
 /ListaProveedores.class
 /ListaServicios.class
 /ListaVentas.class
-/Logo.png
 /Producto.class
 /Proveedor.class
 /ServicioTecnico.class
 /Venta.class
+<<<<<<< HEAD
 /FormModificarEstadoServicioTecnico$1.class
 /FormModificarEstadoServicioTecnico.class
 /FormModificarEstadoServicioTecnico$2.class
@@ -80,3 +85,16 @@
 /FormEquiposPendientes$1.class
 /FormEquiposPendientes.class
 /FormPrincipal$11.class
+=======
+/FormAgregarProducto$1.class
+/FormAgregarProducto.class
+/FormEliminarProducto$1.class
+/FormEliminarProducto$2.class
+/FormEliminarProducto.class
+/FormListaDescProducto$1.class
+/FormListaDescProducto$2.class
+/FormListaDescProducto$3.class
+/FormListaDescProducto.class
+/FormAgregarProducto$2.class
+>>>>>>> origin/master
+/FormRegistrarVenta$1.class

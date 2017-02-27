@@ -10,12 +10,14 @@ public class AsesorVentas extends Actor implements Serializable{
 	private ListaCompras listaCompras;
 	private ListaVentas listaVentas;
 	private Inventario inventario;
+	private ListaDescProducto productos;
 	
 	public AsesorVentas(String id, String nombre, String contrasena) throws Exception {
 		super(id, nombre, contrasena);
 		this.listaCompras = new ListaCompras();
 		this.listaVentas = new ListaVentas();
 		this.inventario = new Inventario();
+		this.productos= new ListaDescProducto();
 	}
 
 	public ArrayList<Compra> reporteCompras() throws Exception
@@ -67,9 +69,10 @@ public class AsesorVentas extends Actor implements Serializable{
 		}	
 	}
 	
-	public void registarVenta(DescripcionProducto descripcionProducto, Date fechaVenta, String idCliente, String idVendedor, int Cantidad) throws Exception
+	public void registarVenta(String idProducto, String idCliente, String idVendedor, String Cantidad) throws Exception
 	{
-		listaVentas.añadirVenta(descripcionProducto, fechaVenta, idCliente, idVendedor, Cantidad);
+		//productos.bu
+		//listaVentas.añadirVenta(null, fechaVenta, idCliente, idVendedor, Cantidad);
 	}
 	
 	public static void main(String[] args) {
