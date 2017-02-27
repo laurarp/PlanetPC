@@ -18,13 +18,27 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 
-public class FormBuscarProducto {
+public class FormBuscarProducto extends JFrame{
 
 	private JFrame frame;
 	private JTable table;
 	private AsesorVentas asesorVentas;
 	private ListaDescProducto listaProductos;
 	private JTextField textIdProducto;
+	
+	public static void main(String[] args) {
+	EventQueue.invokeLater(new Runnable() {
+		public void run() {
+			try {
+				FormBuscarProducto form = new FormBuscarProducto(new Administrador("Laura","1","sdd"));
+				form.frame.setVisible(true);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	});
+}
+
 
 	/**
 	 * Create the application.
