@@ -60,13 +60,9 @@ public class ListaServicios {
 	}
 //----------------------------------------------------------------------------------------------------------------
 	//metodo para mostrar servicios de la lista (en consola)
-	public void mostrarServicios() {
+	public ArrayList<ServicioTecnico> mostrarServicios() {
 		ArrayList<ServicioTecnico> lista = leerArchivoObjeto("ListaServicios.txt");
-		if (lista != null) {
-			for (ServicioTecnico p : lista) {
-				System.out.println(p);
-			}
-		}
+		return lista;
 	}
 //-----------------------------------------------------------------------------------------------------------------
 	//metodo para mostrar la lista de servicios en una ventana, este metodo se ejecuta en la interfaz grafica
