@@ -36,8 +36,8 @@ public class JefeBodega extends Actor implements Serializable{
 		return null;
 	}
 	
-	public void registrarPedido(DescripcionProducto descripcionProducto, String idProveedor, int cantidad, int precioCompra, Date fechaPedido, Date fechaIngreso, String estado) throws Exception{
-		listaCompras.añadirCompra(descripcionProducto, idProveedor, cantidad, precioCompra, fechaPedido, fechaIngreso, estado);
+	public void registrarPedido(String descripcion, String idProveedor, int cantidad, int precioCompra, String estado) throws Exception{
+		listaCompras.añadirPedido(descripcion, idProveedor, cantidad, precioCompra, estado);
 	}
 
 }
