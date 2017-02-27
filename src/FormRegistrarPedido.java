@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FormRegistrarPedido {
 
@@ -84,6 +86,10 @@ public class FormRegistrarPedido {
 		textField_3.setColumns(10);
 		
 		btnRegistrar = new JButton("Registrar");
+		btnRegistrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnRegistrar.setBounds(187, 213, 115, 29);
 		frmRegistrarCompra.getContentPane().add(btnRegistrar);
 	}
