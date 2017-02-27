@@ -218,12 +218,33 @@ public class FormPrincipal extends JFrame{
 			
 			JMenuItem mntmBuscarProveedor = new JMenuItem("Buscar proveedor");
 			mnProveedores.add(mntmBuscarProveedor);
+			mntmBuscarProveedor.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					FormBucarProveedor BuscarProveedor= new FormBucarProveedor(actor);
+					BuscarProveedor.getFrmBuscarProveedor().setVisible(true);
+				}
+			});
 			
 			JMenuItem mntmEliminarProveedor = new JMenuItem("Eliminar proveedor");
 			mnProveedores.add(mntmEliminarProveedor);
+			mntmEliminarProveedor.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					FormEliminarProveedor EliminarProveedor= new FormEliminarProveedor(actor);
+					EliminarProveedor.getFrmEliminarProveedor().setVisible(true);
+				}
+			});
 			
 			JMenuItem mntmModificarProveedor = new JMenuItem("Modificar proveedor");
 			mnProveedores.add(mntmModificarProveedor);
+			mntmModificarProveedor.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					FormModificarProveedor ModificarProveedor= new FormModificarProveedor(actor);
+					ModificarProveedor.getFrmModificarProveedor().setVisible(true);
+				}
+			});
 		}
 		
 		if(actor.getClass().getName().compareTo("Administrador")==0 || actor.getClass().getName().compareTo("AuxiliarServicio")==0 )

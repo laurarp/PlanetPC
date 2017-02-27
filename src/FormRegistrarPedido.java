@@ -2,6 +2,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -15,28 +16,20 @@ public class FormRegistrarPedido {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JButton btnRegistrar;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FormRegistrarPedido window = new FormRegistrarPedido();
-					window.frmRegistrarCompra.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JefeBodega jefazo;
 
 	/**
 	 * Create the application.
 	 */
-	public FormRegistrarPedido() {
-		initialize();
+	public FormRegistrarPedido(Actor actor) {
+		try 
+		{
+			jefazo = new JefeBodega(actor.getId(),actor.getNombre(),actor.getContrasena());
+			initialize();
+		} 
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 	}
 
 	/**
@@ -46,7 +39,7 @@ public class FormRegistrarPedido {
 		frmRegistrarCompra = new JFrame();
 		frmRegistrarCompra.setTitle("Registrar pedido");
 		frmRegistrarCompra.setBounds(100, 100, 521, 330);
-		frmRegistrarCompra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmRegistrarCompra.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmRegistrarCompra.getContentPane().setLayout(null);
 		
 		JLabel lblDescripcionProducto = new JLabel("Descripcion producto");
@@ -89,16 +82,27 @@ public class FormRegistrarPedido {
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					JefeBodega a = new JefeBodega("1037657390","juan","1234");
-					a.registrarPedido(textField.getText(), textField_1.getText(), Integer.parseInt(textField_2.getText()), Integer.parseInt(textField_3.getText()), "pendiente");
+					if (textField.getText()==null||textField_1.getText()==null||textField_2.getText()==null||textField_3.getText()==null){
+						JOptionPane.showMessageDialog(null, "El campo esta vacio");
+					}else{
+					jefazo.registrarPedido(textField.getText(), textField_1.getText(), Integer.parseInt(textField_2.getText()), Integer.parseInt(textField_3.getText()), "Pendiente");
+					}
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
 		});
 		btnRegistrar.setBounds(187, 213, 115, 29);
 		frmRegistrarCompra.getContentPane().add(btnRegistrar);
+	}
+	
+	public JFrame getFrmRegistrarPedido() {
+		return getFrmRegistrarPedido();
+	}
+
+	public void setFrmRegistrarPedido(JFrame frmRegistrarPedido) {
+		this.frmRegistrarCompra = frmRegistrarPedido;
 	}
 
 }

@@ -145,7 +145,12 @@ public class ListaVentas implements Serializable{
 	
 	public static void main(String[] args) 
 	{
-	
+		try {
+			WriteFileVentas("ListaVentas.txt",new ArrayList<Venta>());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

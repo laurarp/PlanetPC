@@ -5,9 +5,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ListaDescProducto {
+public class ListaDescProducto implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5371723452641887410L;
 	private static ArrayList<DescripcionProducto> productos = new ArrayList<DescripcionProducto>();;
 	public ListaDescProducto() throws Exception {
 		super();
