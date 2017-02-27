@@ -70,7 +70,7 @@ public class FormModificarProveedor {
 				Administrador a;
 				try {
 					a = new Administrador("1037657390","juan","1234");
-					a.crearProveedor(textField.getText(), textField_1.getText());
+					a.modificarProveedor(textField.getText(), textField_1.getText());
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
