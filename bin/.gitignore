@@ -30,7 +30,6 @@
 /FormRegistrarCompra$2.class
 /FormRegistrarCompra.class
 /FormRegistrarVenta.class
-/Logo.png
 /FormReporteCompras$1.class
 /FormReporteCompras$2.class
 /FormReporteCompras.class
@@ -49,6 +48,7 @@
 /ListaProveedores.class
 /ListaServicios.class
 /ListaVentas.class
+/Logo.png
 /Producto.class
 /Proveedor.class
 /ServicioTecnico.class
