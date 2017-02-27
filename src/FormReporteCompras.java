@@ -10,6 +10,9 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Color;
 
 
 public class FormReporteCompras {
@@ -17,6 +20,7 @@ public class FormReporteCompras {
 	private JFrame frame;
 	private JTable table;
 	private AsesorVentas asesorVentas = null;
+	private JLabel lblReporteCompras;
 
 	/**
 	 * Create the application.
@@ -40,7 +44,8 @@ public class FormReporteCompras {
 	private void initialize() {
 		
 		frame = new JFrame();
-		frame.setBounds(100, 100, 583, 300);
+		frame.getContentPane().setBackground(Color.WHITE);
+		frame.setBounds(100, 100, 809, 391);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -49,12 +54,13 @@ public class FormReporteCompras {
 		DefaultTableModel tableModel = new DefaultTableModel(titulos, 0);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(26, 25, 506, 170);
+		scrollPane.setBounds(26, 69, 737, 210);
 		frame.getContentPane().add(scrollPane);
 		table = new JTable(tableModel);
 		scrollPane.setViewportView(table);
 		
 		JButton btnConsultar = new JButton("Consultar");
+		btnConsultar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Compra> compras = null;
@@ -120,8 +126,13 @@ public class FormReporteCompras {
 				}
 			}
 		});
-		btnConsultar.setBounds(30, 226, 89, 23);
+		btnConsultar.setBounds(26, 302, 116, 23);
 		frame.getContentPane().add(btnConsultar);
+		
+		lblReporteCompras = new JLabel("Reporte compras");
+		lblReporteCompras.setFont(new Font("Segoe UI", Font.BOLD, 24));
+		lblReporteCompras.setBounds(26, 22, 214, 31);
+		frame.getContentPane().add(lblReporteCompras);
 	}
 
 	public JFrame getFrame() {
