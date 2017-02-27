@@ -67,7 +67,6 @@ public class FormEliminarProducto extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				auxiliar.eliminarProductoCatalogo(textField.getText());
-				textField.setText("");
 				}
 			});
 			btnNewButton.setBounds(20, 62, 89, 23);

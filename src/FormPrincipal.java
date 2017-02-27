@@ -82,6 +82,13 @@ public class FormPrincipal extends JFrame{
 			
 			JMenuItem mntmEliminarUsuario = new JMenuItem("Eliminar usuario");
 			mnUsuarios.add(mntmEliminarUsuario);
+			mntmEliminarUsuario.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					FormEliminarUsuario EliminarUsuario= new FormEliminarUsuario(actor);
+					EliminarUsuario.getFrmEliminarUsuario().setVisible(true);
+				}
+			});
 		}
 		
 		if(actor.getClass().getName().compareTo("JefeBodega")==0 || actor.getClass().getName().compareTo("AuxiliarAlmacenamiento")==0 )
