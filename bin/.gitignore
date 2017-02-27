@@ -53,4 +53,15 @@
 /Proveedor.class
 /ServicioTecnico.class
 /Venta.class
+<<<<<<< HEAD
 /FormPrincipal$6.class
+=======
+/FormCrearProveedor$1.class
+/FormCrearProveedor.class
+/FormCrearProveedor$2.class
+/FormBuscarProveedor$1.class
+/FormBuscarProveedor.class
+/FormBucarProveedor$1.class
+/FormBucarProveedor$2.class
+/FormBucarProveedor.class
+>>>>>>> origin/master

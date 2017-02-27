@@ -39,7 +39,7 @@ public class Administrador extends Actor implements Serializable{
 		
 	}
 	
-	public void crearProveedor(ListaProveedores listaProveedores,String nombre, String id){
+	public void crearProveedor(String nombre, String id){
 		listaProveedores.nuevoProveedor(nombre, id);
 	}
 	

@@ -63,14 +63,7 @@ public class ListaProveedores implements Serializable {
 		}
 	}
 
-	// cuando se busca por parametro unico es mas eficiente un while....isis nos
-	// mata si buscamos con un for
 	public int buscarProveedor(String id) {
-		/*
-		 * for (Proveedor a : listaProveedores) if (id.equals(a.getId())){
-		 * return a.getNombre(); }else{ throw new
-		 * Exception("El proveedor no existe"); } return id;
-		 */
 		listaProveedores = ReadFileProveedores("ListaProveedores.txt");
 		int indice = 0;
 		while (indice < listaProveedores.size()) {
@@ -84,9 +77,20 @@ public class ListaProveedores implements Serializable {
 		return -1;
 	}
 
-	public void modificarProveedor(Proveedor proveedor, String id, String nombre) {
-		proveedor.setId(id);
-		proveedor.setNombre(nombre);
+	public void modificarProveedor(Proveedor proveedor, String id, String nombre) throws Excepciones {
+		int indice = buscarProveedor(id);
+		if (buscarProveedor(id) == -1) {
+			throw new Excepciones("El proveedor no esta cargado en la lista");
+		} else {
+			if(nombre.compareTo(listaProveedores.get(indice).getNombre())==0){
+				listaProveedores.get(indice).setNombre(nombre);
+			}else{
+				throw new Excepciones("No se puede cambiar el nombre");
+			}
+			File s = new File("ListaProveedores.txt");
+			s.delete();
+			WriteFileProveedores("ListaProveedores.txt", listaProveedores);
+		}
 	}
 
 	public void eliminarProveedor(String id) throws Exception {
@@ -170,7 +174,7 @@ public class ListaProveedores implements Serializable {
 		}
 	}
 
-	public static void WriteFileProveedores(String file, Proveedor[] listProveedores) {
+	public static void WriteFileProveedores(String file, ArrayList<Proveedor> listaProveedores) {
 		FileOutputStream fo = null;
 		ObjectOutputStream ol = null;
 
@@ -178,7 +182,7 @@ public class ListaProveedores implements Serializable {
 			fo = new FileOutputStream(file);
 			ol = new ObjectOutputStream(fo);
 
-			for (Proveedor o : listProveedores) {
+			for (Proveedor o : listaProveedores) {
 				try {
 					ol.writeObject(o);
 				} catch (IOException e) {

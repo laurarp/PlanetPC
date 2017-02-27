@@ -17,9 +17,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
-
-public class FormRegistrarCompra  extends JFrame{
-
+public class FormRegistrarCompra  extends JFrame
+{
 	private JFrame frame;
 	private DefaultTableModel dtm ;
 	private JTable table;
@@ -46,8 +45,8 @@ public class FormRegistrarCompra  extends JFrame{
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
-
+	private void initialize() 
+	{
 		setFrame(new JFrame());
 		getFrame().getContentPane().setBackground(Color.WHITE);
 		getFrame().setBounds(100, 100, 581, 362);
@@ -117,43 +116,41 @@ public class FormRegistrarCompra  extends JFrame{
 					tableModel.removeRow(i);
 				}
 
-				try {
-					pendientes = asesorVentas
-							.obtenerPedidosPendientesProveedor(lp
-									.buscarIdProveedor(chProveedores
-											.getSelectedItem()));
+				try 
+				{
+					pendientes = asesorVentas.obtenerPedidosPendientesProveedor(lp.buscarIdProveedor(chProveedores.getSelectedItem()));
 
-					if (pendientes != null) {
-						for (int i = 0; i < pendientes.size(); i++) {
-							String idcompra = Integer.toString(pendientes
-									.get(i).getIdCompra());
-							String tipo = pendientes.get(i)
-									.getDescripcionProducto().getTipo();
-							String cantidad = Integer.toString(pendientes
-									.get(i).getCantidad());
-							String valor = Integer.toString(pendientes.get(i)
-									.getPrecioCompra());
-							String fechap = pendientes.get(i).getFechaPedido()
-									.toString();
+					if (pendientes != null) 
+					{
+						for (int i = 0; i < pendientes.size(); i++) 
+						{
+							String idcompra = pendientes.get(i).getIdCompra();
+							String tipo = pendientes.get(i).getDescripcionProducto().getTipo();
+							String cantidad = Integer.toString(pendientes.get(i).getCantidad());
+							String valor = Integer.toString(pendientes.get(i).getPrecioCompra());
+							String fechap = pendientes.get(i).getFechaPedido().toString();
 							String estado = pendientes.get(i).getEstado();
-							Object[] objs = { idcompra, tipo, cantidad, valor,
-									fechap, estado };
+							Object[] objs = { idcompra, tipo, cantidad, valor,fechap, estado };
 							tableModel.addRow(objs);
+
 						}
-					} else {
-						JOptionPane.showMessageDialog(null,
-								"No hay pedidos pendientes");
 					}
-				} catch (Exception e) {
+					else
+					{
+						JOptionPane.showMessageDialog(null, "No hay pedidos pendientes");
+
+					}
+
+				} 
+				catch (Exception e)
+				{
 					JOptionPane.showMessageDialog(null, e.getMessage());
 				}
 			}
 		});
 		btnConsultar.setBounds(203, 18, 89, 23);
-		getFrame().getContentPane().add(btnConsultar);
+		getFrame().getContentPane().add(btnConsultar);		
 	}
-		
-	
 
 	public JFrame getFrame() {
 		return frame;
