@@ -16,7 +16,7 @@ public class FormReporteCompras {
 
 	private JFrame frame;
 	private JTable table;
-	AsesorVentas asesorVentas = null;
+	private AsesorVentas asesorVentas = null;
 
 	/**
 	 * Create the application.
@@ -30,8 +30,7 @@ public class FormReporteCompras {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		}	
 	}
 
 	/**
