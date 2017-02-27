@@ -5,14 +5,13 @@ public class DescripcionProducto implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6774304565029299067L;
-	private String id;
-	private int precioVenta;
-	private String Tipo;
-	private int diasGarantia;
-	private String marca;
-	private String modelo;
-	
+	private static final long serialVersionUID = 297942904750611527L;
+	protected String id;
+	protected int precioVenta;
+	protected String tipo;
+	protected int diasGarantia;
+	protected String marca;
+	protected String modelo;
 	public String getId() {
 		return id;
 	}
@@ -26,10 +25,10 @@ public class DescripcionProducto implements Serializable{
 		this.precioVenta = precioVenta;
 	}
 	public String getTipo() {
-		return Tipo;
+		return tipo;
 	}
 	public void setTipo(String tipo) {
-		Tipo = tipo;
+		this.tipo = tipo;
 	}
 	public int getDiasGarantia() {
 		return diasGarantia;
@@ -49,15 +48,24 @@ public class DescripcionProducto implements Serializable{
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
 	}
-	public DescripcionProducto(String id, int precioVenta, String tipo,
-			int diasGarantia, String marca, String modelo) {
+	public DescripcionProducto(String id, int precioVenta, String tipo, int diasGarantia, String marca, String modelo) {
 		super();
 		this.id = id;
 		this.precioVenta = precioVenta;
-		Tipo = tipo;
+		this.tipo = tipo;
 		this.diasGarantia = diasGarantia;
 		this.marca = marca;
 		this.modelo = modelo;
+	}
+	
+	
+	public DescripcionProducto() {
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "DescripcionProducto [id=" + id + ", precioVenta=" + precioVenta + ", tipo=" + tipo + ", diasGarantia="
+				+ diasGarantia + ", marca=" + marca + ", modelo=" + modelo + "]";
 	}
 	
 	
