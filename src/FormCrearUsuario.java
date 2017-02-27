@@ -41,36 +41,36 @@ public class FormCrearUsuario {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setFrame(new JFrame());
+		getFrame().setBounds(100, 100, 450, 300);
+		getFrame().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		getFrame().getContentPane().setLayout(null);
 		
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(49, 46, 46, 14);
-		frame.getContentPane().add(lblNombre);
+		getFrame().getContentPane().add(lblNombre);
 		
 		textNombre = new JTextField();
 		textNombre.setBounds(145, 43, 86, 20);
-		frame.getContentPane().add(textNombre);
+		getFrame().getContentPane().add(textNombre);
 		textNombre.setColumns(10);
 		
 		JLabel lblCedula = new JLabel("Cedula");
 		lblCedula.setBounds(49, 92, 46, 14);
-		frame.getContentPane().add(lblCedula);
+		getFrame().getContentPane().add(lblCedula);
 		
 		textCedula = new JTextField();
 		textCedula.setBounds(145, 89, 86, 20);
-		frame.getContentPane().add(textCedula);
+		getFrame().getContentPane().add(textCedula);
 		textCedula.setColumns(10);
 		
 		JLabel lblContrasena = new JLabel("Contrase\u00F1a");
 		lblContrasena.setBounds(49, 133, 46, 14);
-		frame.getContentPane().add(lblContrasena);
+		getFrame().getContentPane().add(lblContrasena);
 		
 		contrasena = new JPasswordField();
 		contrasena.setBounds(145, 130, 86, 20);
-		frame.getContentPane().add(contrasena);
+		getFrame().getContentPane().add(contrasena);
 		
 		Choice choiceTipo = new Choice();
 		choiceTipo.addItem("Administrador");
@@ -79,11 +79,11 @@ public class FormCrearUsuario {
 		choiceTipo.addItem("Auxiliar de servicio técnico");
 		choiceTipo.addItem("Asistente de compras y ventas");
 		choiceTipo.setBounds(145, 170, 86, 20);
-		frame.getContentPane().add(choiceTipo);
+		getFrame().getContentPane().add(choiceTipo);
 		
 		JLabel lblTipo = new JLabel("Tipo");
 		lblTipo.setBounds(49, 176, 46, 14);
-		frame.getContentPane().add(lblTipo);
+		getFrame().getContentPane().add(lblTipo);
 		
 		JButton btnCrear = new JButton("Crear");
 		btnCrear.addActionListener(new ActionListener() {
@@ -91,6 +91,10 @@ public class FormCrearUsuario {
 				try 
 				{
 					admin.crearUsuario(textCedula.getText(), textNombre.getText(),contrasena.getText(), choiceTipo.getSelectedItem());
+					textNombre.setText("");
+					textCedula.setText("");
+					contrasena.setText("");
+					JOptionPane.showMessageDialog(null, "Usuario creado correctamente");
 				} 
 				catch (Exception e) 
 				{
@@ -99,6 +103,14 @@ public class FormCrearUsuario {
 			}
 		});
 		btnCrear.setBounds(117, 212, 89, 23);
-		frame.getContentPane().add(btnCrear);
+		getFrame().getContentPane().add(btnCrear);
+	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
 	}
 }

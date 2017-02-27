@@ -66,6 +66,13 @@ public class FormPrincipal extends JFrame{
 			
 			JMenuItem mntmCrearUsuario = new JMenuItem("Crear usuario");
 			mnUsuarios.add(mntmCrearUsuario);
+			mntmCrearUsuario.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					FormCrearUsuario crearUsuario= new FormCrearUsuario(actor);
+					crearUsuario.getFrame().setVisible(true);
+				}
+			});
 			
 			JMenuItem mntmModificarUsuario = new JMenuItem("Modificar usuario");
 			mnUsuarios.add(mntmModificarUsuario);
