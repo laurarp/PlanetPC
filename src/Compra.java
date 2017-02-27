@@ -107,7 +107,7 @@ public Compra(String descripcion, String idProveedor, int cantidad, int precioCo
 		this.idProveedor = idProveedor;
 		this.cantidad = cantidad;
 		this.precioCompra = precioCompra;
-		this.fechaPedido = fechaPedido;
+		this.fechaPedido = new Date(System.currentTimeMillis());
 		this.fechaIngreso = fechaIngreso;
 		this.estado = estado;
 	}
