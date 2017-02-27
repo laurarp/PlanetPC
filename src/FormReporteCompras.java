@@ -44,7 +44,7 @@ public class FormReporteCompras extends JFrame{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getFrame().getContentPane().setLayout(null);
 		
-		String titulos[] = { "Tipo","Marca","Modelo", "Proveedor", "Cantidad", "Valor","Fecha pedido","Fecha ingreso"};
+		String titulos[] = { "Tipo","Marca","Modelo", "Proveedor", "Cantidad", "Valor","Fecha pedido","Fecha ingreso","Estado"};
 		
 		DefaultTableModel tableModel = new DefaultTableModel(titulos, 0);
 		
@@ -69,7 +69,7 @@ public class FormReporteCompras extends JFrame{
 				try 
 				{
 					compras = asesorVentas.reporteCompras();
-					if (compras != null) {
+					if (compras.size()!=0) {
 						for (int i = 0; i < compras.size(); i++) {
 							String tipo = compras.get(i).getDescripcionProducto().getTipo();
 							String marca = compras.get(i).getDescripcionProducto().getMarca();
@@ -79,9 +79,10 @@ public class FormReporteCompras extends JFrame{
 							String valor = Integer.toString(compras.get(i).getPrecioCompra());
 							String fechap = compras.get(i).getFechaPedido().toString();
 							String fechai = compras.get(i).getFechaIngreso().toString();
+							String estado=compras.get(i).getEstado();
 							
 							Object[] objs = { tipo,marca,modelo, proveedor, cantidad, valor,
-									fechap, fechai };
+									fechap, fechai ,estado};
 							
 							tableModel.addRow(objs);
 						}

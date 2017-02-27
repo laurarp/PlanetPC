@@ -291,14 +291,10 @@ public class ListaActores implements Serializable{
 			{
 				for(Actor a:lecturaActores)
 				{
-					System.out.println(a.getId()+": "+a.getClass().getName()+ " "+a.getContrasena());
+					System.out.println(a.getId()+": "+a.getClass().getName());
 					//System.out.println(p.toString());
 				}
 			}
-			
-			ListaActores b= new ListaActores();
-			//b.modificarActor("12345", "1017217553", "12345", "12345");
-			b.eliminarActor("1017217552");
 			
 		} 
 		catch (Exception e) 

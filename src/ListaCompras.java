@@ -203,8 +203,20 @@ public class ListaCompras implements Serializable {
 //		}
 		
 		try {
-			ListaCompras lc=new ListaCompras();
-			lc.notificarCompraRecibida("1");
+			ListaCompras lc = new ListaCompras();
+			DescripcionProducto dc=new DescripcionProducto("1", 25488, "PC", 0, "Apple", "2010");
+			
+			lc.añadirCompra(dc, "1", 2, 25412, new Date(5855), new Date(454), "Pendiente");
+
+			ArrayList<Compra> compras=ReadFileCompras("ListaCompras.txt");
+			if(compras!=null)
+			{
+				for(Compra c:compras)
+				{
+					System.out.println(c.getIdCompra());
+					//System.out.println(p.toString());
+				}
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());

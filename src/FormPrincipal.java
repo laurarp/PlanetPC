@@ -125,7 +125,7 @@ public class FormPrincipal extends JFrame{
 			{
 				JMenuItem mntmGenerarReporteCompras = new JMenuItem("Generar reporte compras");
 				mnCompras.add(mntmGenerarReporteCompras);
-				mnCompras.addActionListener(new ActionListener() {
+				mntmGenerarReporteCompras.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						FormReporteCompras reporteCompras= new FormReporteCompras(actor);
