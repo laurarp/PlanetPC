@@ -158,6 +158,10 @@ public class ListaActores implements Serializable{
 		
 		
 	}
+	
+	public ArrayList<Actor> mostrarUsuarios() throws Exception{
+		return actores=ReadFileActores(ruta);
+	}
 //---------------------------------------------------------------------------------------------------------------------------------
 	public void eliminarActor(String id) throws Exception
 	{

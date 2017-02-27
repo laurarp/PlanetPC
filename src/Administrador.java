@@ -27,11 +27,14 @@ public class Administrador extends Actor implements Serializable{
 	{
 		return null;
 	}
+	public ArrayList<Actor> mostrarActores() throws Exception{
+		return listaActores.mostrarUsuarios();
+	}
 	
-	public void modificarUsuario(Actor actor)
-	//Guillermo
+	public void modificarUsuario(String contrasena, String id, String newContrasena, String validContrasena) throws Exception
 	{
 		
+		listaActores.modificarActor(contrasena, id, newContrasena, validContrasena);
 	}
 	
 	public void eliminarUsuario(String id) throws Exception{

@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import java.awt.Color;
 
@@ -76,6 +77,21 @@ public class FormPrincipal extends JFrame{
 			
 			JMenuItem mntmModificarUsuario = new JMenuItem("Modificar usuario");
 			mnUsuarios.add(mntmModificarUsuario);
+			//----------------------------------------------------------------------------------
+			mntmModificarUsuario.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					FormModificarUsuarioContrasena mostrar;
+					try {
+						mostrar = new FormModificarUsuarioContrasena(actor);
+						mostrar.setVisible(true);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(mntmModificarUsuario, "No se puede acceder a esta ventana");
+					}
+					
+				}
+			});
 			
 			JMenuItem mntmBuscarUsuario = new JMenuItem("Buscar usuario");
 			mnUsuarios.add(mntmBuscarUsuario);
@@ -104,6 +120,7 @@ public class FormPrincipal extends JFrame{
 				
 				JMenuItem mntmModificarProducto = new JMenuItem("Modificar producto");
 				mnCatlogo.add(mntmModificarProducto);
+				
 				
 				JMenuItem mntmEliminarProducto = new JMenuItem("Eliminar producto");
 				mnCatlogo.add(mntmEliminarProducto);
@@ -275,6 +292,13 @@ public class FormPrincipal extends JFrame{
 				
 				JMenuItem mntmEquiposPendientes = new JMenuItem("Equipos pendientes");
 				mnServicioTcnico.add(mntmEquiposPendientes);
+				mntmEquiposPendientes.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						FormEquiposPendientes mostrar = new FormEquiposPendientes(actor);
+						mostrar.setVisible(true);
+					}
+				});
 				
 				JMenuItem mntmEliminarEquipo = new JMenuItem("Eliminar equipo");
 				mnServicioTcnico.add(mntmEliminarEquipo);
