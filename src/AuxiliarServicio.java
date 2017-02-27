@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -22,9 +23,10 @@ public class AuxiliarServicio extends Actor implements Serializable{
 		lista.crearServicio(descripcion, idCiente, precio, diasEstimados);
 	}
 	
-	public String[][] generarReporteServicios(String estado)
+	public ArrayList<ServicioTecnico> generarReporteServicios(String estado)
 	{
-		return lista.mostrarServiciosTabla(estado);
+		return lista.mostrarServiciosEstado(estado);
+		
 	}
 	
 	public void eliminarServicio(String idServicio) throws Excepciones{

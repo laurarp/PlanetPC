@@ -62,7 +62,7 @@ public class ListaServicios {
 	}
 //-----------------------------------------------------------------------------------------------------------------
 	//metodo para mostrar la lista de servicios en una ventana, este metodo se ejecuta en la interfaz grafica
-	public String[][] mostrarServiciosTabla(String estado) {
+	/*public String[][] mostrarServiciosTabla(String estado) {
 		ArrayList<ServicioTecnico> lista = leerArchivoObjeto("ListaServicios.txt");
 		String[][] auxiliar = new String[lista.size()][7];
 
@@ -96,17 +96,21 @@ public class ListaServicios {
 			}
 		}
 		return auxiliar;
-	}
-	
-	/*
-	public void mostrarServiciosEstado(){
-		ArrayList<ServicioTecnico> lista = leerArchivoObjeto("ListaServicios.txt");
-		ArrayList<ServicioTecnico> auxiliar1= new ArrayList<ServicioTecnico>();
-		ArrayList<ServicioTecnico> auxiliar2= new ArrayList<ServicioTecnico>();
-		for(int i=0; i<lista.size();i++){
-			if()
-		}
 	}*/
+	public ArrayList<ServicioTecnico> mostrarServiciosEstado(String estado) {
+		ArrayList<ServicioTecnico> lista = leerArchivoObjeto("ListaServicios.txt");
+		
+		ArrayList<ServicioTecnico> auxiliar = new ArrayList<ServicioTecnico>();
+		
+		for (int i = 0; i < lista.size(); i++) {
+			if(estado.compareTo(lista.get(i).getEstado())==0)
+			{
+				auxiliar.add(lista.get(i));
+			}
+		}
+		return auxiliar;
+	}
+
 	
 //-------------------------------------------------------------------------------------------------------------------
 	//metodo auxiliar de busqueda por indice que es usado por los metodos eliminar y modificar
