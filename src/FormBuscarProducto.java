@@ -30,11 +30,10 @@ public class FormBuscarProducto extends JFrame{
 	EventQueue.invokeLater(new Runnable() {
 		public void run() {
 			try {
-<<<<<<< HEAD
+
 				FormBuscarProducto form = new FormBuscarProducto(new Administrador("1","Laura","23"));
-=======
-				FormBuscarProducto form = new FormBuscarProducto(new Administrador("Laura","1","sdd"));
->>>>>>> origin/master
+
+
 				form.frame.setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -42,10 +41,7 @@ public class FormBuscarProducto extends JFrame{
 		}
 	});
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
 
 	/**
 	 * Create the application.
