@@ -2,6 +2,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -12,28 +13,20 @@ public class FormModificarProveedor {
 	private JFrame frmModificarProveedor;
 	private JTextField textField;
 	private JTextField textField_1;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FormModificarProveedor window = new FormModificarProveedor();
-					window.frmModificarProveedor.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private Administrador Admin;
 
 	/**
 	 * Create the application.
 	 */
-	public FormModificarProveedor() {
-		initialize();
+	public FormModificarProveedor(Actor actor) {
+		try 
+		{
+			Admin = new Administrador(actor.getId(),actor.getNombre(),actor.getContrasena());
+			initialize();
+		} 
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 	}
 
 	/**
@@ -43,7 +36,7 @@ public class FormModificarProveedor {
 		frmModificarProveedor = new JFrame();
 		frmModificarProveedor.setTitle("Modificar proveedor");
 		frmModificarProveedor.setBounds(100, 100, 450, 300);
-		frmModificarProveedor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmModificarProveedor.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmModificarProveedor.getContentPane().setLayout(null);
 		
 		JLabel lblIngreseElId = new JLabel("Ingrese el id del proveedor");
@@ -67,17 +60,26 @@ public class FormModificarProveedor {
 		JButton btnCambiar = new JButton("Cambiar");
 		btnCambiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Administrador a;
 				try {
-					a = new Administrador("1037657390","juan","1234");
-					a.modificarProveedor(textField.getText(), textField_1.getText());
-				} catch (Exception e) {
+					if (textField.getText()==null||textField_1.getText()==null){
+						JOptionPane.showMessageDialog(null, "El campo esta vacio");
+					}else{
+					Admin.modificarProveedor(textField.getText(),textField_1.getText());
+					}
+				} catch (Exception e1) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
 		});
 		btnCambiar.setBounds(145, 183, 115, 29);
 		frmModificarProveedor.getContentPane().add(btnCambiar);
+	}
+	public JFrame getFrmModificarProveedor() {
+		return frmModificarProveedor;
+	}
+
+	public void setFrmModificarProveedor(JFrame frmBuscarProveedor) {
+		this.frmModificarProveedor = frmBuscarProveedor;
 	}
 }
