@@ -228,6 +228,13 @@ public class FormPrincipal extends JFrame{
 			
 			JMenuItem mntmEliminarProveedor = new JMenuItem("Eliminar proveedor");
 			mnProveedores.add(mntmEliminarProveedor);
+			mntmEliminarProveedor.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					FormEliminarProveedor EliminarProveedor= new FormEliminarProveedor(actor);
+					EliminarProveedor.getFrmEliminarProveedor().setVisible(true);
+				}
+			});
 			
 			JMenuItem mntmModificarProveedor = new JMenuItem("Modificar proveedor");
 			mnProveedores.add(mntmModificarProveedor);
