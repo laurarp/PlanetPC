@@ -152,7 +152,7 @@ public class ListaDescProducto {
 		
 	}
 
-	public static int buscarServicio(String id) {
+	public static int buscarCatalogo(String id) {
 		int indice = 0;
 		while (indice < productos.size()) {
 			if (id.compareTo(productos.get(indice).getId())==0) {
@@ -187,8 +187,8 @@ public class ListaDescProducto {
 	public void eliminarProducto(String id) throws Excepciones {
 
 		ArrayList<DescripcionProducto> auxiliar = new ArrayList<DescripcionProducto>();
-		int posicionEliminar = buscarServicio(id);
-		if (buscarServicio(id) == -1) {
+		int posicionEliminar = buscarCatalogo(id);
+		if (buscarCatalogo(id) == -1) {
 			throw new Excepciones("el usuario no se encuentra en la lista");
 		} else {
 			for (int i = 0; i < productos.size(); i++) {

@@ -191,13 +191,13 @@ public class Inventario implements Serializable{
 	
 	public static void main(String[] args) 
 	{
-		ArrayList<Producto> productos=new ArrayList<Producto>();
+		/*ArrayList<Producto> productos=new ArrayList<Producto>();
 		try {
 			WriteFileInventario("Inventario.txt",productos);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		*/
 	}
 }
