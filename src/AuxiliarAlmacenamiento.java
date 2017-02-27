@@ -49,7 +49,7 @@ public class AuxiliarAlmacenamiento extends Actor implements Serializable{
 			inventario.WriteFileInventario("Inventario.txt",inventario.getListaProductos());
 		}
 		
-		
+		//
 		
 	}
 
