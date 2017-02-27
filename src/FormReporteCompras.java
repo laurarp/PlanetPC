@@ -27,9 +27,10 @@ public class FormReporteCompras {
 		{
 			asesorVentas = new AsesorVentas(actor.getId(), actor.getNombre(), actor.getContrasena());
 			initialize();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} 
+		catch (Exception e) 
+		{
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}	
 	}
 

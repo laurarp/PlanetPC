@@ -38,7 +38,7 @@ public class FormRegistrarCompra  extends JFrame{
 		} 
 		catch (Exception e) 
 		{
-			System.out.println(e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
 
