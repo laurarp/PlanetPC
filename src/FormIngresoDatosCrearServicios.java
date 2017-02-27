@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -91,7 +93,15 @@ public class FormIngresoDatosCrearServicios extends JFrame {
 		btnCargarServicio.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent arg0) {
-				auxiliar.ingresarServicio(txtDescripcion.getText(), txtIdCliente.getText(), Double.parseDouble(txtPrecio.getText()),Integer.parseInt(txtDiasEstimados.getText()));
+				try {
+					auxiliar.ingresarServicio(txtDescripcion.getText(), txtIdCliente.getText(), Double.parseDouble(txtPrecio.getText()),Integer.parseInt(txtDiasEstimados.getText()));
+				} catch (NumberFormatException e) {
+					
+					JOptionPane.showMessageDialog(btnCargarServicio, "Todos los campos deben llenarse");
+				} catch (Excepciones e) {
+					
+					JOptionPane.showMessageDialog(btnCargarServicio, e.getMessage());
+				}
 				txtDescripcion.setText("");
 				txtIdCliente.setText("");
 				txtPrecio.setText("");

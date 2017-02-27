@@ -14,7 +14,7 @@ public class ServicioTecnico implements Serializable {
 	private String fechaEntrada;
 	private String fechaSalida;
 	private String idCliente;
-	private double precio;
+	private Double precio;
 	private String estado;
 
 	public String getIdServicio() {
@@ -57,11 +57,11 @@ public class ServicioTecnico implements Serializable {
 		this.idCliente = idCliente;
 	}
 
-	public double getPrecio() {
+	public Double getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(double precio) {
+	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
 
@@ -85,7 +85,7 @@ public class ServicioTecnico implements Serializable {
     }
 
 
-	public ServicioTecnico(String descripcion, String idCliente, double precio, int diasEstimados) {
+	public ServicioTecnico(String descripcion, String idCliente, double precio, Integer diasEstimados) {
 		super();
 		SimpleDateFormat s=new SimpleDateFormat("dd-MM-yyyy");
 		idServicio=ListaServicios.crearIdServicio();
