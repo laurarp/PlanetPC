@@ -19,26 +19,19 @@ public class FormReporteCompras {
 	AsesorVentas asesorVentas = null;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FormReporteCompras window = new FormReporteCompras();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the application.
+	 * @param actor 
 	 */
-	public FormReporteCompras() {
-		initialize();
+	public FormReporteCompras(Actor actor) {
+		try 
+		{
+			asesorVentas = new AsesorVentas(actor.getId(), actor.getNombre(), actor.getContrasena());
+			initialize();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
@@ -46,25 +39,12 @@ public class FormReporteCompras {
 	 */
 	private void initialize() {
 		
-		try 
-		{
-			asesorVentas = new AsesorVentas(null, null, null);
-		} 
-		catch (Exception e) 
-		{
-			JOptionPane.showMessageDialog(null, e.getMessage());
-		}
-		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 583, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-<<<<<<< HEAD
 		String titulos[] = { "Tipo","Marca","Modelo", "Proveedor", "Cantidad", "Valor","Fecha pedido","Fecha ingreso","Estado"};
-=======
-		String titulos[] = { "Producto", "Proveedor", "Cantidad", "Valor","Fecha pedido","Fecha ingreso"};
->>>>>>> origin/master
 		
 		DefaultTableModel tableModel = new DefaultTableModel(titulos, 0);
 		
@@ -79,15 +59,16 @@ public class FormReporteCompras {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Compra> compras = null;
 
-				for (int i = 0; i < tableModel.getRowCount(); i++) 
-				{
+				int rowCount = tableModel.getRowCount();
+				
+				for (int i = rowCount - 1; i >= 0; i--) {
 					tableModel.removeRow(i);
 				}
 
 				try 
 				{
 					compras = asesorVentas.reporteCompras();
-<<<<<<< HEAD
+
 					if (compras.size()!=0) {
 						for (int i = 0; i < compras.size(); i++) {
 							String tipo = compras.get(i).getDescripcionProducto().getTipo();
@@ -110,8 +91,7 @@ public class FormReporteCompras {
 					{
 						JOptionPane.showMessageDialog(null, "No existen compras");
 					}
-=======
->>>>>>> origin/master
+
 				} 
 				catch (Exception e1) 
 				{
@@ -142,6 +122,14 @@ public class FormReporteCompras {
 		});
 		btnConsultar.setBounds(30, 226, 89, 23);
 		frame.getContentPane().add(btnConsultar);
+	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
 	}
 
 }

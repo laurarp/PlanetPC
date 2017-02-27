@@ -125,7 +125,6 @@ public class FormPrincipal extends JFrame{
 			{
 				JMenuItem mntmGenerarReporteCompras = new JMenuItem("Generar reporte compras");
 				mnCompras.add(mntmGenerarReporteCompras);
-<<<<<<< HEAD
 				mntmGenerarReporteCompras.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
@@ -133,8 +132,6 @@ public class FormPrincipal extends JFrame{
 						reporteCompras.getFrame().setVisible(true);
 					}
 				});
-=======
->>>>>>> origin/master
 			}
 		}
 		
