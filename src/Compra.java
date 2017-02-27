@@ -1,5 +1,7 @@
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 
 public class Compra implements Serializable{
@@ -7,7 +9,7 @@ public class Compra implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -4562210406616396L;
-	private int idCompra;
+	private String idCompra;
 	private DescripcionProducto descripcionProducto;
 	private String idProveedor;
 	private int cantidad;
@@ -16,10 +18,10 @@ public class Compra implements Serializable{
 	private Date fechaIngreso;
 	private String estado;
 	
-	public int getIdCompra() {
+	public String getIdCompra() {
 		return idCompra;
 	}
-	public void setIdCompra(int idCompra) {
+	public void setIdCompra(String idCompra) {
 		this.idCompra = idCompra;
 	}
 	public DescripcionProducto getDescripcionProducto() {
@@ -66,8 +68,16 @@ public class Compra implements Serializable{
 	}
 	
 	public Compra(DescripcionProducto descripcionProducto, String idProveedor, int cantidad, int precioCompra, Date fechaPedido, Date fechaIngreso, String estado){
+		
+		Calendar calendario = Calendar.getInstance();
+		calendario = new GregorianCalendar();
+		String hora, minutos, segundos;
+		hora =Integer.toString(calendario.get(Calendar.HOUR_OF_DAY));
+		minutos = Integer.toString(calendario.get(Calendar.MINUTE));
+		segundos = Integer.toString(calendario.get(Calendar.SECOND));
+		
 		this.descripcionProducto = descripcionProducto;
-		this.idCompra=1;
+		this.idCompra= hora+minutos+segundos;
 		this.idProveedor = idProveedor;
 		this.cantidad = cantidad;
 		this.precioCompra = precioCompra;
