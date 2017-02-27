@@ -30,8 +30,6 @@ public class ListaProveedores implements Serializable {
 		Proveedor tempProveedor = new Proveedor(nombre, id);
 		listaProveedores.add(tempProveedor);
 		writeFileObject("listaProveedores.txt", listaProveedores);
-		System.out.println("El proveedor" + listaProveedores.get(0).getNombre() + ", con Id: "
-				+ listaProveedores.get(0).getId() + " ha sido creado.");
 	}
 
 	public static void writeFileObject(String file, ArrayList<Proveedor> listaProveedores) {
