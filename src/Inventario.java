@@ -30,17 +30,14 @@ public class Inventario implements Serializable{
 			this.listaProductos =new ArrayList<Producto>();
 		}
 	}
+	public ArrayList<Producto> getListaProductos() {
+		return listaProductos;
+	}
 
-	public void nuevoProducto(Producto producto)
-	{
-		
+	public void setListaProductos(ArrayList<Producto> listaProductos) {
+		this.listaProductos = listaProductos;
 	}
-	
-	public ArrayList<Producto> getListaProductos()
-	{
-		return null;
-	}
-	
+
 	public Producto buscarProducto(String idProducto,String tipo, String marca, String modelo) throws Exception
 	{
 		if(listaProductos.size()!=0)
@@ -78,7 +75,7 @@ public class Inventario implements Serializable{
 		}
 	}
 	
-	public void añadirCantidad(DescripcionProducto descripcionProducto,int Cantidad)
+	public void andirCantidad(DescripcionProducto descripcionProducto,int Cantidad)
 	{
 		
 	}

@@ -9,7 +9,12 @@ public class Producto implements Serializable {
 	private DescripcionProducto descripcionProducto;
 	private int cantidad;
 	private String ubicacion;
-	
+	public Producto(DescripcionProducto descripcionProducto, int cantidad, String ubicacion) {
+		super();
+		this.descripcionProducto = descripcionProducto;
+		this.cantidad = cantidad;
+		this.ubicacion = ubicacion;
+	}
 	public DescripcionProducto getDescripcionProducto() {
 		return descripcionProducto;
 	}

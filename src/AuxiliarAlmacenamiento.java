@@ -16,7 +16,6 @@ public class AuxiliarAlmacenamiento extends Actor implements Serializable{
 		this.catalogo = new ListaDescProducto();
 		this.inventario = new Inventario();
 	}
-
 	public void ingresarProductoCatalogo(String id, int precioVenta, String tipo, int diasGarantia, String marca, String modelo)
 	{
 		catalogo.nuevoProducto(id, precioVenta, tipo, diasGarantia, marca, modelo);
@@ -32,19 +31,31 @@ public class AuxiliarAlmacenamiento extends Actor implements Serializable{
 		}
 		
 	}
-	
-	public ArrayList<DescripcionProducto> mostrarCatalogo() throws Exception{
-		return catalogo.mostrarCatalogo();
+	public ArrayList<DescripcionProducto> mostrarCatalogo() throws Exception {
+		ArrayList<DescripcionProducto> lista;
+			lista = catalogo.ReadFileCatalogo("Catalogo.txt");
+			return lista;
 	}
 	
-	public void modificarProductoCatalogo(ListaDescProducto listaDescProductos,DescripcionProducto descProducto)
+	public void modificarProductoCatalogo(String id, String nuevoId, String nuevoPrecio, String nuevoTipo, String nuevaGarantia, String nuevaMarca, String nuevoModelo) throws Excepciones
 	{
-		
+		catalogo.modificarProducto(id, nuevoId, nuevoPrecio, nuevoTipo, nuevaGarantia, nuevaMarca, nuevoModelo);
+		//
 	}
 	
-	public void ubicarProducto(Producto producto)
+	public void ubicarProducto(String id, int cantidad, String ubicacion) throws Exception
 	{
-		
+		int indiceUbicar = catalogo.buscarCatalogo(id);
+		if (indiceUbicar == -1)
+		{
+			throw new Excepciones("el usuario no se encuentra en la lista");
+		}
+		else
+		{
+			Producto x = new Producto(catalogo.getProductos().get(indiceUbicar),cantidad, ubicacion);
+			inventario.getListaProductos().add(x);
+			inventario.WriteFileInventario("Inventario.txt", inventario.getListaProductos());
+		}
 	}
 
 }

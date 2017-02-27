@@ -7,13 +7,17 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FormUbicarProducto extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textId;
-	private JTextField text;
-	private JTextField textField_1;
+	private JTextField textCantidad;
+	private JTextField textUbicacion;
+	private AuxiliarAlmacenamiento auxiliar;
 
 	/**
 	 * Launch the application.
@@ -36,7 +40,7 @@ public class FormUbicarProducto extends JFrame {
 	 */
 	public FormUbicarProducto() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 449, 189);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -64,14 +68,44 @@ public class FormUbicarProducto extends JFrame {
 		lblUbicacion.setBounds(10, 84, 46, 14);
 		contentPane.add(lblUbicacion);
 		
-		text = new JTextField();
-		text.setBounds(170, 56, 86, 20);
-		contentPane.add(text);
-		text.setColumns(10);
+		textCantidad = new JTextField();
+		textCantidad.setBounds(170, 56, 86, 20);
+		contentPane.add(textCantidad);
+		textCantidad.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(170, 81, 86, 20);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		textUbicacion = new JTextField();
+		textUbicacion.setBounds(170, 81, 86, 20);
+		contentPane.add(textUbicacion);
+		textUbicacion.setColumns(10);
+		try {
+			auxiliar = new AuxiliarAlmacenamiento("1004s","Pepito","pepito1309");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		JButton btnNewButton = new JButton("Ubicar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					auxiliar.ubicarProducto(textId.getText(), Integer.parseInt(textCantidad.getText()), textUbicacion.getText());
+					textId.setText("");
+					textCantidad.setText("");
+					textUbicacion.setText("");
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		});
+		btnNewButton.setBounds(72, 105, 89, 23);
+		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Cerrar");
+		btnNewButton_1.setBounds(287, 105, 89, 23);
+		contentPane.add(btnNewButton_1);
 	}
 }
