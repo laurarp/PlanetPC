@@ -21,13 +21,13 @@ import java.util.ArrayList;
 public class FormRegistrarCompra  extends JFrame{
 
 	private JFrame frame;
-	DefaultTableModel dtm ;
+	private DefaultTableModel dtm ;
 	private JTable table;
 	private JTextField textIdCompra;
 	private JLabel lblNewLabel_1;
 	private JButton btnRegistrar;
-	AsesorVentas asesorVentas = null;
-	ListaProveedores lp=null;
+	private AsesorVentas asesorVentas;
+	private ListaProveedores lp;
 
 	public FormRegistrarCompra(Actor actor) {
 		try 
