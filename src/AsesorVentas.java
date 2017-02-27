@@ -80,7 +80,8 @@ public class AsesorVentas extends Actor implements Serializable{
 		try 
 		{
 			v = new AsesorVentas(null, null, null);
-			v.obtenerPedidosPendientesProveedor("1");
+			Producto p=v.buscarProducto("1", "1", "1", "1");
+			System.out.println(p.getUbicacion());
 		} 
 		catch (Exception e) {
 			// TODO Auto-generated catch block
