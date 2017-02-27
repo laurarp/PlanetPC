@@ -22,11 +22,12 @@ public class FormBuscarServicios extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	private Actor actor;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -37,12 +38,13 @@ public class FormBuscarServicios extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
 	 */
-	public FormBuscarServicios() {
+	public FormBuscarServicios( Actor actor) {
+		this.actor=actor;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 729, 418);
 		contentPane = new JPanel();
@@ -57,7 +59,7 @@ public class FormBuscarServicios extends JFrame {
 		cbxParametroBusqueda.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cbxParametroBusqueda.setBounds(116, 322, 165, 20);
 		contentPane.add(cbxParametroBusqueda);
-		AuxiliarServicio x = new AuxiliarServicio("default", "default", "default");
+		AuxiliarServicio x = new AuxiliarServicio(actor.getNombre(), actor.getId(), actor.getContrasena());
 
 		String titulos[] = { "Id Servicio", "Descripción", "Id Cliente", "Fecha de entrada", "Fecha de salida",
 				"Precio", "Estado" };

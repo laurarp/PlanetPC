@@ -121,7 +121,17 @@ public class FormModificarEstadoServicioTecnico extends JFrame {
 		JButton btnCambiarEstado = new JButton("Cambiar estado");
 		btnCambiarEstado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				try {
+					x.modificarServicio(txtID.getText(), (String) cbxEstado.getSelectedItem());
+					int rowCount = tableModel.getRowCount();
+
+					for (int i = rowCount - 1; i >= 0; i--) {
+						tableModel.removeRow(i);
+					}
+				} catch (Excepciones e) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(btnCambiarEstado, e.getMessage());
+				}
 			}
 		});
 		btnCambiarEstado.setFont(new Font("Tahoma", Font.BOLD, 12));

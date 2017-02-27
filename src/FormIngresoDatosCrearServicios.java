@@ -17,6 +17,7 @@ public class FormIngresoDatosCrearServicios extends JFrame {
 	private JTextField txtIdCliente;
 	private JTextField txtPrecio;
 	private JTextField txtDiasEstimados;
+	private Actor actor;
 
 	/**
 	 * Launch the application.
@@ -37,7 +38,8 @@ public class FormIngresoDatosCrearServicios extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FormIngresoDatosCrearServicios() {
+	public FormIngresoDatosCrearServicios(Actor actor) {
+		this.actor=actor;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 346, 358);
 		contentPane = new JPanel();
@@ -84,7 +86,7 @@ public class FormIngresoDatosCrearServicios extends JFrame {
 		txtDiasEstimados.setBounds(154, 218, 138, 31);
 		contentPane.add(txtDiasEstimados);
 		txtDiasEstimados.setColumns(10);
-		AuxiliarServicio auxiliar=new AuxiliarServicio("guillermo", "1017196884", "12345");
+		AuxiliarServicio auxiliar=new AuxiliarServicio(actor.getNombre(),actor.getId(), actor.getContrasena());
 		JButton btnCargarServicio = new JButton("Cargar servicio");
 		btnCargarServicio.addActionListener(new ActionListener() {
 			

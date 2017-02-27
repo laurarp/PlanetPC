@@ -14,6 +14,7 @@ public class FormIngresoEliminarServicio extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtEliminar;
+	private Actor actor;
 
 	/**
 	 * Launch the application.
@@ -34,7 +35,8 @@ public class FormIngresoEliminarServicio extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FormIngresoEliminarServicio() {
+	public FormIngresoEliminarServicio(Actor actor) {
+		this.actor=actor;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		setBounds(100, 100, 450, 300);
@@ -47,7 +49,7 @@ public class FormIngresoEliminarServicio extends JFrame {
 		txtEliminar.setBounds(233, 55, 86, 20);
 		contentPane.add(txtEliminar);
 		txtEliminar.setColumns(10);
-		AuxiliarServicio auxiliar=new AuxiliarServicio("guillermo", "1017196884", "12345");
+		AuxiliarServicio auxiliar=new AuxiliarServicio(actor.getNombre(), actor.getId(), actor.getContrasena());
 		JButton btnEliminar = new JButton("Eliminar servicio");
 		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnEliminar.addActionListener(new ActionListener() {

@@ -226,7 +226,7 @@ public class FormPrincipal extends JFrame{
 				mntmIngresarEquipo.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						FormIngresoDatosCrearServicios ingreso= new FormIngresoDatosCrearServicios();
+						FormIngresoDatosCrearServicios ingreso= new FormIngresoDatosCrearServicios(actor);
 						ingreso.setVisible(true);
 					}
 				});
@@ -239,13 +239,21 @@ public class FormPrincipal extends JFrame{
 				mntmEliminarEquipo.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						FormIngresoEliminarServicio eliminar= new FormIngresoEliminarServicio();
+						FormIngresoEliminarServicio eliminar= new FormIngresoEliminarServicio(actor);
 						eliminar.setVisible(true);				
 					}
 				});
 				
 				JMenuItem mntmModificarReporteEquipo = new JMenuItem("Modificar estado del equipo");
 				mnServicioTcnico.add(mntmModificarReporteEquipo);
+				mntmModificarReporteEquipo.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						FormModificarEstadoServicioTecnico mostrar= new FormModificarEstadoServicioTecnico(actor);
+						mostrar.setVisible(true);
+					}
+				});
 			}
 			
 			if(actor.getClass().getName().compareTo("Administrador")==0 || actor.getClass().getName().compareTo("AuxiliarServicio")==0)
@@ -255,7 +263,7 @@ public class FormPrincipal extends JFrame{
 				mntmGenerarReporteServicios.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						FormBuscarServicios mostrar= new FormBuscarServicios();
+						FormBuscarServicios mostrar= new FormBuscarServicios(actor);
 						mostrar.setVisible(true);
 					}
 				});
