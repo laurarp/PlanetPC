@@ -28,6 +28,11 @@ public class AuxiliarServicio extends Actor implements Serializable{
 		return lista.mostrarServiciosEstado(estado);
 		
 	}
+	public ArrayList<ServicioTecnico> mostrarServicios()
+	{
+		return lista.mostrarServicios();
+		
+	}
 	
 	public void eliminarServicio(String idServicio) throws Excepciones{
 		lista.eliminarServicio(idServicio);

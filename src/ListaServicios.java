@@ -65,42 +65,7 @@ public class ListaServicios {
 		return lista;
 	}
 //-----------------------------------------------------------------------------------------------------------------
-	//metodo para mostrar la lista de servicios en una ventana, este metodo se ejecuta en la interfaz grafica
-	/*public String[][] mostrarServiciosTabla(String estado) {
-		ArrayList<ServicioTecnico> lista = leerArchivoObjeto("ListaServicios.txt");
-		String[][] auxiliar = new String[lista.size()][7];
-
-		for (int i = 0; i < lista.size(); i++) {
-			if (estado.compareTo(lista.get(i).getEstado()) == 0) {
-				for (int j = 0; j < 7; j++) {
-					switch (j) {
-					case 0:
-						auxiliar[i][j] = lista.get(i).getIdServicio();
-						break;
-					case 1:
-						auxiliar[i][j] = lista.get(i).getDescripcion();
-						break;
-					case 2:
-						auxiliar[i][j] = lista.get(i).getIdCliente();
-						break;
-					case 3:
-						auxiliar[i][j] = lista.get(i).getFechaEntrada();
-						break;
-					case 4:
-						auxiliar[i][j] = lista.get(i).getFechaSalida();
-						break;
-					case 5:
-						auxiliar[i][j] = String.valueOf(lista.get(i).getPrecio());
-						break;
-					case 6:
-						auxiliar[i][j] = lista.get(i).getEstado();
-						break;
-					}
-				}
-			}
-		}
-		return auxiliar;
-	}*/
+	
 	public ArrayList<ServicioTecnico> mostrarServiciosEstado(String estado) {
 		ArrayList<ServicioTecnico> lista = leerArchivoObjeto("ListaServicios.txt");
 		
