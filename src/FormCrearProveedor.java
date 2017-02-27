@@ -2,81 +2,88 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class FormCrearProveedor {
+public class FormCrearProveedor extends JFrame {
 
 	private JFrame frmCrearProveedor;
 	private JTextField textField;
 	private JTextField textField_1;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FormCrearProveedor window = new FormCrearProveedor();
-					window.frmCrearProveedor.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private Administrador Admin;
 
 	/**
 	 * Create the application.
+	 * @param actor 
 	 */
-	public FormCrearProveedor() {
-		initialize();
+	public FormCrearProveedor(Actor actor) {
+		try 
+		{
+			Admin = new Administrador(actor.getId(),actor.getNombre(),actor.getContrasena());
+			initialize();
+		} 
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+		
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmCrearProveedor = new JFrame();
-		frmCrearProveedor.setTitle("Crear Proveedor");
-		frmCrearProveedor.setBounds(100, 100, 450, 300);
-		frmCrearProveedor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmCrearProveedor.getContentPane().setLayout(null);
+		setFrmCrearProveedor(new JFrame());
+		getFrmCrearProveedor().setTitle("Crear Proveedor");
+		getFrmCrearProveedor().setBounds(100, 100, 450, 300);
+		getFrmCrearProveedor().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		getFrmCrearProveedor().getContentPane().setLayout(null);
 		
 		JLabel lblIngresaElNombre = new JLabel("Ingresa el nombre del proveedor");
 		lblIngresaElNombre.setBounds(15, 16, 257, 20);
-		frmCrearProveedor.getContentPane().add(lblIngresaElNombre);
+		getFrmCrearProveedor().getContentPane().add(lblIngresaElNombre);
 		
 		textField = new JTextField();
 		textField.setBounds(15, 55, 146, 26);
-		frmCrearProveedor.getContentPane().add(textField);
+		getFrmCrearProveedor().getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblIngresaElId = new JLabel("Ingresa el id del proveedor");
 		lblIngresaElId.setBounds(15, 97, 257, 20);
-		frmCrearProveedor.getContentPane().add(lblIngresaElId);
+		getFrmCrearProveedor().getContentPane().add(lblIngresaElId);
 		
 		textField_1 = new JTextField();
 		textField_1.setBounds(15, 133, 146, 26);
-		frmCrearProveedor.getContentPane().add(textField_1);
+		getFrmCrearProveedor().getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
 		JButton btnCrear = new JButton("Crear");
 		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					Administrador a = new Administrador("1037657390","juan","1234");
-					a.crearProveedor(textField.getText(), textField_1.getText());
+					if (textField.getText()==null||textField_1.getText()==null){
+						JOptionPane.showMessageDialog(null, "Rellene todos los campos");
+					}else{
+					Admin.crearProveedor(textField.getText(), textField_1.getText());
+					JOptionPane.showMessageDialog(null, "Proveedor creado correctamente");
+					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, e.getMessage());
 				}
 			}
 		});
 		btnCrear.setBounds(158, 183, 115, 29);
-		frmCrearProveedor.getContentPane().add(btnCrear);
+		getFrmCrearProveedor().getContentPane().add(btnCrear);
+	}
+
+	public JFrame getFrmCrearProveedor() {
+		return frmCrearProveedor;
+	}
+
+	public void setFrmCrearProveedor(JFrame frmCrearProveedor) {
+		this.frmCrearProveedor = frmCrearProveedor;
 	}
 }

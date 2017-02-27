@@ -66,6 +66,13 @@ public class FormPrincipal extends JFrame{
 			
 			JMenuItem mntmCrearUsuario = new JMenuItem("Crear usuario");
 			mnUsuarios.add(mntmCrearUsuario);
+			mntmCrearUsuario.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					FormCrearUsuario crearUsuario= new FormCrearUsuario(actor);
+					crearUsuario.getFrame().setVisible(true);
+				}
+			});
 			
 			JMenuItem mntmModificarUsuario = new JMenuItem("Modificar usuario");
 			mnUsuarios.add(mntmModificarUsuario);
@@ -201,6 +208,13 @@ public class FormPrincipal extends JFrame{
 			
 			JMenuItem mntmCrearProveedor = new JMenuItem("Crear proveedor");
 			mnProveedores.add(mntmCrearProveedor);
+			mntmCrearProveedor.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					FormCrearProveedor CrearProveedor= new FormCrearProveedor(actor);
+					CrearProveedor.getFrmCrearProveedor().setVisible(true);
+				}
+			});
 			
 			JMenuItem mntmBuscarProveedor = new JMenuItem("Buscar proveedor");
 			mnProveedores.add(mntmBuscarProveedor);
