@@ -67,6 +67,12 @@ public class FormListaDescProducto extends JFrame {
 		contentPane.add(btnModificarProducto);
 		
 		JButton btnNewButton_2 = new JButton("Ubicar Producto");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FormUbicarProducto ubp = new FormUbicarProducto();
+				ubp.setVisible(true);
+			}
+		});
 		btnNewButton_2.setBounds(258, 163, 162, 51);
 		contentPane.add(btnNewButton_2);
 		

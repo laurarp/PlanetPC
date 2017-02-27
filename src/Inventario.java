@@ -36,11 +36,14 @@ public class Inventario implements Serializable{
 		
 	}
 	
-	public ArrayList<Producto> getListaProductos()
-	{
-		return null;
+	public ArrayList<Producto> getListaProductos() {
+		return listaProductos;
 	}
-	
+
+	public void setListaProductos(ArrayList<Producto> listaProductos) {
+		this.listaProductos = listaProductos;
+	}
+
 	public Producto buscarProducto(String idProducto,String tipo, String marca, String modelo) throws Exception
 	{
 		if(listaProductos!=null)

@@ -10,6 +10,11 @@ public class Producto implements Serializable {
 	private int cantidad;
 	private String ubicacion;
 	
+	public Producto(DescripcionProducto descripcionProducto2, int cantidad2, String ubicacion2) {
+		this.descripcionProducto = descripcionProducto2;
+		this.cantidad = cantidad2;
+		this.ubicacion = ubicacion2;	
+	}
 	public DescripcionProducto getDescripcionProducto() {
 		return descripcionProducto;
 	}
