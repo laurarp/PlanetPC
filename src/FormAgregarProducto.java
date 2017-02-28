@@ -149,6 +149,11 @@ public class FormAgregarProducto extends JFrame {
 				int dg = 0;
 				boolean intentar = true;
 				boolean intentar2 = true;
+				boolean intentar3=true;
+				if (textId.getText().isEmpty()){
+					intentar3 = false;
+					JOptionPane.showMessageDialog(contentPane, "Por favor ingrese al menos un Id");
+				}
 				try{
 					auxiliar.buscarEnCatalogo(textId.getText());
 					intentar2=false;
@@ -157,23 +162,37 @@ public class FormAgregarProducto extends JFrame {
 				}catch(Exception e){
 					intentar2=true;
 				}
+				if (!textprecioVenta.getText().isEmpty()){
 					try{
 						pv = Integer.parseInt(textprecioVenta.getText());
-						dg = Integer.parseInt(textGarantia.getText());
 						intentar = true;
-						if (pv<0 || dg<0){
+						if (pv<0){
 							intentar = false;
-							  JOptionPane.showMessageDialog(contentPane, "Precio o garantia deben ser numeros enteros positivos");
+							  JOptionPane.showMessageDialog(contentPane, "Precio debe ser numero entero positivo");
 							  textprecioVenta.setText("");
+						}
+					}catch (NumberFormatException e){
+						  intentar = false;
+						  JOptionPane.showMessageDialog(contentPane, "Precio debe ser numero entero positivo");
+						  textprecioVenta.setText("");
+					}
+				}
+				if (!textGarantia.getText().isEmpty()){
+					try{
+						pv = Integer.parseInt(textGarantia.getText());
+						intentar = true;
+						if (pv<0){
+							intentar = false;
+							  JOptionPane.showMessageDialog(contentPane, "Garantia debe ser numero entero positivo");
 							  textGarantia.setText("");
 						}
 					}catch (NumberFormatException e){
 						  intentar = false;
-						  JOptionPane.showMessageDialog(contentPane, "Precio o garantia deben ser numeros enteros positovs");
-						  textprecioVenta.setText("");
+						  JOptionPane.showMessageDialog(contentPane, "Garantia debe ser numero entero positivo");
 						  textGarantia.setText("");
 					}
-				if (intentar == true && intentar2==true){
+				}
+				if (intentar == true && intentar2==true && intentar3 == true){
 					try{
 						auxiliar.ingresarProductoCatalogo(textId.getText(), pv, choiceTipo.getSelectedItem(), dg,textMarca.getText(),textModelo.getText());
 						textId.setText("");
