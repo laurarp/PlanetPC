@@ -53,7 +53,7 @@ public class FormBucarProveedor extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String nombre;
 				try {
-					if (textField.getText()==null){
+					if (textField.getText().isEmpty()){
 						JOptionPane.showMessageDialog(null, "El campo esta vacio");
 					}else{
 					nombre = Admin.buscarIdProveedor(textField.getText());

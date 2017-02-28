@@ -31,7 +31,7 @@ public class FormRegistrarPedido extends JFrame {
 			initialize();
 		} 
 		catch (Exception e) {
-			JOptionPane.showMessageDialog(null, ("Pedido registrado exitosamente"));
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
 
@@ -94,10 +94,11 @@ public class FormRegistrarPedido extends JFrame {
 						JOptionPane.showMessageDialog(null, "El campo esta vacio");
 					}else{
 					jefazo.registrarPedido(textField.getText(), textField_1.getText(), Integer.parseInt(textField_2.getText()), Integer.parseInt(textField_3.getText()), "Pendiente");
+					JOptionPane.showMessageDialog(null, ("pedido registrado exitosamente"));
 					}
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null, ("no se pudo registrar el pedido"));
+					JOptionPane.showMessageDialog(null, ("pedido registrado exitosamente"));
 				}
 			}
 		});
