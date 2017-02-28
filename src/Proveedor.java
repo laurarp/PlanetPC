@@ -23,7 +23,7 @@ public class Proveedor implements Serializable{
 		this.id = id;
 	}
 	
-	public Proveedor(String id,String nombre) {
+	public Proveedor(String nombre,String id) {
 		super();
 		this.id=id;
 		this.nombre = nombre;
