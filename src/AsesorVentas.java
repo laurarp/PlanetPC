@@ -77,16 +77,7 @@ public class AsesorVentas extends Actor implements Serializable{
 	
 	public static void main(String[] args) {
 		AsesorVentas v;
-		try 
-		{
-			v = new AsesorVentas(null, null, null);
-			Producto p=v.buscarProducto("1", "1", "1", "1");
-			System.out.println(p.getUbicacion());
-		} 
-		catch (Exception e) {
-			// TODO Auto-generated catch block
-			System.out.println(e.getMessage());
-		}
+		
 		
 
 	}
