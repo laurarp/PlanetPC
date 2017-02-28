@@ -49,20 +49,16 @@ public class Administrador extends Actor implements Serializable{
 		listaProveedores.buscarProveedor(id);
 	}
 	
-	public void modificarProveedor(String id, String nombre)
+	public void modificarProveedor(String id, String nombre) throws Excepciones
 	{
-		
+		listaProveedores.modificarProveedor(id, nombre);
 	}
 	
 	public void eliminarProveedor(String id) throws Exception{
 		listaProveedores.eliminarProveedor(id);
 	}
 	
-	public ListaServicios reporteTecnico()
-	{
-		//Guillermo
-		return null;
-	}
+	
 	
 	public ListaCompras reporteCompras()
 	{
