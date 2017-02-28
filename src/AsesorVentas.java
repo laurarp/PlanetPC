@@ -77,14 +77,21 @@ public class AsesorVentas extends Actor implements Serializable{
 		}
 		else
 		{
-			if(Integer.parseInt(Cantidad)>=0)
+			try
 			{
-				inventario.anadirCantidad(productos.buscarProducto(idProducto), Integer.parseInt(Cantidad));
-				listaVentas.anadirVenta(productos.buscarProducto(idProducto), idCliente, idVendedor, Integer.parseInt(Cantidad));	
+				if(Integer.parseInt(Cantidad)>=0)
+				{
+					inventario.anadirCantidad(productos.buscarProducto(idProducto), Integer.parseInt(Cantidad));
+					listaVentas.anadirVenta(productos.buscarProducto(idProducto), idCliente, idVendedor, Integer.parseInt(Cantidad));	
+				}
+				else
+				{
+					throw new Exception("No se puede registrar una venta con cantidades negativas");
+				}
 			}
-			else
+			catch(NumberFormatException e)
 			{
-				throw new Exception("No se puede registrar una venta con cantidades negativas");
+				throw new Exception("La cantidad no es un entero");
 			}
 		}
 	}
