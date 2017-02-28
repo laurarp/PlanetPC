@@ -220,7 +220,7 @@ public class ListaDescProducto implements Serializable{
 		//
 		int indice = buscarCatalogo(id);
 		if (buscarCatalogo(id) == -1) {
-			throw new Excepciones("El servicio no esta cargado en la lista");
+			throw new Excepciones("El producto no se encuentra en el catalogo");
 		} else {
 			if (nuevoId!="" && !nuevoId.isEmpty()){
 				productos.get(indice).setId(nuevoId);

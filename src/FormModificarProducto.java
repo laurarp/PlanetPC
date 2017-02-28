@@ -170,18 +170,26 @@ public class FormModificarProducto extends JFrame {
 				int dg = 0;
 				boolean intentar = true;
 				boolean intentar2 = true;
-				if (textField_2.getText()!= "" && !textField_2.getText().isEmpty() || textField_4.getText()!= "" && !textField_4.getText().isEmpty()){
+				if (!textField_2.getText().isEmpty()){
 					try{
 						pv = Integer.parseInt(textField_2.getText());
+						intentar = true;
+					}catch (NumberFormatException e){
+						  intentar = false;
+						  JOptionPane.showMessageDialog(contentPane, "Precio debe ser numero entero");
+						  textField_2.setText("");
+					}
+				}
+				if (!textField_4.getText().isEmpty()){
+					try{
 						dg = Integer.parseInt(textField_4.getText());
 						intentar = true;
 					}catch (NumberFormatException e){
 						  intentar = false;
-						  JOptionPane.showMessageDialog(contentPane, "Precio o garantia deben ser numeros enteros");
-						  textField_2.setText("");
+						  JOptionPane.showMessageDialog(contentPane, "Garantia debe ser numero entero");
 						  textField_4.setText("");
 					}
-				}
+				}	
 				if (textField.getText().isEmpty()){
 					intentar2 = false;
 					JOptionPane.showMessageDialog(contentPane, "No ha ingresado el id del producto a modificar");
@@ -201,7 +209,7 @@ public class FormModificarProducto extends JFrame {
 					e.printStackTrace();
 				} catch (Excepciones e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(contentPane, e.getMessage());
 				}
 				}
 				
