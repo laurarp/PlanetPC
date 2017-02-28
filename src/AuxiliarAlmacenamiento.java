@@ -41,7 +41,7 @@ public class AuxiliarAlmacenamiento extends Actor implements Serializable{
 		int indiceUbicar = catalogo.buscarCatalogo(id);
 		if (indiceUbicar == -1)
 		{
-			throw new Excepciones("el usuario no se encuentra en la lista");
+			throw new Exception("el usuario no se encuentra en la lista");
 		}
 		else
 		{

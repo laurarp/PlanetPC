@@ -119,7 +119,7 @@ public class FormUbicarProducto extends JFrame {
 					e.printStackTrace();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(contentPane, e.getMessage());
 				}
 				}
 				
