@@ -202,7 +202,7 @@ public class ListaDescProducto implements Serializable{
 		ArrayList<DescripcionProducto> auxiliar = new ArrayList<DescripcionProducto>();
 		int posicionEliminar = buscarCatalogo(id);
 		if (buscarCatalogo(id) == -1) {
-			throw new Excepciones("el usuario no se encuentra en la lista");
+			throw new Excepciones("El producto no se encuentra en el catalogo");
 		} else {
 			for (int i = 0; i < productos.size(); i++) {
 				if (posicionEliminar != i) {

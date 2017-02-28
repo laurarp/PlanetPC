@@ -59,6 +59,10 @@ public class AuxiliarAlmacenamiento extends Actor implements Serializable{
 			
 		}
 	}
+	public DescripcionProducto buscarEnCatalogo(String idProducto) throws Exception
+	{
+		return catalogo.buscarProducto(idProducto);
+	}
 	public ArrayList<Producto> mostrarInventario() throws Exception {
 		return inventario.mostrarInventario();
 		// TODO Auto-generated method stub

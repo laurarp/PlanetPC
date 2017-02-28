@@ -148,6 +148,15 @@ public class FormAgregarProducto extends JFrame {
 				int pv = 0;
 				int dg = 0;
 				boolean intentar = true;
+				boolean intentar2 = true;
+				try{
+					auxiliar.buscarEnCatalogo(textId.getText());
+					intentar2=false;
+					JOptionPane.showMessageDialog(contentPane, "El id ya existe");
+					textId.setText("");
+				}catch(Exception e){
+					intentar2=true;
+				}
 					try{
 						pv = Integer.parseInt(textprecioVenta.getText());
 						dg = Integer.parseInt(textGarantia.getText());
@@ -164,7 +173,7 @@ public class FormAgregarProducto extends JFrame {
 						  textprecioVenta.setText("");
 						  textGarantia.setText("");
 					}
-				if (intentar == true){
+				if (intentar == true && intentar2==true){
 					try{
 						auxiliar.ingresarProductoCatalogo(textId.getText(), pv, choiceTipo.getSelectedItem(), dg,textMarca.getText(),textModelo.getText());
 						textId.setText("");
