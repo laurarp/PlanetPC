@@ -71,14 +71,21 @@ public class AsesorVentas extends Actor implements Serializable{
 	
 	public void registarVenta(String idProducto, String idCliente, String idVendedor, String Cantidad) throws Exception
 	{
-		if(Integer.parseInt(Cantidad)>=0)
+		if(idProducto.compareTo("")==0 || idCliente.compareTo("")==0 || Cantidad.compareTo("")==0)
 		{
-			inventario.anadirCantidad(productos.buscarProducto(idProducto), Integer.parseInt(Cantidad));
-			listaVentas.anadirVenta(productos.buscarProducto(idProducto), idCliente, idVendedor, Integer.parseInt(Cantidad));	
+			throw new Exception("Alguno de los campos se encuentra vacio");
 		}
 		else
 		{
-			throw new Exception("No se puede registrar una venta con cantidades negativas");
+			if(Integer.parseInt(Cantidad)>=0)
+			{
+				inventario.anadirCantidad(productos.buscarProducto(idProducto), Integer.parseInt(Cantidad));
+				listaVentas.anadirVenta(productos.buscarProducto(idProducto), idCliente, idVendedor, Integer.parseInt(Cantidad));	
+			}
+			else
+			{
+				throw new Exception("No se puede registrar una venta con cantidades negativas");
+			}
 		}
 	}
 	
