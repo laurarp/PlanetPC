@@ -142,7 +142,7 @@ public class ListaActores implements Serializable{
 			throw new Excepciones("El usuario no esta cargado en la lista");
 		} else {
 			if(contrasena.compareTo(actores.get(indice).getContrasena())==0){
-				if(validContrasena.compareTo(newContrasena)==0){
+				if(validContrasena.compareTo(newContrasena)==0 && validContrasena.compareTo("")!=0 && newContrasena.compareTo("")!=0){
 					actores.get(indice).setContrasena(validContrasena);
 				}
 				else{
