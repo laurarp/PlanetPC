@@ -38,7 +38,7 @@ public class FormBucarProveedor extends JFrame {
 		getFrmBuscarProveedor().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getFrmBuscarProveedor().getContentPane().setLayout(null);
 		
-		JLabel lblIngreseElId = new JLabel("Ingrese el id del proveedor");
+		JLabel lblIngreseElId = new JLabel("Ingrese el nombre del proveedor");
 		lblIngreseElId.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblIngreseElId.setBounds(25, 77, 213, 20);
 		getFrmBuscarProveedor().getContentPane().add(lblIngreseElId);
@@ -51,11 +51,13 @@ public class FormBucarProveedor extends JFrame {
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String nombre;
 				try {
 					if (textField.getText()==null){
 						JOptionPane.showMessageDialog(null, "El campo esta vacio");
 					}else{
-					Admin.buscarProveedor(textField.getText());
+					nombre = Admin.buscarIdProveedor(textField.getText());
+					JOptionPane.showMessageDialog(null, "el nombre de su proveedor es:"+nombre); 
 					}
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
