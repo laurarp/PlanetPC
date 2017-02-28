@@ -7,6 +7,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Font;
 
 public class FormEliminarProveedor {
 
@@ -33,17 +35,18 @@ public class FormEliminarProveedor {
 	 */
 	private void initialize() {
 		frmEliminarProveedor = new JFrame();
-		frmEliminarProveedor.setTitle("Eliminar proveedor");
+		frmEliminarProveedor.getContentPane().setBackground(Color.WHITE);
 		frmEliminarProveedor.setBounds(100, 100, 450, 300);
 		frmEliminarProveedor.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmEliminarProveedor.getContentPane().setLayout(null);
 		
 		JLabel lblIngreseElId = new JLabel("Ingrese el id del proveedor que desea eliminar");
-		lblIngreseElId.setBounds(15, 16, 342, 20);
+		lblIngreseElId.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblIngreseElId.setBounds(15, 75, 342, 20);
 		frmEliminarProveedor.getContentPane().add(lblIngreseElId);
 		
 		textField = new JTextField();
-		textField.setBounds(15, 49, 146, 26);
+		textField.setBounds(15, 111, 146, 26);
 		frmEliminarProveedor.getContentPane().add(textField);
 		textField.setColumns(10);
 		
@@ -62,8 +65,13 @@ public class FormEliminarProveedor {
 				}
 			}
 		});
-		btnEliminar.setBounds(137, 104, 115, 29);
+		btnEliminar.setBounds(136, 180, 115, 29);
 		frmEliminarProveedor.getContentPane().add(btnEliminar);
+		
+		JLabel lblEliminarProveedor = new JLabel("Eliminar proveedor");
+		lblEliminarProveedor.setFont(new Font("Segoe UI", Font.BOLD, 24));
+		lblEliminarProveedor.setBounds(15, 16, 236, 43);
+		frmEliminarProveedor.getContentPane().add(lblEliminarProveedor);
 	}
 	public JFrame getFrmEliminarProveedor() {
 		return frmEliminarProveedor;
