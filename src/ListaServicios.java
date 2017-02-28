@@ -94,8 +94,13 @@ public class ListaServicios {
 	// -------------------------------------------------------------------------------------------------------------------
 	// metodo auxiliar de busqueda por indice que es usado por los metodos
 	// eliminar y modificar
-	public static int buscarServicio(String idServicio) {
+	public static int buscarServicio(String idServicio) throws Excepciones {
 		listaServicios = leerArchivoObjeto("ListaServicios.txt");
+		if(listaServicios==null){
+			throw new Excepciones("No se puede encontrar el servicio");
+		}else{
+			
+		
 		int indice = 0;
 		while (indice < listaServicios.size()) {
 			if (idServicio.compareTo(listaServicios.get(indice).getIdServicio()) == 0) {
@@ -105,6 +110,7 @@ public class ListaServicios {
 			}
 		}
 		return -1;
+		}
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------
