@@ -16,6 +16,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Color;
+import java.awt.Font;
 
 
 public class FormBuscarProducto extends JFrame{
@@ -64,40 +66,46 @@ public class FormBuscarProducto extends JFrame{
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.getContentPane().setBackground(new Color(255, 255, 255));
+		frame.setBounds(100, 100, 372, 350);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		Choice chProductos = new Choice();
+		chProductos.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		for (int i = 0; i < listaProductos.mostrarProductos().size(); i++) {
 			chProductos.addItem(listaProductos.mostrarProductos().get(i).getTipo()+" / "+listaProductos.mostrarProductos().get(i).getMarca()+" / "+listaProductos.mostrarProductos().get(i).getModelo());
 		}
-		chProductos.setBounds(79, 45, 192, 20);
+		chProductos.setBounds(117, 109, 201, 22);
 		frame.getContentPane().add(chProductos);
 		
 		Label label = new Label("Producto");
-		label.setBounds(20, 43, 62, 22);
+		label.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		label.setBounds(29, 109, 62, 22);
 		frame.getContentPane().add(label);
 		
 		String titulos[] = { "Ubicacion", "Cantidad", "Valor", "Garantia" };
 		DefaultTableModel tableModel = new DefaultTableModel(titulos, 0);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(37, 94, 289, 70);
+		scrollPane.setBounds(29, 204, 289, 70);
 		frame.getContentPane().add(scrollPane);		
 		table = new JTable(tableModel);
 		scrollPane.setViewportView(table);
 		
-		JLabel lblIdProducto = new JLabel("id Producto");
-		lblIdProducto.setBounds(20, 11, 46, 14);
+		JLabel lblIdProducto = new JLabel("Id Producto");
+		lblIdProducto.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblIdProducto.setBounds(29, 73, 124, 14);
 		frame.getContentPane().add(lblIdProducto);
 		
 		textIdProducto = new JTextField();
-		textIdProducto.setBounds(79, 8, 86, 20);
+		textIdProducto.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		textIdProducto.setBounds(117, 70, 201, 20);
 		frame.getContentPane().add(textIdProducto);
 		textIdProducto.setColumns(10);
 		
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -128,8 +136,13 @@ public class FormBuscarProducto extends JFrame{
 				}
 			}
 		});
-		btnBuscar.setBounds(324, 32, 89, 23);
+		btnBuscar.setBounds(117, 156, 89, 23);
 		frame.getContentPane().add(btnBuscar);
+		
+		JLabel lblBuscarProducto = new JLabel("Buscar Producto");
+		lblBuscarProducto.setFont(new Font("Segoe UI", Font.BOLD, 24));
+		lblBuscarProducto.setBounds(29, 22, 244, 30);
+		frame.getContentPane().add(lblBuscarProducto);
 		
 	}
 }
