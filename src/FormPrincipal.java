@@ -95,6 +95,19 @@ public class FormPrincipal extends JFrame{
 			
 			JMenuItem mntmBuscarUsuario = new JMenuItem("Buscar usuario");
 			mnUsuarios.add(mntmBuscarUsuario);
+			mntmBuscarUsuario.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					try {
+						FormBuscarUsuario mostrar= new FormBuscarUsuario(actor);
+						mostrar.setVisible(true);
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(null, e1.getMessage());
+					}
+					
+				}
+			});
 			
 			JMenuItem mntmEliminarUsuario = new JMenuItem("Eliminar usuario");
 			mnUsuarios.add(mntmEliminarUsuario);

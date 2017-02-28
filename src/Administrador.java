@@ -23,9 +23,9 @@ public class Administrador extends Actor implements Serializable{
 		listaActores.nuevoActor(id,nombre, contrasena, tipo);
 	}
 	
-	public Actor buscarUsuario(String id)
+	public Actor buscarUsuario(String id) throws Exception
 	{
-		return null;
+		return listaActores.buscarActor(id);
 	}
 	public ArrayList<Actor> mostrarActores() throws Exception{
 		return listaActores.mostrarUsuarios();
