@@ -203,5 +203,27 @@ public class ListaProveedores implements Serializable {
 			}
 		}
 	}
+	public static void main(String[] args) 
+	{
+		try 
+		{		
+			//WriteFileActores("ListaActores.txt",new ArrayList<Actor>());
+			ArrayList<Proveedor> lecturaActores=ReadFileProveedores("ListaProveedores.txt");
+			if(lecturaActores!=null)
+			{
+				for(Proveedor a:lecturaActores)
+				{
+					System.out.println(a.getId());
+					//System.out.println(p.toString());
+				}
+			}
+			
+		} 
+		catch (Exception e) 
+		{
+			System.out.println(e.getMessage());
+		}
+	}
+
 
 }
