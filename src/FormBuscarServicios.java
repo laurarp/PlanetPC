@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import java.awt.Color;
 
 public class FormBuscarServicios extends JFrame {
 
@@ -48,6 +49,7 @@ public class FormBuscarServicios extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 729, 418);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -56,8 +58,8 @@ public class FormBuscarServicios extends JFrame {
 		cbxParametroBusqueda.addItem("Pendiente");
 		cbxParametroBusqueda.addItem("Activo");
 		cbxParametroBusqueda.addItem("Finalizado");
-		cbxParametroBusqueda.setFont(new Font("Tahoma", Font.BOLD, 12));
-		cbxParametroBusqueda.setBounds(116, 322, 165, 20);
+		cbxParametroBusqueda.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		cbxParametroBusqueda.setBounds(419, 60, 165, 20);
 		contentPane.add(cbxParametroBusqueda);
 		AuxiliarServicio x = new AuxiliarServicio(actor.getNombre(), actor.getId(), actor.getContrasena());
 
@@ -67,13 +69,13 @@ public class FormBuscarServicios extends JFrame {
 		DefaultTableModel tableModel = new DefaultTableModel(titulos, 0);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(54, 40, 619, 271);
+		scrollPane.setBounds(55, 101, 619, 207);
 		contentPane.add(scrollPane);
 		// frame.getContentPane().add(scrollPane);
 		table = new JTable(tableModel);
 		scrollPane.setViewportView(table);
 
-		JButton btnBuscar = new JButton("Buscar");
+		JButton btnBuscar = new JButton("Mostrar");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -109,14 +111,19 @@ public class FormBuscarServicios extends JFrame {
 				}
 			}
 		});
-		btnBuscar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnBuscar.setBounds(459, 320, 89, 23);
+		btnBuscar.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnBuscar.setBounds(287, 319, 113, 36);
 		contentPane.add(btnBuscar);
 
-		JLabel lblListaDeServicios = new JLabel("Lista de servicios");
-		lblListaDeServicios.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblListaDeServicios.setBounds(287, 10, 129, 14);
+		JLabel lblListaDeServicios = new JLabel("Reporte de servicios");
+		lblListaDeServicios.setFont(new Font("Segoe UI", Font.BOLD, 24));
+		lblListaDeServicios.setBounds(55, 11, 253, 41);
 		contentPane.add(lblListaDeServicios);
+		
+		JLabel lblSeleccioneElTipo = new JLabel("Seleccione el tipo de servicios que desea mostrar:");
+		lblSeleccioneElTipo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblSeleccioneElTipo.setBounds(83, 56, 326, 26);
+		contentPane.add(lblSeleccioneElTipo);
 
 	}
 }

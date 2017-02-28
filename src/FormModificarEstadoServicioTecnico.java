@@ -16,6 +16,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Color;
 
 public class FormModificarEstadoServicioTecnico extends JFrame {
 
@@ -47,12 +48,13 @@ public class FormModificarEstadoServicioTecnico extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 622, 415);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(44, 53, 516, 248);
+		scrollPane.setBounds(44, 112, 516, 169);
 		contentPane.add(scrollPane);
 		
 		String titulos[] = { "Id Servicio", "Descripción", "Id Cliente", "Fecha de entrada", "Fecha de salida",
@@ -100,18 +102,18 @@ public class FormModificarEstadoServicioTecnico extends JFrame {
 				}
 			}
 		});
-		btnMostrarServicios.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnMostrarServicios.setBounds(29, 315, 147, 40);
+		btnMostrarServicios.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		btnMostrarServicios.setBounds(44, 52, 147, 40);
 		contentPane.add(btnMostrarServicios);
 		
 		JTextField txtID = new JTextField();
-		txtID.setBounds(186, 326, 98, 20);
+		txtID.setBounds(372, 64, 98, 20);
 		contentPane.add(txtID);
 		txtID.setColumns(10);
 		
 		JComboBox cbxEstado = new JComboBox();
-		cbxEstado.setFont(new Font("Tahoma", Font.BOLD, 11));
-		cbxEstado.setBounds(294, 326, 111, 20);
+		cbxEstado.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		cbxEstado.setBounds(211, 319, 111, 28);
 		contentPane.add(cbxEstado);
 		cbxEstado.addItem("Pendiente");
 		cbxEstado.addItem("Activo");
@@ -134,18 +136,23 @@ public class FormModificarEstadoServicioTecnico extends JFrame {
 				}
 			}
 		});
-		btnCambiarEstado.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnCambiarEstado.setBounds(415, 315, 157, 38);
+		btnCambiarEstado.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnCambiarEstado.setBounds(353, 315, 157, 38);
 		contentPane.add(btnCambiarEstado);
 		
-		JLabel lblListaDeServicios = new JLabel("Lista de servicios");
-		lblListaDeServicios.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblListaDeServicios.setBounds(233, 11, 147, 31);
+		JLabel lblListaDeServicios = new JLabel("Modificar estado");
+		lblListaDeServicios.setFont(new Font("Segoe UI", Font.BOLD, 24));
+		lblListaDeServicios.setBounds(44, 11, 210, 31);
 		contentPane.add(lblListaDeServicios);
 		
-		JLabel lblIngresarId = new JLabel("Ingresar Id");
-		lblIngresarId.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblIngresarId.setBounds(201, 312, 71, 14);
+		JLabel lblIngresarId = new JLabel("Ingresar Id:");
+		lblIngresarId.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblIngresarId.setBounds(291, 60, 71, 26);
 		contentPane.add(lblIngresarId);
+		
+		JLabel lblNewLabel = new JLabel("Seleccione el estado:");
+		lblNewLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblNewLabel.setBounds(69, 321, 132, 25);
+		contentPane.add(lblNewLabel);
 	}
 }

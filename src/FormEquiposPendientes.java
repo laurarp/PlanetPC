@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class FormEquiposPendientes extends JFrame {
 
@@ -46,17 +47,18 @@ public class FormEquiposPendientes extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 669, 446);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblListaDeServicios = new JLabel("Lista de servicios");
-		lblListaDeServicios.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblListaDeServicios.setBounds(242, 26, 184, 25);
+		JLabel lblListaDeServicios = new JLabel("Equipos pendientes");
+		lblListaDeServicios.setFont(new Font("Segoe UI", Font.BOLD, 24));
+		lblListaDeServicios.setBounds(37, 11, 232, 41);
 		contentPane.add(lblListaDeServicios);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(37, 49, 580, 298);
+		scrollPane.setBounds(37, 75, 580, 246);
 		contentPane.add(scrollPane);
 		
 		AuxiliarServicio x = new AuxiliarServicio(actor.getNombre(), actor.getId(), actor.getContrasena());
@@ -70,7 +72,7 @@ public class FormEquiposPendientes extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		JButton btnMostrar = new JButton("Mostrar servicios");
-		btnMostrar.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnMostrar.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnMostrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ArrayList<ServicioTecnico> reportes = null;
@@ -107,7 +109,7 @@ public class FormEquiposPendientes extends JFrame {
 				
 			}
 		});
-		btnMostrar.setBounds(242, 359, 154, 37);
+		btnMostrar.setBounds(243, 343, 154, 37);
 		contentPane.add(btnMostrar);
 	}
 

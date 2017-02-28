@@ -17,6 +17,7 @@ import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class FormModificarUsuarioContrasena extends JFrame {
 
@@ -53,13 +54,14 @@ public class FormModificarUsuarioContrasena extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 720, 479);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblListaDeUsuarios = new JLabel("Lista de usuarios");
-		lblListaDeUsuarios.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblListaDeUsuarios.setBounds(260, 26, 166, 26);
+		JLabel lblListaDeUsuarios = new JLabel("Modificar contrase\u00F1a");
+		lblListaDeUsuarios.setFont(new Font("Segoe UI", Font.BOLD, 24));
+		lblListaDeUsuarios.setBounds(44, 24, 254, 31);
 		contentPane.add(lblListaDeUsuarios);
 		
 		Administrador x = new Administrador(actor.getNombre(), actor.getId(), actor.getContrasena());
@@ -70,7 +72,7 @@ public class FormModificarUsuarioContrasena extends JFrame {
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(44, 50, 616, 283);
+		scrollPane.setBounds(44, 121, 616, 190);
 		contentPane.add(scrollPane);
 		
 		table = new JTable(tableModel);
@@ -107,41 +109,45 @@ public class FormModificarUsuarioContrasena extends JFrame {
 				}
 			}
 		});
-		btnMostrarUsuarios.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnMostrarUsuarios.setBounds(44, 382, 135, 31);
+		btnMostrarUsuarios.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		btnMostrarUsuarios.setBounds(44, 66, 151, 31);
 		contentPane.add(btnMostrarUsuarios);
 		
 		JLabel lblIngreseElId = new JLabel("Ingrese el Id del usuario:");
-		lblIngreseElId.setBounds(202, 373, 124, 14);
+		lblIngreseElId.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblIngreseElId.setBounds(219, 71, 163, 21);
 		contentPane.add(lblIngreseElId);
 		
 		txtID = new JTextField();
-		txtID.setBounds(219, 388, 86, 20);
+		txtID.setBounds(381, 73, 86, 20);
 		contentPane.add(txtID);
 		txtID.setColumns(10);
 		
 		passContrasenaAct = new JPasswordField();
-		passContrasenaAct.setBounds(465, 344, 93, 20);
+		passContrasenaAct.setBounds(217, 346, 93, 20);
 		contentPane.add(passContrasenaAct);
 		
 		passNewPass = new JPasswordField();
-		passNewPass.setBounds(465, 370, 93, 20);
+		passNewPass.setBounds(217, 372, 93, 20);
 		contentPane.add(passNewPass);
 		
 		passVerNewPass = new JPasswordField();
-		passVerNewPass.setBounds(465, 393, 93, 20);
+		passVerNewPass.setBounds(217, 396, 93, 20);
 		contentPane.add(passVerNewPass);
 		
 		JLabel lblContraseaActual = new JLabel("Contrase\u00F1a actual:");
-		lblContraseaActual.setBounds(352, 347, 103, 14);
+		lblContraseaActual.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblContraseaActual.setBounds(76, 347, 124, 14);
 		contentPane.add(lblContraseaActual);
 		
 		JLabel lblNuevaContrasea = new JLabel("Nueva contrase\u00F1a:");
-		lblNuevaContrasea.setBounds(352, 373, 106, 14);
+		lblNuevaContrasea.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblNuevaContrasea.setBounds(76, 373, 119, 14);
 		contentPane.add(lblNuevaContrasea);
 		
 		JLabel lblVerificarContrasea = new JLabel("Verificar contrase\u00F1a:");
-		lblVerificarContrasea.setBounds(352, 396, 103, 14);
+		lblVerificarContrasea.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblVerificarContrasea.setBounds(76, 399, 131, 14);
 		contentPane.add(lblVerificarContrasea);
 		
 		JButton btnGuardar = new JButton("Guardar");
@@ -164,8 +170,8 @@ public class FormModificarUsuarioContrasena extends JFrame {
 				}
 			}
 		});
-		btnGuardar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnGuardar.setBounds(581, 382, 103, 31);
+		btnGuardar.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnGuardar.setBounds(408, 364, 103, 31);
 		contentPane.add(btnGuardar);
 	}
 }
