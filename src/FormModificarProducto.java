@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Choice;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -27,7 +28,6 @@ public class FormModificarProducto extends JFrame {
 	private JLabel lblId;
 	private JTextField textField_2;
 	private JTextField textField_1;
-	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
@@ -146,11 +146,6 @@ public class FormModificarProducto extends JFrame {
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(132, 473, 86, 20);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
-		
 		textField_4 = new JTextField();
 		textField_4.setBackground(Color.WHITE);
 		textField_4.setBounds(384, 411, 86, 20);
@@ -166,6 +161,18 @@ public class FormModificarProducto extends JFrame {
 		textField_6.setBounds(384, 473, 86, 20);
 		contentPane.add(textField_6);
 		textField_6.setColumns(10);
+		
+		Choice choiceTipo = new Choice();
+		choiceTipo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		choiceTipo.addItem("PC");
+		choiceTipo.addItem("Portatil");
+		choiceTipo.addItem("Software");
+		choiceTipo.addItem("Tablet");
+		choiceTipo.addItem("Accesorio");
+		choiceTipo.addItem("Monitor");
+		choiceTipo.addItem("Impresora");
+		choiceTipo.setBounds(132, 467, 86, 13);
+		contentPane.add(choiceTipo);
 		
 		btnGuardarCambios = new JButton("Guardar cambios");
 		btnGuardarCambios.addActionListener(new ActionListener() {
@@ -200,11 +207,10 @@ public class FormModificarProducto extends JFrame {
 				}
 				if (intentar==true && intentar2 ==true){
 				try {
-					auxiliar.modificarProductoCatalogo(textField.getText(), textField_1.getText(), textField_2.getText(), textField_3.getText(), textField_4.getText(), textField_5.getText(), textField_6.getText());
+					auxiliar.modificarProductoCatalogo(textField.getText(), textField_1.getText(), textField_2.getText(), choiceTipo.getSelectedItem(), textField_4.getText(), textField_5.getText(), textField_6.getText());
 					textField.setText("");
 					textField_2.setText("");
 					textField_1.setText("");
-					textField_3.setText("");
 					textField_4.setText("");
 					textField_5.setText("");
 					textField_6.setText("");
