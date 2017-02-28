@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -11,8 +12,11 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class FormAgregarProducto extends JFrame {
 	private JPanel contentPane;
@@ -23,6 +27,7 @@ public class FormAgregarProducto extends JFrame {
 	private JTextField textMarca;
 	private JTextField textModelo;
 	private AuxiliarAlmacenamiento auxiliar;
+	private JTable table;
 	
 
 	/**
@@ -46,7 +51,7 @@ public class FormAgregarProducto extends JFrame {
 	 */
 	public FormAgregarProducto() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 718, 464);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -111,6 +116,10 @@ public class FormAgregarProducto extends JFrame {
 		textModelo.setBounds(76, 160, 86, 20);
 		contentPane.add(textModelo);
 		textModelo.setColumns(10);
+		String titulos[] = { "Id ", "Precio", "Tipo", "Garantia", "Marca",
+		"Modelo" };
+		DefaultTableModel tableModel = new DefaultTableModel(titulos, 0);
+		table = new JTable(tableModel);
 		try {
 			auxiliar = new AuxiliarAlmacenamiento("1004s","Pepito","pepito1309");
 		} catch (Exception e) {
@@ -163,7 +172,49 @@ public class FormAgregarProducto extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton_1.setBounds(335, 228, 89, 23);
+		btnNewButton_1.setBounds(603, 401, 89, 23);
 		contentPane.add(btnNewButton_1);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(219, 31, 473, 359);
+		contentPane.add(scrollPane);
+		scrollPane.setViewportView(table);
+		
+		JButton btnMostrarrefresh = new JButton("Mostrar/Refresh");
+		btnMostrarrefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<DescripcionProducto> catalogo = null;
+
+				int rowCount = table.getRowCount();
+
+				for (int i = rowCount - 1; i >= 0; i--) {
+					tableModel.removeRow(i);
+				}
+
+				try {
+					catalogo = auxiliar.mostrarCatalogo();
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
+
+				if (catalogo != null) {
+					for (int i = 0; i < catalogo.size(); i++) {
+						String id = catalogo.get(i).getId();
+						String precioVenta = String.valueOf(catalogo.get(i).getPrecioVenta());
+						String tipo = catalogo.get(i).getTipo();
+						String garantia = String.valueOf(catalogo.get(i).getDiasGarantia());
+						String marca = catalogo.get(i).getMarca();
+						String modelo = String.valueOf(catalogo.get(i).getModelo());
+						
+						Object[] objs = { id, precioVenta, tipo, garantia, marca, modelo };
+						tableModel.addRow(objs);
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "no hay productos en el catalogo");
+				}
+			}
+		});
+		btnMostrarrefresh.setBounds(220, 400, 121, 23);
+		contentPane.add(btnMostrarrefresh);
 	}
 }
