@@ -84,7 +84,12 @@ public class FormEliminarProducto extends JFrame {
 					JOptionPane.showMessageDialog(contentPane, "No ha ingresado el id del producto para eliminar");
 				}
 				if (intentar2==true){
-				auxiliar.eliminarProductoCatalogo(textField.getText());
+				try {
+					auxiliar.eliminarProductoCatalogo(textField.getText());
+				} catch (Excepciones e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(contentPane, e1.getMessage());
+				}
 				textField.setText("");
 				}
 			}
