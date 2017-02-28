@@ -31,7 +31,7 @@ public class FormRegistrarPedido extends JFrame {
 			initialize();
 		} 
 		catch (Exception e) {
-			JOptionPane.showMessageDialog(null, ("no se encuentra en la lista"));
+			JOptionPane.showMessageDialog(null, ("Pedido registrado exitosamente"));
 		}
 	}
 
