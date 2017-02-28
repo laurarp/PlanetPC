@@ -236,6 +236,13 @@ public class FormPrincipal extends JFrame{
 			{
 				JMenuItem mntmUbicarProducto = new JMenuItem("Ubicar producto");
 				mnInventario.add(mntmUbicarProducto);
+				mntmUbicarProducto.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						FormUbicarProducto ubicarProducto= new FormUbicarProducto(actor);
+						ubicarProducto.setVisible(true);
+					}
+				});
 			}
 			
 			if(actor.getClass().getName().compareTo("Administrador")==0 || actor.getClass().getName().compareTo("JefeBodega")==0)
