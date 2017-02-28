@@ -13,7 +13,8 @@ public class ListaDescProducto implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -5371723452641887410L;
-	private static ArrayList<DescripcionProducto> productos = new ArrayList<DescripcionProducto>();;
+	private static ArrayList<DescripcionProducto> productos = new ArrayList<DescripcionProducto>();
+	
 	public ListaDescProducto() throws Exception {
 		super();
 		if(ReadFileCatalogo("Catalogo.txt")!=null)
@@ -26,6 +27,32 @@ public class ListaDescProducto implements Serializable{
 			this.productos =new ArrayList<DescripcionProducto>();
 		}
 
+	}
+	
+	public DescripcionProducto buscarProducto(String idProducto) throws Exception
+	{
+		if(productos.size()!=0)
+		{
+			int i=0;
+				
+			while(i<productos.size() && productos.get(i).getId().compareTo(idProducto)!=0)
+			{	
+				i++;
+			}
+				
+			if(i<productos.size())
+			{
+				return productos.get(i);
+			}
+			else
+			{
+				throw new Exception("El producto no se encuentra en el inventario");
+			}
+		}
+		else
+		{
+			throw new Exception("No existen productos en el catalogo");
+		}
 	}
 
 	public void escribirArchivoObjeto(String archivo, ArrayList<DescripcionProducto> listaDescProducto) {

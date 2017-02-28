@@ -75,9 +75,48 @@ public class Inventario implements Serializable{
 		}
 	}
 	
-	public void andirCantidad(DescripcionProducto descripcionProducto,int Cantidad)
+	public int buscarProductoId(String idProducto,String tipo, String marca, String modelo) throws Exception
 	{
-		
+		if(listaProductos.size()!=0)
+		{
+			int i=0;
+				
+			if(idProducto.compareTo("")!=0)
+			{
+				while(i<listaProductos.size() && (listaProductos.get(i).getDescripcionProducto().getId().compareTo(idProducto) != 0))
+				{
+					i++;
+				}
+			}
+			else
+			{
+				while(i<listaProductos.size() && (listaProductos.get(i).getDescripcionProducto().getTipo().compareTo(tipo)!=0 || listaProductos.get(i).getDescripcionProducto().getMarca().compareTo(marca)!=0 || listaProductos.get(i).getDescripcionProducto().getModelo().compareTo(modelo)!=0))
+				{
+					i++;
+				}
+			}
+			
+
+			if(i<listaProductos.size())
+			{
+				return i;
+			}
+			else
+			{
+				throw new Exception("El producto no se encuentra en el inventario");
+			}
+		}
+		else
+		{
+			throw new Exception("No existen productos en el inventario");
+		}
+	}
+	
+	public void anadirCantidad(DescripcionProducto descripcionProducto,int Cantidad) throws Exception
+	{
+		int p=buscarProductoId(descripcionProducto.getId(),descripcionProducto.getTipo(),descripcionProducto.getMarca(),descripcionProducto.getModelo());
+		listaProductos.get(p).setCantidad(listaProductos.get(p).getCantidad()+Cantidad);
+		WriteFileInventario(ruta,listaProductos);
 	}
 	
 	public void restarCantidad(DescripcionProducto descripcionProducto,int Cantidad)

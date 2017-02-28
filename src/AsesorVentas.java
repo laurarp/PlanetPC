@@ -71,8 +71,8 @@ public class AsesorVentas extends Actor implements Serializable{
 	
 	public void registarVenta(String idProducto, String idCliente, String idVendedor, String Cantidad) throws Exception
 	{
-		//productos.bu
-		//listaVentas.añadirVenta(null, fechaVenta, idCliente, idVendedor, Cantidad);
+		inventario.anadirCantidad(productos.buscarProducto(idProducto), Integer.parseInt(Cantidad));
+		listaVentas.anadirVenta(productos.buscarProducto(idProducto), idCliente, idVendedor, Integer.parseInt(Cantidad));	
 	}
 	
 	public static void main(String[] args) {

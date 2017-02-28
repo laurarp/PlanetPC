@@ -32,7 +32,7 @@ public class ListaVentas implements Serializable{
 		}
 	}
 
-	public void añadirVenta (DescripcionProducto descProducto, String idCliente, String idVendedor, int cantidad) throws Exception
+	public void anadirVenta (DescripcionProducto descProducto, String idCliente, String idVendedor, int cantidad) throws Exception
 	{
 		Venta ventaNueva=new Venta(descProducto,new Date(System.currentTimeMillis()),idCliente,idVendedor,cantidad);
 		ventas.add(ventaNueva);
