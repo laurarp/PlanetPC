@@ -7,6 +7,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Font;
 
 public class FormCrearProveedor extends JFrame {
 
@@ -36,26 +38,27 @@ public class FormCrearProveedor extends JFrame {
 	 */
 	private void initialize() {
 		setFrmCrearProveedor(new JFrame());
-		getFrmCrearProveedor().setTitle("Crear Proveedor");
-		getFrmCrearProveedor().setBounds(100, 100, 450, 300);
+		getFrmCrearProveedor().setBounds(100, 100, 450, 372);
 		getFrmCrearProveedor().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getFrmCrearProveedor().getContentPane().setLayout(null);
 		
 		JLabel lblIngresaElNombre = new JLabel("Ingresa el nombre del proveedor");
-		lblIngresaElNombre.setBounds(15, 16, 257, 20);
+		lblIngresaElNombre.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblIngresaElNombre.setBounds(15, 81, 257, 20);
 		getFrmCrearProveedor().getContentPane().add(lblIngresaElNombre);
 		
 		textField = new JTextField();
-		textField.setBounds(15, 55, 146, 26);
+		textField.setBounds(15, 117, 146, 26);
 		getFrmCrearProveedor().getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblIngresaElId = new JLabel("Ingresa el id del proveedor");
-		lblIngresaElId.setBounds(15, 97, 257, 20);
+		lblIngresaElId.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblIngresaElId.setBounds(15, 159, 257, 20);
 		getFrmCrearProveedor().getContentPane().add(lblIngresaElId);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(15, 133, 146, 26);
+		textField_1.setBounds(15, 195, 146, 26);
 		getFrmCrearProveedor().getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
@@ -75,8 +78,13 @@ public class FormCrearProveedor extends JFrame {
 				}
 			}
 		});
-		btnCrear.setBounds(158, 183, 115, 29);
+		btnCrear.setBounds(157, 237, 115, 29);
 		getFrmCrearProveedor().getContentPane().add(btnCrear);
+		
+		JLabel lblCrearProveedores = new JLabel("Crear Proveedores");
+		lblCrearProveedores.setFont(new Font("Segoe UI", Font.BOLD, 24));
+		lblCrearProveedores.setBounds(15, 30, 214, 35);
+		frmCrearProveedor.getContentPane().add(lblCrearProveedores);
 	}
 
 	public JFrame getFrmCrearProveedor() {
@@ -85,5 +93,6 @@ public class FormCrearProveedor extends JFrame {
 
 	public void setFrmCrearProveedor(JFrame frmCrearProveedor) {
 		this.frmCrearProveedor = frmCrearProveedor;
+		frmCrearProveedor.getContentPane().setBackground(Color.WHITE);
 	}
 }
