@@ -114,6 +114,7 @@ public class Inventario implements Serializable{
 	
 	public void anadirCantidad(DescripcionProducto descripcionProducto,int Cantidad) throws Exception
 	{
+		//
 		int p=buscarProductoId(descripcionProducto.getId(),descripcionProducto.getTipo(),descripcionProducto.getMarca(),descripcionProducto.getModelo());
 		listaProductos.get(p).setCantidad(listaProductos.get(p).getCantidad()+Cantidad);
 		WriteFileInventario(ruta,listaProductos);

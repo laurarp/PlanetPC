@@ -21,16 +21,10 @@ public class AuxiliarAlmacenamiento extends Actor implements Serializable{
 		catalogo.nuevoProducto(id, precioVenta, tipo, diasGarantia, marca, modelo);
 		
 	}
-	public void eliminarProductoCatalogo(String id)
+	public void eliminarProductoCatalogo(String id) throws Excepciones
 	{
-		try {
 			catalogo.eliminarProducto(id);
-		} catch (Excepciones e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		
-	}
 	public ArrayList<DescripcionProducto> mostrarCatalogo() throws Exception {
 		ArrayList<DescripcionProducto> lista;
 			lista = catalogo.ReadFileCatalogo("Catalogo.txt");

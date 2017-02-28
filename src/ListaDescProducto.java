@@ -222,22 +222,22 @@ public class ListaDescProducto implements Serializable{
 		if (buscarCatalogo(id) == -1) {
 			throw new Excepciones("El servicio no esta cargado en la lista");
 		} else {
-			if (nuevoId!=null){
+			if (nuevoId!="" && !nuevoId.isEmpty()){
 				productos.get(indice).setId(nuevoId);
 			}
-			if (nuevoPrecio!=null){
+			if (nuevoPrecio!="" && !nuevoPrecio.isEmpty()){
 				productos.get(indice).setPrecioVenta(Integer.parseInt(nuevoPrecio));
 			}
-			if (nuevoTipo!=null){
+			if (nuevoTipo!="" && !nuevoTipo.isEmpty()){
 				productos.get(indice).setTipo(nuevoTipo);
 			}
-			if (nuevaGarantia!=null && nuevaGarantia.isEmpty()){
+			if (nuevaGarantia!="" && !nuevaGarantia.isEmpty()){
 				productos.get(indice).setDiasGarantia(Integer.parseInt(nuevaGarantia));
 			}
-			if (nuevaMarca!=null){
+			if (nuevaMarca!="" && !nuevaMarca.isEmpty()){
 				productos.get(indice).setMarca(nuevaMarca);
 			}
-			if (nuevoModelo!=null){
+			if (nuevoModelo!="" && !nuevoModelo.isEmpty()){
 				productos.get(indice).setModelo(nuevoModelo);
 			}
 			File s = new File("Catalogo.txt");
