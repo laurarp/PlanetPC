@@ -138,6 +138,13 @@ public class FormPrincipal extends JFrame{
 				
 				JMenuItem mntmEliminarProducto = new JMenuItem("Eliminar producto");
 				mnCatlogo.add(mntmEliminarProducto);
+				mntmEliminarProducto.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						FormEliminarProducto eliminarProducto= new FormEliminarProducto(actor);
+						eliminarProducto.setVisible(true);
+					}
+				});
 			}
 		}
 		
