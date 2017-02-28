@@ -11,6 +11,8 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.Color;
 
 
 public class FormRegistrarVenta extends JFrame{
@@ -20,6 +22,7 @@ public class FormRegistrarVenta extends JFrame{
 	private JTextField textCantidad;
 	private JTextField textIdProducto;
 	private AsesorVentas asesorVentas;
+	private JLabel lblRegistrarVenta;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -57,28 +60,33 @@ public class FormRegistrarVenta extends JFrame{
 	 */
 	private void initialize() {
 		setFrame(new JFrame());
-		getFrame().setBounds(100, 100, 316, 300);
+		getFrame().setBounds(100, 100, 308, 281);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getFrame().getContentPane().setLayout(null);
 		
-		JLabel lblProducto = new JLabel("id Producto");
-		lblProducto.setBounds(24, 27, 46, 14);
+		JLabel lblProducto = new JLabel("Id Producto");
+		lblProducto.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblProducto.setBounds(24, 77, 115, 14);
 		getFrame().getContentPane().add(lblProducto);
 		
 		JLabel lblIdCliente = new JLabel("Id Cliente");
-		lblIdCliente.setBounds(24, 74, 46, 14);
+		lblIdCliente.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblIdCliente.setBounds(24, 113, 86, 14);
 		getFrame().getContentPane().add(lblIdCliente);
 		
 		textIdCliente = new JTextField();
-		textIdCliente.setBounds(93, 71, 86, 20);
+		textIdCliente.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		textIdCliente.setBounds(120, 110, 131, 20);
 		getFrame().getContentPane().add(textIdCliente);
 		textIdCliente.setColumns(10);
 		
 		JLabel lblCantidad = new JLabel("Cantidad");
-		lblCantidad.setBounds(24, 122, 46, 14);
+		lblCantidad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblCantidad.setBounds(24, 153, 71, 14);
 		getFrame().getContentPane().add(lblCantidad);
 		
 		JButton btnRegistrar = new JButton("Registrar");
+		btnRegistrar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try 
@@ -91,18 +99,25 @@ public class FormRegistrarVenta extends JFrame{
 				}
 			}
 		});
-		btnRegistrar.setBounds(71, 170, 89, 23);
+		btnRegistrar.setBounds(99, 195, 89, 23);
 		getFrame().getContentPane().add(btnRegistrar);
 		
 		textCantidad = new JTextField();
-		textCantidad.setBounds(93, 119, 86, 20);
+		textCantidad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		textCantidad.setBounds(120, 150, 131, 20);
 		getFrame().getContentPane().add(textCantidad);
 		textCantidad.setColumns(10);
 		
 		textIdProducto = new JTextField();
-		textIdProducto.setBounds(93, 24, 86, 20);
+		textIdProducto.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		textIdProducto.setBounds(118, 74, 133, 20);
 		frame.getContentPane().add(textIdProducto);
 		textIdProducto.setColumns(10);
+		
+		lblRegistrarVenta = new JLabel("Registrar venta");
+		lblRegistrarVenta.setFont(new Font("Segoe UI", Font.BOLD, 24));
+		lblRegistrarVenta.setBounds(48, 11, 209, 34);
+		frame.getContentPane().add(lblRegistrarVenta);
 	}
 
 	public JFrame getFrame() {
@@ -111,6 +126,7 @@ public class FormRegistrarVenta extends JFrame{
 
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
+		frame.getContentPane().setBackground(new Color(255, 255, 255));
 	}
 
 }
