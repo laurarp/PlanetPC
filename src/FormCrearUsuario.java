@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.Color;
 
 
 public class FormCrearUsuario {
@@ -112,7 +113,7 @@ public class FormCrearUsuario {
 				}
 			}
 		});
-		btnCrear.setBounds(145, 190, 128, 23);
+		btnCrear.setBounds(145, 184, 128, 23);
 		getFrame().getContentPane().add(btnCrear);
 		
 		JLabel lblCrearUsuario = new JLabel("Crear usuario");
@@ -127,5 +128,6 @@ public class FormCrearUsuario {
 
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
+		frame.getContentPane().setBackground(new Color(255, 255, 255));
 	}
 }
