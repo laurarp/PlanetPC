@@ -117,6 +117,13 @@ public class FormPrincipal extends JFrame{
 			{
 				JMenuItem mntmAadirProducto = new JMenuItem("Ingresar producto");
 				mnCatlogo.add(mntmAadirProducto);
+				mntmAadirProducto.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						FormAgregarProducto agregarProducto= new FormAgregarProducto(actor);
+						agregarProducto.setVisible(true);
+					}
+				});
 				
 				JMenuItem mntmModificarProducto = new JMenuItem("Modificar producto");
 				mnCatlogo.add(mntmModificarProducto);
