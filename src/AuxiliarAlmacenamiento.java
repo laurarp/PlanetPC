@@ -50,5 +50,9 @@ public class AuxiliarAlmacenamiento extends Actor implements Serializable{
 			inventario.WriteFileInventario("Inventario.txt", inventario.getListaProductos());
 		}
 	}
+	public ArrayList<Producto> mostrarInventario() throws Exception {
+		return inventario.mostrarInventario();
+		// TODO Auto-generated method stub
+	}
 
 }

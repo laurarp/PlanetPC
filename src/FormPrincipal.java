@@ -256,6 +256,14 @@ public class FormPrincipal extends JFrame{
 			{
 				JMenuItem mntmReporteInventarioActual = new JMenuItem("Reporte inventario actual");
 				mnInventario.add(mntmReporteInventarioActual);
+				mntmReporteInventarioActual.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						FormReporteInventario reporteInventario= new FormReporteInventario(actor);
+						reporteInventario.setVisible(true);
+					}
+				});
+				
 			}
 		}
 		

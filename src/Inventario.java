@@ -184,6 +184,11 @@ public class Inventario implements Serializable{
 			return inventario;
 		}
 	}
+	public ArrayList<Producto> mostrarInventario() throws Exception {
+		ArrayList<Producto> lista;
+			lista = ReadFileInventario("Inventario.txt");
+			return lista;
+	}
 	
 	public static void WriteFileInventario(String file, ArrayList<Producto> productosNuevos) throws Exception
 	{
