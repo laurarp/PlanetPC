@@ -12,6 +12,8 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.Color;
 
 
 public class FormCrearUsuario {
@@ -42,50 +44,59 @@ public class FormCrearUsuario {
 	 */
 	private void initialize() {
 		setFrame(new JFrame());
-		getFrame().setBounds(100, 100, 450, 300);
+		getFrame().setBounds(100, 100, 415, 276);
 		getFrame().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getFrame().getContentPane().setLayout(null);
 		
 		JLabel lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(49, 46, 46, 14);
+		lblNombre.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblNombre.setBounds(31, 67, 92, 14);
 		getFrame().getContentPane().add(lblNombre);
 		
 		textNombre = new JTextField();
-		textNombre.setBounds(145, 43, 86, 20);
+		textNombre.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		textNombre.setBounds(145, 64, 223, 20);
 		getFrame().getContentPane().add(textNombre);
 		textNombre.setColumns(10);
 		
 		JLabel lblCedula = new JLabel("Cedula");
-		lblCedula.setBounds(49, 92, 46, 14);
+		lblCedula.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblCedula.setBounds(31, 92, 92, 14);
 		getFrame().getContentPane().add(lblCedula);
 		
 		textCedula = new JTextField();
-		textCedula.setBounds(145, 89, 86, 20);
+		textCedula.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		textCedula.setBounds(145, 91, 223, 20);
 		getFrame().getContentPane().add(textCedula);
 		textCedula.setColumns(10);
 		
 		JLabel lblContrasena = new JLabel("Contrase\u00F1a");
-		lblContrasena.setBounds(49, 133, 46, 14);
+		lblContrasena.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblContrasena.setBounds(31, 123, 92, 14);
 		getFrame().getContentPane().add(lblContrasena);
 		
 		contrasena = new JPasswordField();
-		contrasena.setBounds(145, 130, 86, 20);
+		contrasena.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		contrasena.setBounds(145, 122, 223, 20);
 		getFrame().getContentPane().add(contrasena);
 		
 		Choice choiceTipo = new Choice();
+		choiceTipo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		choiceTipo.addItem("Administrador");
 		choiceTipo.addItem("Jefe de bodega");
 		choiceTipo.addItem("Auxiliar de almacenamiento");
 		choiceTipo.addItem("Auxiliar de servicio técnico");
 		choiceTipo.addItem("Asistente de compras y ventas");
-		choiceTipo.setBounds(145, 170, 86, 20);
+		choiceTipo.setBounds(145, 148, 223, 22);
 		getFrame().getContentPane().add(choiceTipo);
 		
 		JLabel lblTipo = new JLabel("Tipo");
-		lblTipo.setBounds(49, 176, 46, 14);
+		lblTipo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblTipo.setBounds(31, 154, 108, 14);
 		getFrame().getContentPane().add(lblTipo);
 		
 		JButton btnCrear = new JButton("Crear");
+		btnCrear.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try 
@@ -102,8 +113,13 @@ public class FormCrearUsuario {
 				}
 			}
 		});
-		btnCrear.setBounds(117, 212, 89, 23);
+		btnCrear.setBounds(145, 184, 128, 23);
 		getFrame().getContentPane().add(btnCrear);
+		
+		JLabel lblCrearUsuario = new JLabel("Crear usuario");
+		lblCrearUsuario.setFont(new Font("Segoe UI", Font.BOLD, 24));
+		lblCrearUsuario.setBounds(115, 22, 175, 23);
+		frame.getContentPane().add(lblCrearUsuario);
 	}
 
 	public JFrame getFrame() {
@@ -112,5 +128,6 @@ public class FormCrearUsuario {
 
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
+		frame.getContentPane().setBackground(new Color(255, 255, 255));
 	}
 }
