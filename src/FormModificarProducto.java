@@ -185,6 +185,12 @@ public class FormModificarProducto extends JFrame {
 					try{
 						pv = Integer.parseInt(textField_2.getText());
 						intentar = true;
+						if (pv<0){
+							intentar = false;
+							  JOptionPane.showMessageDialog(contentPane, "Precio debe ser numero entero positivo");
+							  textField_2.setText("");
+							  
+						}
 					}catch (NumberFormatException e){
 						  intentar = false;
 						  JOptionPane.showMessageDialog(contentPane, "Precio debe ser numero entero");
@@ -195,6 +201,12 @@ public class FormModificarProducto extends JFrame {
 					try{
 						dg = Integer.parseInt(textField_4.getText());
 						intentar = true;
+						if (dg<0){
+							intentar = false;
+							  JOptionPane.showMessageDialog(contentPane, "Garantia debe ser numero entero positivo");
+							  textField_4.setText("");
+							  
+						}
 					}catch (NumberFormatException e){
 						  intentar = false;
 						  JOptionPane.showMessageDialog(contentPane, "Garantia debe ser numero entero");

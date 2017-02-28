@@ -152,9 +152,15 @@ public class FormAgregarProducto extends JFrame {
 						pv = Integer.parseInt(textprecioVenta.getText());
 						dg = Integer.parseInt(textGarantia.getText());
 						intentar = true;
+						if (pv<0 || dg<0){
+							intentar = false;
+							  JOptionPane.showMessageDialog(contentPane, "Precio o garantia deben ser numeros enteros positivos");
+							  textprecioVenta.setText("");
+							  textGarantia.setText("");
+						}
 					}catch (NumberFormatException e){
 						  intentar = false;
-						  JOptionPane.showMessageDialog(contentPane, "Precio o garantia deben ser numeros enteros");
+						  JOptionPane.showMessageDialog(contentPane, "Precio o garantia deben ser numeros enteros positovs");
 						  textprecioVenta.setText("");
 						  textGarantia.setText("");
 					}

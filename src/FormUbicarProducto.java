@@ -106,9 +106,14 @@ public class FormUbicarProducto extends JFrame {
 				try{
 					c = Integer.parseInt(textCantidad.getText());
 					intentar = true;
+					if (c<0){
+						intentar = false;
+						  JOptionPane.showMessageDialog(contentPane, "Cantidad debe ser un numero entero positivo");
+						  textCantidad.setText("");
+					}
 				}catch (NumberFormatException e){
 					  intentar = false;
-					  JOptionPane.showMessageDialog(contentPane, "Cantidad debe ser un numero entero");
+					  JOptionPane.showMessageDialog(contentPane, "Cantidad debe ser un numero entero positivo");
 					  textCantidad.setText("");
 				}
 				if (textId.getText().isEmpty()){
