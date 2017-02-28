@@ -10,6 +10,9 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 
 public class FormReporteVentas {
@@ -17,6 +20,7 @@ public class FormReporteVentas {
 	private JFrame frame;
 	private JTable table;
 	private AsesorVentas asesorVentas = null;
+	private JLabel lblReporteVentas;
 
 	/**
 	 * Create the application.
@@ -40,7 +44,7 @@ public class FormReporteVentas {
 	 */
 	private void initialize() {
 		setFrame(new JFrame());
-		getFrame().setBounds(100, 100, 481, 300);
+		getFrame().setBounds(100, 100, 623, 367);
 		getFrame().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getFrame().getContentPane().setLayout(null);
 		
@@ -49,12 +53,13 @@ public class FormReporteVentas {
 		DefaultTableModel tableModel = new DefaultTableModel(titulos, 0);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(26, 34, 313, 183);
+		scrollPane.setBounds(25, 71, 550, 183);
 		getFrame().getContentPane().add(scrollPane);
 		table = new JTable(tableModel);
 		scrollPane.setViewportView(table);
 		
 		JButton btnConsultar = new JButton("Consultar");
+		btnConsultar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ArrayList<Venta> ventas = null;
@@ -99,8 +104,13 @@ public class FormReporteVentas {
 			}
 		});
 		
-		btnConsultar.setBounds(366, 207, 89, 23);
+		btnConsultar.setBounds(25, 277, 112, 23);
 		getFrame().getContentPane().add(btnConsultar);
+		
+		lblReporteVentas = new JLabel("Reporte ventas");
+		lblReporteVentas.setFont(new Font("Segoe UI", Font.BOLD, 24));
+		lblReporteVentas.setBounds(25, 25, 214, 23);
+		frame.getContentPane().add(lblReporteVentas);
 	}
 
 	public JFrame getFrame() {
@@ -109,6 +119,7 @@ public class FormReporteVentas {
 
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
+		frame.getContentPane().setBackground(new Color(255, 255, 255));
 	}
 
 }
