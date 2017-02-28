@@ -17,14 +17,7 @@ public class Compra implements Serializable{
 	private Date fechaPedido;
 	private Date fechaIngreso;
 	private String estado;
-	private String descripcion;
 	
-	public void setDescripcion(String descripcion){
-		this.descripcion = descripcion;
-	}
-	public String getDescripcion() {
-		return descripcion;
-	}
 	public String getIdCompra() {
 		return idCompra;
 	}
@@ -93,23 +86,6 @@ public class Compra implements Serializable{
 		this.estado = estado;
 	}
 
-public Compra(String descripcion, String idProveedor, int cantidad, int precioCompra, String estado){
-		
-		Calendar calendario = Calendar.getInstance();
-		calendario = new GregorianCalendar();
-		String hora, minutos, segundos;
-		hora =Integer.toString(calendario.get(Calendar.HOUR_OF_DAY));
-		minutos = Integer.toString(calendario.get(Calendar.MINUTE));
-		segundos = Integer.toString(calendario.get(Calendar.SECOND));
-		
-		this.descripcion = descripcion;
-		this.idCompra= hora+minutos+segundos;
-		this.idProveedor = idProveedor;
-		this.cantidad = cantidad;
-		this.precioCompra = precioCompra;
-		this.fechaPedido = new Date(System.currentTimeMillis());
-		this.fechaIngreso = fechaIngreso;
-		this.estado = estado;
-	}
+
 	
 }

@@ -46,7 +46,7 @@ public class FormRegistrarPedido extends JFrame {
 		frmRegistrarPedido.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmRegistrarPedido.getContentPane().setLayout(null);
 		
-		JLabel lblDescripcionProducto = new JLabel("Descripcion producto");
+		JLabel lblDescripcionProducto = new JLabel("Id producto");
 		lblDescripcionProducto.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblDescripcionProducto.setBounds(15, 79, 156, 20);
 		frmRegistrarPedido.getContentPane().add(lblDescripcionProducto);
@@ -98,7 +98,7 @@ public class FormRegistrarPedido extends JFrame {
 					}
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null, ("pedido registrado exitosamente"));
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
 		});

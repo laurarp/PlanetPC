@@ -40,9 +40,8 @@ public class ListaCompras implements Serializable {
 		WriteFileCompras(ruta, compras);
 	}
 
-public void añadirPedido (String  descripcion, String idProveedor, int cantidad, int precioCompra, String estado) throws Exception{
-		
-		Compra tempCompra = new Compra(descripcion, idProveedor, cantidad, precioCompra, estado);
+public void añadirPedido (DescripcionProducto  descripcion, String idProveedor, int cantidad, int precioCompra, String estado) throws Exception{
+		Compra tempCompra = new Compra(descripcion, idProveedor, cantidad, precioCompra,null,null, estado);
 		compras.add(tempCompra);
 		WriteFileCompras(ruta, compras);
 	}
