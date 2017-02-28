@@ -74,7 +74,7 @@ public class FormBuscarUsuario extends JFrame {
 		scrollPane.setBounds(27, 118, 480, 103);
 		contentPane.add(scrollPane);
 		
-		String titulos[] = {"Id", "Nombre", "Tipo"};
+		String titulos[] = {"Id", "Nombre", "Tipo", "Contraseña"};
 
 		DefaultTableModel tableModel = new DefaultTableModel(titulos, 0);
 		
