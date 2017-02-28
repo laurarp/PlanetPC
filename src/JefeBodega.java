@@ -45,4 +45,9 @@ public class JefeBodega extends Actor implements Serializable{
 		listaCompras.añadirPedido(descripcion, idProveedor, cantidad, precioCompra, estado);
 	}
 
+	public ArrayList<Producto> mostrarInventario() throws Exception {
+		return inventario.mostrarInventario();
+		// TODO Auto-generated method stub
+	}
+
 }
