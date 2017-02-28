@@ -7,6 +7,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class FormBucarProveedor extends JFrame {
 
@@ -33,17 +34,17 @@ public class FormBucarProveedor extends JFrame {
 	 */
 	private void initialize() {
 		setFrmBuscarProveedor(new JFrame());
-		getFrmBuscarProveedor().setTitle("Buscar Proveedor");
-		getFrmBuscarProveedor().setBounds(100, 100, 450, 300);
+		getFrmBuscarProveedor().setBounds(100, 100, 298, 300);
 		getFrmBuscarProveedor().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getFrmBuscarProveedor().getContentPane().setLayout(null);
 		
 		JLabel lblIngreseElId = new JLabel("Ingrese el id del proveedor");
-		lblIngreseElId.setBounds(85, 39, 213, 20);
+		lblIngreseElId.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblIngreseElId.setBounds(25, 77, 213, 20);
 		getFrmBuscarProveedor().getContentPane().add(lblIngreseElId);
 		
 		textField = new JTextField();
-		textField.setBounds(85, 75, 146, 26);
+		textField.setBounds(25, 113, 146, 26);
 		getFrmBuscarProveedor().getContentPane().add(textField);
 		textField.setColumns(10);
 		
@@ -62,8 +63,13 @@ public class FormBucarProveedor extends JFrame {
 				}
 			}
 		});
-		btnBuscar.setBounds(85, 117, 115, 29);
+		btnBuscar.setBounds(25, 155, 115, 29);
 		getFrmBuscarProveedor().getContentPane().add(btnBuscar);
+		
+		JLabel lblBuscarProveedor = new JLabel("Buscar proveedor");
+		lblBuscarProveedor.setFont(new Font("Segoe UI", Font.BOLD, 24));
+		lblBuscarProveedor.setBounds(15, 16, 213, 45);
+		frmBuscarProveedor.getContentPane().add(lblBuscarProveedor);
 	}
 
 	public JFrame getFrmBuscarProveedor() {
