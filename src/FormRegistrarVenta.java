@@ -19,7 +19,23 @@ public class FormRegistrarVenta extends JFrame{
 	private JTextField textIdCliente;
 	private JTextField textCantidad;
 	private JTextField textIdProducto;
-	private AsesorVentas asesorVentas;;
+	private AsesorVentas asesorVentas;
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+
+					FormRegistrarVenta form = new FormRegistrarVenta(new Administrador("1","Laura","23"));
+
+
+					form.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	/**
 	 * Create the application.

@@ -116,8 +116,15 @@ public class Inventario implements Serializable{
 	{
 		//
 		int p=buscarProductoId(descripcionProducto.getId(),descripcionProducto.getTipo(),descripcionProducto.getMarca(),descripcionProducto.getModelo());
-		listaProductos.get(p).setCantidad(listaProductos.get(p).getCantidad()+Cantidad);
-		WriteFileInventario(ruta,listaProductos);
+		if(listaProductos.get(p).getCantidad()-Cantidad>=0)
+		{
+			listaProductos.get(p).setCantidad(listaProductos.get(p).getCantidad()-Cantidad);
+			WriteFileInventario(ruta,listaProductos);
+		}
+		else
+		{
+			throw new Exception("Se esta vendiendo mas de la cantidad disponible");
+		}
 	}
 	
 	public void restarCantidad(DescripcionProducto descripcionProducto,int Cantidad)
