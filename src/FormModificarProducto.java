@@ -181,6 +181,15 @@ public class FormModificarProducto extends JFrame {
 				int dg = 0;
 				boolean intentar = true;
 				boolean intentar2 = true;
+				boolean intentar3 = true;
+				try{
+					auxiliar.buscarEnCatalogo(textField_1.getText());
+					intentar3=false;
+					JOptionPane.showMessageDialog(contentPane, "El id ya existe");
+					textField_1.setText("");
+				}catch(Exception e){
+					intentar3=true;
+				}
 				if (!textField_2.getText().isEmpty()){
 					try{
 						pv = Integer.parseInt(textField_2.getText());
@@ -217,7 +226,7 @@ public class FormModificarProducto extends JFrame {
 					intentar2 = false;
 					JOptionPane.showMessageDialog(contentPane, "No ha ingresado el id del producto a modificar");
 				}
-				if (intentar==true && intentar2 ==true){
+				if (intentar==true && intentar2 ==true && intentar3 ==true){
 				try {
 					auxiliar.modificarProductoCatalogo(textField.getText(), textField_1.getText(), textField_2.getText(), choiceTipo.getSelectedItem(), textField_4.getText(), textField_5.getText(), textField_6.getText());
 					textField.setText("");
