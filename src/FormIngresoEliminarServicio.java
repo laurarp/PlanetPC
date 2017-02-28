@@ -130,7 +130,7 @@ public class FormIngresoEliminarServicio extends JFrame {
 						tableModel.addRow(objs);
 					}
 				} else {
-					JOptionPane.showMessageDialog(btnMostrar, "no hay servicios en la lista");
+					//JOptionPane.showMessageDialog(btnMostrar, "No hay servicios en la lista");
 				}
 				
 			}

@@ -23,7 +23,7 @@ public class AuxiliarServicio extends Actor implements Serializable{
 		lista.crearServicio(descripcion, idCiente, precio, diasEstimados);
 	}
 	
-	public ArrayList<ServicioTecnico> generarReporteServicios(String estado)
+	public ArrayList<ServicioTecnico> generarReporteServicios(String estado) throws Excepciones
 	{
 		return lista.mostrarServiciosEstado(estado);
 		

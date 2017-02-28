@@ -39,54 +39,61 @@ public class ListaServicios {
 			}
 		}
 	}
-//----------------------------------------------------------------------------------------------------------------
-	//metodo para crear numeros diferentes
+
+	// ----------------------------------------------------------------------------------------------------------------
+	// metodo para crear numeros diferentes
 	public static String crearIdServicio() {
 		Calendar calendario = Calendar.getInstance();
 		calendario = new GregorianCalendar();
 		String hora, minutos, segundos;
-		hora =Integer.toString(calendario.get(Calendar.HOUR_OF_DAY));
+		hora = Integer.toString(calendario.get(Calendar.HOUR_OF_DAY));
 		minutos = Integer.toString(calendario.get(Calendar.MINUTE));
 		segundos = Integer.toString(calendario.get(Calendar.SECOND));
-		String i = hora+minutos+segundos;
+		String i = hora + minutos + segundos;
 		return i;
 	}
-//----------------------------------------------------------------------------------------------------------------
-	//metodo para crear nuevos servicios y agregarlos a la lista
-	public void crearServicio(String descripcion, String idCiente, Double precio, Integer diasEstimados)throws Excepciones {
-		if(descripcion.compareTo("")!=0 && idCiente.compareTo("")!=0 && precio!=null && diasEstimados!=null){
-		ServicioTecnico a = new ServicioTecnico(descripcion, idCiente, precio, diasEstimados);
-		listaServicios.add(a);
-		escribirArchivoObjeto("ListaServicios.txt", listaServicios);
-		}else{
+
+	// ----------------------------------------------------------------------------------------------------------------
+	// metodo para crear nuevos servicios y agregarlos a la lista
+	public void crearServicio(String descripcion, String idCiente, Double precio, Integer diasEstimados)
+			throws Excepciones {
+		if (descripcion.compareTo("") != 0 && idCiente.compareTo("") != 0 && precio != null && diasEstimados != null) {
+			ServicioTecnico a = new ServicioTecnico(descripcion, idCiente, precio, diasEstimados);
+			listaServicios.add(a);
+			escribirArchivoObjeto("ListaServicios.txt", listaServicios);
+		} else {
 			throw new Excepciones("Todos los campos deben llenarse");
 		}
 	}
-//----------------------------------------------------------------------------------------------------------------
-	//metodo para mostrar servicios de la lista (en consola)
+
+	// ----------------------------------------------------------------------------------------------------------------
+	// metodo para mostrar servicios de la lista (en consola)
 	public ArrayList<ServicioTecnico> mostrarServicios() {
 		ArrayList<ServicioTecnico> lista = leerArchivoObjeto("ListaServicios.txt");
 		return lista;
 	}
-//-----------------------------------------------------------------------------------------------------------------
-	
-	public ArrayList<ServicioTecnico> mostrarServiciosEstado(String estado) {
+	// -----------------------------------------------------------------------------------------------------------------
+
+	public ArrayList<ServicioTecnico> mostrarServiciosEstado(String estado) throws Excepciones {
 		ArrayList<ServicioTecnico> lista = leerArchivoObjeto("ListaServicios.txt");
-		
-		ArrayList<ServicioTecnico> auxiliar = new ArrayList<ServicioTecnico>();
-		
-		for (int i = 0; i < lista.size(); i++) {
-			if(estado.compareTo(lista.get(i).getEstado())==0)
-			{
-				auxiliar.add(lista.get(i));
+		if (lista == null) {
+			throw new Excepciones("No hay servicios en la lista");
+		} else {
+			ArrayList<ServicioTecnico> auxiliar = new ArrayList<ServicioTecnico>();
+
+			for (int i = 0; i < lista.size(); i++) {
+				if (estado.compareTo(lista.get(i).getEstado()) == 0) {
+					auxiliar.add(lista.get(i));
+				}
 			}
+
+			return auxiliar;
 		}
-		return auxiliar;
 	}
 
-	
-//-------------------------------------------------------------------------------------------------------------------
-	//metodo auxiliar de busqueda por indice que es usado por los metodos eliminar y modificar
+	// -------------------------------------------------------------------------------------------------------------------
+	// metodo auxiliar de busqueda por indice que es usado por los metodos
+	// eliminar y modificar
 	public static int buscarServicio(String idServicio) {
 		listaServicios = leerArchivoObjeto("ListaServicios.txt");
 		int indice = 0;
@@ -99,29 +106,35 @@ public class ListaServicios {
 		}
 		return -1;
 	}
-//-------------------------------------------------------------------------------------------------------------------
-	//metodo eliminar servicio de la lista y del fichero ListaServicios.txt
+
+	// -------------------------------------------------------------------------------------------------------------------
+	// metodo eliminar servicio de la lista y del fichero ListaServicios.txt
 	public void eliminarServicio(String idServicio) throws Excepciones {
 
 		ArrayList<ServicioTecnico> auxiliar = new ArrayList<ServicioTecnico>();
-		int posicionEliminar = buscarServicio(idServicio);
-		if (buscarServicio(idServicio) == -1) {
-			throw new Excepciones("el usuario no se encuentra en la lista");
+		if (idServicio.compareTo("") == 0) {
+			throw new Excepciones("El campo de Id no puede estar vacío");
 		} else {
-			for (int i = 0; i < listaServicios.size(); i++) {
-				if (posicionEliminar != i) {
-					auxiliar.add(listaServicios.get(i));
+			int posicionEliminar = buscarServicio(idServicio);
+			if (buscarServicio(idServicio) == -1) {
+				throw new Excepciones("El servicio no se encuentra en la lista");
+			} else {
+				for (int i = 0; i < listaServicios.size(); i++) {
+					if (posicionEliminar != i) {
+						auxiliar.add(listaServicios.get(i));
+					}
 				}
+				listaServicios = auxiliar;
+				File fichero = new File("ListaServicios.txt");
+				fichero.delete();
+				escribirArchivoObjeto("ListaServicios.txt", listaServicios);
 			}
-			listaServicios = auxiliar;
-			File fichero = new File("ListaServicios.txt");
-			fichero.delete();
-			escribirArchivoObjeto("ListaServicios.txt", listaServicios);
 		}
 
 	}
-//--------------------------------------------------------------------------------------------------------------------
-	//metodo para escribir objetos en el fichero
+
+	// --------------------------------------------------------------------------------------------------------------------
+	// metodo para escribir objetos en el fichero
 	public static void escribirArchivoObjeto(String archivo, ArrayList<ServicioTecnico> listaServicios) {
 		FileOutputStream fo = null;
 		ObjectOutputStream oI = null;
@@ -153,8 +166,10 @@ public class ListaServicios {
 			}
 		}
 	}
-//------------------------------------------------------------------------------------------------------------------------------
-	//metodo para crear archivos vacios en caso tal de que la lista no exista (este metodo es escencial al arrancar el programa)
+
+	// ------------------------------------------------------------------------------------------------------------------------------
+	// metodo para crear archivos vacios en caso tal de que la lista no exista
+	// (este metodo es escencial al arrancar el programa)
 	public static void crearArchivo(String archivo, ArrayList<ServicioTecnico> listaServicios) {
 		FileOutputStream fo = null;
 		ObjectOutputStream oI = null;
@@ -180,8 +195,9 @@ public class ListaServicios {
 			}
 		}
 	}
-//--------------------------------------------------------------------------------------------------------------------------
-	//metodo para leer el fichero y pasarlos a la lista
+
+	// --------------------------------------------------------------------------------------------------------------------------
+	// metodo para leer el fichero y pasarlos a la lista
 	public static ArrayList<ServicioTecnico> leerArchivoObjeto(String archivo) {
 		ObjectInputStream oI = null;
 		FileInputStream fI = null;
@@ -212,15 +228,17 @@ public class ListaServicios {
 			return listaServicios;
 		}
 	}
-//-----------------------------------------------------------------------------------------------------------------------------
-	//metodo que genera la fecha actual y le da formato de fecha dd-MM-yyyy
+
+	// -----------------------------------------------------------------------------------------------------------------------------
+	// metodo que genera la fecha actual y le da formato de fecha dd-MM-yyyy
 	public static String getFechaActual() {
 		Date ahora = new Date();
 		SimpleDateFormat formateador = new SimpleDateFormat("dd-MM-yyyy");
 		return formateador.format(ahora);
 	}
-//-----------------------------------------------------------------------------------------------------------------------------
-	//metodo para buscar servicios como objetos
+
+	// -----------------------------------------------------------------------------------------------------------------------------
+	// metodo para buscar servicios como objetos
 	public static ServicioTecnico buscarServicioOb(String idServicio) throws Excepciones {
 		if (listaServicios == null) {
 			throw new Excepciones("la lista de servicios esta vacia");
@@ -235,8 +253,9 @@ public class ListaServicios {
 			throw new Excepciones("El servicio no esta en la lista");
 		}
 	}
-//-----------------------------------------------------------------------------------------------------------------------------
-	//metodo para modificar el estado de los servicios
+
+	// -----------------------------------------------------------------------------------------------------------------------------
+	// metodo para modificar el estado de los servicios
 	public void modificarEstado(String idServicio, String estado) throws Excepciones {
 		int indice = buscarServicio(idServicio);
 		if (buscarServicio(idServicio) == -1) {
@@ -248,8 +267,9 @@ public class ListaServicios {
 			escribirArchivoObjeto("ListaServicios.txt", listaServicios);
 		}
 	}
-//-----------------------------------------------------------------------------------------------------------------------------
-	//metodo main para pruebas internas de la clase
+
+	// -----------------------------------------------------------------------------------------------------------------------------
+	// metodo main para pruebas internas de la clase
 	public static void main(String[] args) {
 		ListaServicios lista = new ListaServicios();
 		lista.mostrarServicios();

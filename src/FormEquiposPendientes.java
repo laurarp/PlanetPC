@@ -103,7 +103,7 @@ public class FormEquiposPendientes extends JFrame {
 						tableModel.addRow(objs);
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "no hay servicios en la lista");
+					//JOptionPane.showMessageDialog(null, "no hay servicios en la lista");
 				}
 				
 				

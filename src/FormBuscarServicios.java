@@ -90,7 +90,7 @@ public class FormBuscarServicios extends JFrame {
 				try {
 					reportes = x.generarReporteServicios((String) cbxParametroBusqueda.getSelectedItem());
 				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, e.getMessage());
+					JOptionPane.showMessageDialog(btnBuscar, e.getMessage());
 				}
 
 				if (reportes != null) {
@@ -107,7 +107,7 @@ public class FormBuscarServicios extends JFrame {
 						tableModel.addRow(objs);
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "no hay servicios en la lista");
+					//JOptionPane.showMessageDialog(null, "No hay servicios en la lista");
 				}
 			}
 		});
