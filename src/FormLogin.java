@@ -31,7 +31,7 @@ import java.awt.event.ActionEvent;
 
 public class FormLogin {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTextField textUsuario;
 	private JPasswordField textContrasena;
 	private ListaActores actores=null;
@@ -134,7 +134,12 @@ public class FormLogin {
 		JButton btnIngresar = new JButton("Ingresar");
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				try {
+					actores.cargarActores();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Error cargando actores");
+				}
 				if(actores!=null)
 				{
 					int i=0;
@@ -176,7 +181,7 @@ public class FormLogin {
 							
 							FormPrincipal principal=new FormPrincipal(a);
 							
-							window.frame.setVisible(false);
+							frame.setVisible(false);
 							
 							principal.getFrame().setVisible(true);
 						}

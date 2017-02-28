@@ -25,6 +25,18 @@ public class ListaActores implements Serializable{
 	public void setActores(ArrayList<Actor> actores) {
 		this.actores = actores;
 	}
+	
+	public  void cargarActores() throws Exception
+	{
+		if(ReadFileActores(ruta)!=null)
+		{
+			this.actores = ReadFileActores(ruta);
+		}
+		else
+		{
+			this.actores =new ArrayList<Actor>();
+		}
+	}
 
 	public ListaActores() throws Exception 
 	{

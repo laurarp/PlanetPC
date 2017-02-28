@@ -15,6 +15,9 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.JButton;
+
+import java.awt.Font;
 
 
 public class FormPrincipal extends JFrame{
@@ -38,7 +41,7 @@ public class FormPrincipal extends JFrame{
 	private void initialize() {
 		setFrame(new JFrame());
 		getFrame().getContentPane().setBackground(Color.WHITE);
-		getFrame().setBounds(100, 100, 509, 245);
+		getFrame().setBounds(100, 100, 509, 276);
 		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getFrame().setResizable(false);
 		getFrame().setBackground(new Color(255, 255, 255));
@@ -52,9 +55,23 @@ public class FormPrincipal extends JFrame{
 		
 		JLabel label = new JLabel("");
 		label.setBackground(new Color(47, 79, 79));
-		label.setBounds(0, 181, 503, 14);
+		label.setBounds(0, 212, 503, 14);
 		label.setOpaque(true);
 		getFrame().getContentPane().add(label);
+		
+		JButton btnCerrarSesin = new JButton("Cerrar sesi\u00F3n");
+		btnCerrarSesin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FormLogin login=new FormLogin();
+				
+				login.frame.setVisible(true);
+				
+				frame.setVisible(false);
+			}
+		});
+		btnCerrarSesin.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		btnCerrarSesin.setBounds(182, 172, 129, 29);
+		frame.getContentPane().add(btnCerrarSesin);
 		
 		JMenuBar menuBar = new JMenuBar();
 		getFrame().setJMenuBar(menuBar);
