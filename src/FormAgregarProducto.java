@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Choice;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -23,7 +24,6 @@ public class FormAgregarProducto extends JFrame {
 	private JPanel contentPane;
 	private JTextField textId;
 	private JTextField textprecioVenta;
-	private JTextField textTipo;
 	private JTextField textGarantia;
 	private JTextField textMarca;
 	private JTextField textModelo;
@@ -74,19 +74,19 @@ public class FormAgregarProducto extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblTipo = new JLabel("Tipo");
-		lblTipo.setBounds(20, 88, 46, 14);
+		lblTipo.setBounds(20, 99, 46, 14);
 		contentPane.add(lblTipo);
 		
 		JLabel lblGarantia = new JLabel("Garantia");
-		lblGarantia.setBounds(20, 113, 46, 14);
+		lblGarantia.setBounds(20, 124, 46, 14);
 		contentPane.add(lblGarantia);
 		
 		JLabel lblMarca = new JLabel("Marca");
-		lblMarca.setBounds(20, 138, 46, 14);
+		lblMarca.setBounds(20, 156, 46, 14);
 		contentPane.add(lblMarca);
 		
 		JLabel lblModelo = new JLabel("Modelo");
-		lblModelo.setBounds(20, 163, 46, 14);
+		lblModelo.setBounds(20, 181, 46, 14);
 		contentPane.add(lblModelo);
 		
 		JLabel lblNewLabel_2 = new JLabel("Agregar Producto");
@@ -104,26 +104,34 @@ public class FormAgregarProducto extends JFrame {
 		contentPane.add(textprecioVenta);
 		textprecioVenta.setColumns(10);
 		
-		textTipo = new JTextField();
-		textTipo.setBounds(76, 85, 86, 20);
-		contentPane.add(textTipo);
-		textTipo.setColumns(10);
-		
 		textGarantia = new JTextField();
 		textGarantia.setText("");
-		textGarantia.setBounds(76, 110, 86, 20);
+		textGarantia.setBounds(76, 124, 86, 20);
 		contentPane.add(textGarantia);
 		textGarantia.setColumns(10);
 		
 		textMarca = new JTextField();
-		textMarca.setBounds(76, 135, 86, 20);
+		textMarca.setBounds(76, 153, 86, 20);
 		contentPane.add(textMarca);
 		textMarca.setColumns(10);
 		
 		textModelo = new JTextField();
-		textModelo.setBounds(76, 160, 86, 20);
+		textModelo.setBounds(76, 178, 86, 20);
 		contentPane.add(textModelo);
 		textModelo.setColumns(10);
+		
+		Choice choiceTipo = new Choice();
+		choiceTipo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		choiceTipo.addItem("PC");
+		choiceTipo.addItem("Portatil");
+		choiceTipo.addItem("Software");
+		choiceTipo.addItem("Tablet");
+		choiceTipo.addItem("Accesorio");
+		choiceTipo.addItem("Monitor");
+		choiceTipo.addItem("Impresora");
+		choiceTipo.setBounds(76, 88, 86, 13);
+		contentPane.add(choiceTipo);
+		
 		String titulos[] = { "Id ", "Precio", "Tipo", "Garantia", "Marca",
 		"Modelo" };
 		DefaultTableModel tableModel = new DefaultTableModel(titulos, 0);
@@ -152,10 +160,9 @@ public class FormAgregarProducto extends JFrame {
 					}
 				if (intentar == true){
 					try{
-						auxiliar.ingresarProductoCatalogo(textId.getText(), pv, textTipo.getText(), dg,textMarca.getText(),textModelo.getText());
+						auxiliar.ingresarProductoCatalogo(textId.getText(), pv, choiceTipo.getSelectedItem(), dg,textMarca.getText(),textModelo.getText());
 						textId.setText("");
 						textprecioVenta.setText("");
-						textTipo.setText("");
 						textGarantia.setText("");
 						textMarca.setText("");
 						textModelo.setText("");
@@ -170,7 +177,7 @@ public class FormAgregarProducto extends JFrame {
 	
 			}
 		});
-		btnNewButton.setBounds(30, 188, 89, 23);
+		btnNewButton.setBounds(30, 222, 89, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Cerrar");
