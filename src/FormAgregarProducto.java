@@ -150,6 +150,7 @@ public class FormAgregarProducto extends JFrame {
 				boolean intentar = true;
 				boolean intentar2 = true;
 				boolean intentar3=true;
+				boolean intentar4=true;
 				if (textId.getText().isEmpty()){
 					intentar3 = false;
 					JOptionPane.showMessageDialog(contentPane, "Por favor ingrese al menos un Id");
@@ -170,29 +171,31 @@ public class FormAgregarProducto extends JFrame {
 							intentar = false;
 							  JOptionPane.showMessageDialog(contentPane, "Precio debe ser numero entero positivo");
 							  textprecioVenta.setText("");
+							  
 						}
 					}catch (NumberFormatException e){
 						  intentar = false;
-						  JOptionPane.showMessageDialog(contentPane, "Precio debe ser numero entero positivo");
+						  JOptionPane.showMessageDialog(contentPane, "Precio debe ser numero entero");
 						  textprecioVenta.setText("");
 					}
 				}
 				if (!textGarantia.getText().isEmpty()){
 					try{
-						pv = Integer.parseInt(textGarantia.getText());
+						dg = Integer.parseInt(textGarantia.getText());
 						intentar = true;
-						if (pv<0){
+						if (dg<0){
 							intentar = false;
 							  JOptionPane.showMessageDialog(contentPane, "Garantia debe ser numero entero positivo");
 							  textGarantia.setText("");
+							  
 						}
 					}catch (NumberFormatException e){
 						  intentar = false;
-						  JOptionPane.showMessageDialog(contentPane, "Garantia debe ser numero entero positivo");
+						  JOptionPane.showMessageDialog(contentPane, "Garantia debe ser numero entero");
 						  textGarantia.setText("");
 					}
 				}
-				if (intentar == true && intentar2==true && intentar3 == true){
+				if (intentar == true && intentar2==true && intentar3 == true && intentar4==true){
 					try{
 						auxiliar.ingresarProductoCatalogo(textId.getText(), pv, choiceTipo.getSelectedItem(), dg,textMarca.getText(),textModelo.getText());
 						textId.setText("");
