@@ -71,8 +71,15 @@ public class AsesorVentas extends Actor implements Serializable{
 	
 	public void registarVenta(String idProducto, String idCliente, String idVendedor, String Cantidad) throws Exception
 	{
-		inventario.anadirCantidad(productos.buscarProducto(idProducto), Integer.parseInt(Cantidad));
-		listaVentas.anadirVenta(productos.buscarProducto(idProducto), idCliente, idVendedor, Integer.parseInt(Cantidad));	
+		if(Integer.parseInt(Cantidad)>=0)
+		{
+			inventario.anadirCantidad(productos.buscarProducto(idProducto), Integer.parseInt(Cantidad));
+			listaVentas.anadirVenta(productos.buscarProducto(idProducto), idCliente, idVendedor, Integer.parseInt(Cantidad));	
+		}
+		else
+		{
+			throw new Exception("No se puede registrar una venta con cantidades negativas");
+		}
 	}
 	
 	public static void main(String[] args) {

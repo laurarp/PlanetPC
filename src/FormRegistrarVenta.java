@@ -92,6 +92,9 @@ public class FormRegistrarVenta extends JFrame{
 				try 
 				{
 					asesorVentas.registarVenta(textIdProducto.getText(), textIdCliente.getText(), asesorVentas.getId(), textCantidad.getText());
+					textIdProducto.setText("");
+					textIdCliente.setText("");
+					textCantidad.setText("");
 					JOptionPane.showMessageDialog(null, "Venta creada correctamente");
 				} 
 				catch (Exception e1) {
