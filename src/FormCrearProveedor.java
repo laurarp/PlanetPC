@@ -66,7 +66,7 @@ public class FormCrearProveedor extends JFrame {
 		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					if (textField.getText()==null||textField_1.getText()==null){
+					if (textField.getText().isEmpty()||textField_1.getText().isEmpty()){
 						JOptionPane.showMessageDialog(null, "Rellene todos los campos");
 					}else{
 					Admin.crearProveedor(textField.getText(), textField_1.getText());
