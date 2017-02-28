@@ -29,7 +29,7 @@ public class FormUbicarProducto extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -40,12 +40,19 @@ public class FormUbicarProducto extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
+	 * @param actor 
 	 */
-	public FormUbicarProducto() {
+	public FormUbicarProducto(Actor actor) {
+		try {
+			auxiliar = new AuxiliarAlmacenamiento(actor.getId(), actor.getNombre(), actor.getContrasena());
+		} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(contentPane, e2.getMessage());
+		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 559, 549);
 		contentPane = new JPanel();

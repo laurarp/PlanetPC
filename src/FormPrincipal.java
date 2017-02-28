@@ -140,10 +140,24 @@ public class FormPrincipal extends JFrame{
 				
 				JMenuItem mntmModificarProducto = new JMenuItem("Modificar producto");
 				mnCatlogo.add(mntmModificarProducto);
+				mntmModificarProducto.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						FormModificarProducto modificarProducto= new FormModificarProducto(actor);
+						modificarProducto.setVisible(true);
+					}
+				});
 				
 				
 				JMenuItem mntmEliminarProducto = new JMenuItem("Eliminar producto");
 				mnCatlogo.add(mntmEliminarProducto);
+				mntmEliminarProducto.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						FormEliminarProducto eliminarProducto= new FormEliminarProducto(actor);
+						eliminarProducto.setVisible(true);
+					}
+				});
 			}
 		}
 		
@@ -229,12 +243,26 @@ public class FormPrincipal extends JFrame{
 			{
 				JMenuItem mntmBuscarProducto = new JMenuItem("Buscar producto");
 				mnInventario.add(mntmBuscarProducto);
+				mntmBuscarProducto.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						FormBuscarProducto buscarProducto= new FormBuscarProducto(actor);
+						buscarProducto.getFrame().setVisible(true);
+					}
+				});
 			}
 			
 			if(actor.getClass().getName().compareTo("AuxiliarAlmacenamiento")==0)
 			{
 				JMenuItem mntmUbicarProducto = new JMenuItem("Ubicar producto");
 				mnInventario.add(mntmUbicarProducto);
+				mntmUbicarProducto.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						FormUbicarProducto ubicarProducto= new FormUbicarProducto(actor);
+						ubicarProducto.setVisible(true);
+					}
+				});
 			}
 			
 			if(actor.getClass().getName().compareTo("Administrador")==0 || actor.getClass().getName().compareTo("JefeBodega")==0)

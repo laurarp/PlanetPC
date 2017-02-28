@@ -36,7 +36,7 @@ public class FormBuscarProducto extends JFrame{
 				FormBuscarProducto form = new FormBuscarProducto(new Administrador("1","Laura","23"));
 
 
-				form.frame.setVisible(true);
+				form.getFrame().setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -65,11 +65,11 @@ public class FormBuscarProducto extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(255, 255, 255));
-		frame.setBounds(100, 100, 372, 350);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setFrame(new JFrame());
+		getFrame().getContentPane().setBackground(new Color(255, 255, 255));
+		getFrame().setBounds(100, 100, 372, 350);
+		getFrame().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		getFrame().getContentPane().setLayout(null);
 		
 		Choice chProductos = new Choice();
 		chProductos.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -77,31 +77,31 @@ public class FormBuscarProducto extends JFrame{
 			chProductos.addItem(listaProductos.mostrarProductos().get(i).getTipo()+" / "+listaProductos.mostrarProductos().get(i).getMarca()+" / "+listaProductos.mostrarProductos().get(i).getModelo());
 		}
 		chProductos.setBounds(117, 109, 201, 22);
-		frame.getContentPane().add(chProductos);
+		getFrame().getContentPane().add(chProductos);
 		
 		Label label = new Label("Producto");
 		label.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		label.setBounds(29, 109, 62, 22);
-		frame.getContentPane().add(label);
+		getFrame().getContentPane().add(label);
 		
 		String titulos[] = { "Ubicacion", "Cantidad", "Valor", "Garantia" };
 		DefaultTableModel tableModel = new DefaultTableModel(titulos, 0);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(29, 204, 289, 70);
-		frame.getContentPane().add(scrollPane);		
+		getFrame().getContentPane().add(scrollPane);		
 		table = new JTable(tableModel);
 		scrollPane.setViewportView(table);
 		
 		JLabel lblIdProducto = new JLabel("Id Producto");
 		lblIdProducto.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblIdProducto.setBounds(29, 73, 124, 14);
-		frame.getContentPane().add(lblIdProducto);
+		getFrame().getContentPane().add(lblIdProducto);
 		
 		textIdProducto = new JTextField();
 		textIdProducto.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		textIdProducto.setBounds(117, 70, 201, 20);
-		frame.getContentPane().add(textIdProducto);
+		getFrame().getContentPane().add(textIdProducto);
 		textIdProducto.setColumns(10);
 		
 		JButton btnBuscar = new JButton("Buscar");
@@ -137,12 +137,22 @@ public class FormBuscarProducto extends JFrame{
 			}
 		});
 		btnBuscar.setBounds(117, 156, 89, 23);
-		frame.getContentPane().add(btnBuscar);
+		getFrame().getContentPane().add(btnBuscar);
 		
 		JLabel lblBuscarProducto = new JLabel("Buscar Producto");
 		lblBuscarProducto.setFont(new Font("Segoe UI", Font.BOLD, 24));
 		lblBuscarProducto.setBounds(29, 22, 244, 30);
-		frame.getContentPane().add(lblBuscarProducto);
+		getFrame().getContentPane().add(lblBuscarProducto);
 		
+	}
+
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
 	}
 }

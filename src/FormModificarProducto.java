@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.Color;
 
 
 public class FormModificarProducto extends JFrame {
@@ -42,7 +43,7 @@ public class FormModificarProducto extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -54,15 +55,23 @@ public class FormModificarProducto extends JFrame {
 				
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
+	 * @param actor 
 	 */
-	public FormModificarProducto() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public FormModificarProducto(Actor actor) {
+		try {
+			auxiliar = new AuxiliarAlmacenamiento(actor.getId(), actor.getNombre(), actor.getContrasena());
+		} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(contentPane, e2.getMessage());
+		}
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 667, 573);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -81,12 +90,6 @@ public class FormModificarProducto extends JFrame {
 		DefaultTableModel tableModel = new DefaultTableModel(titulos, 0);
 		table = new JTable(tableModel);
 		scrollPane.setViewportView(table);
-		try {
-			auxiliar = new AuxiliarAlmacenamiento("1004s","Pepito","pepito1309");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		JButton btnSeleccionar = new JButton("Mostrar");
 		btnSeleccionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -149,6 +152,7 @@ public class FormModificarProducto extends JFrame {
 		textField_3.setColumns(10);
 		
 		textField_4 = new JTextField();
+		textField_4.setBackground(Color.WHITE);
 		textField_4.setBounds(384, 411, 86, 20);
 		contentPane.add(textField_4);
 		textField_4.setColumns(10);

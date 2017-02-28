@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.Color;
 
 public class FormEliminarProducto extends JFrame {
 
@@ -27,7 +28,7 @@ public class FormEliminarProducto extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -39,15 +40,22 @@ public class FormEliminarProducto extends JFrame {
 				
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
 	 */
-	public FormEliminarProducto() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public FormEliminarProducto(Actor actor) {
+		try {
+			auxiliar = new AuxiliarAlmacenamiento(actor.getId(), actor.getNombre(), actor.getContrasena());
+		} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(contentPane, e2.getMessage());
+		}
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 734, 568);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
