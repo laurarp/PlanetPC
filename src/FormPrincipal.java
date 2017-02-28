@@ -230,6 +230,13 @@ public class FormPrincipal extends JFrame{
 			{
 				JMenuItem mntmBuscarProducto = new JMenuItem("Buscar producto");
 				mnInventario.add(mntmBuscarProducto);
+				mntmBuscarProducto.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						FormBuscarProducto buscarProducto= new FormBuscarProducto(actor);
+						buscarProducto.getFrame().setVisible(true);
+					}
+				});
 			}
 			
 			if(actor.getClass().getName().compareTo("AuxiliarAlmacenamiento")==0)
