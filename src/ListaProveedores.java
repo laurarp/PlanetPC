@@ -60,7 +60,7 @@ public class ListaProveedores implements Serializable {
 			}
 		}
 	}
-
+	
 	public int buscarProveedor(String id) {
 		listaProveedores = ReadFileProveedores("ListaProveedores.txt");
 		int indice = 0;

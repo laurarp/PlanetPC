@@ -31,7 +31,7 @@ public class FormRegistrarPedido extends JFrame {
 			initialize();
 		} 
 		catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			JOptionPane.showMessageDialog(null, ("no se encuentra en la lista"));
 		}
 	}
 
@@ -90,14 +90,14 @@ public class FormRegistrarPedido extends JFrame {
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if (textField.getText()==null||textField_1.getText()==null||textField_2.getText()==null||textField_3.getText()==null){
+					if (textField.getText().isEmpty()||textField_1.getText().isEmpty()||textField_2.getText().isEmpty()||textField_3.getText().isEmpty()){
 						JOptionPane.showMessageDialog(null, "El campo esta vacio");
 					}else{
 					jefazo.registrarPedido(textField.getText(), textField_1.getText(), Integer.parseInt(textField_2.getText()), Integer.parseInt(textField_3.getText()), "Pendiente");
 					}
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null, e1.getMessage());
+					JOptionPane.showMessageDialog(null, ("no se pudo registrar el pedido"));
 				}
 			}
 		});
