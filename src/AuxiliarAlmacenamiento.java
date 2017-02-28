@@ -41,13 +41,22 @@ public class AuxiliarAlmacenamiento extends Actor implements Serializable{
 		int indiceUbicar = catalogo.buscarCatalogo(id);
 		if (indiceUbicar == -1)
 		{
-			throw new Exception("el usuario no se encuentra en la lista");
+			throw new Exception("el producto no se encuentra en el catalogo");
 		}
 		else
 		{
-			Producto x = new Producto(catalogo.getProductos().get(indiceUbicar),cantidad, ubicacion);
-			inventario.getListaProductos().add(x);
-			inventario.WriteFileInventario("Inventario.txt", inventario.getListaProductos());
+			try
+			{
+				Producto p = inventario.buscarProducto(id, "", "", "");
+				inventario.getListaProductos().get(indiceUbicar).setCantidad(inventario.getListaProductos().get(indiceUbicar).getCantidad()+cantidad);
+				inventario.WriteFileInventario("Inventario.txt", inventario.getListaProductos());
+			}catch(Exception e)
+			{
+				Producto x = new Producto(catalogo.getProductos().get(indiceUbicar),cantidad, ubicacion);
+				inventario.getListaProductos().add(x);
+				inventario.WriteFileInventario("Inventario.txt", inventario.getListaProductos());		
+			}
+			
 		}
 	}
 	public ArrayList<Producto> mostrarInventario() throws Exception {

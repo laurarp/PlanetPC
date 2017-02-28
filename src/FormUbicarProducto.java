@@ -53,7 +53,7 @@ public class FormUbicarProducto extends JFrame {
 			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(contentPane, e2.getMessage());
 		}
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 559, 549);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

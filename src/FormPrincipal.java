@@ -265,7 +265,7 @@ public class FormPrincipal extends JFrame{
 				});
 			}
 			
-			if(actor.getClass().getName().compareTo("Administrador")==0 || actor.getClass().getName().compareTo("JefeBodega")==0)
+			if(actor.getClass().getName().compareTo("Administrador")==0 || actor.getClass().getName().compareTo("JefeBodega")==0 || actor.getClass().getName().compareTo("AuxiliarAlmacenamiento")==0 )
 			{
 				JMenuItem mntmReporteInventarioActual = new JMenuItem("Reporte inventario actual");
 				mnInventario.add(mntmReporteInventarioActual);
