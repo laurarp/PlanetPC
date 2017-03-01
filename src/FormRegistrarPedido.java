@@ -8,18 +8,20 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.Choice;
 import java.awt.Color;
 
 public class FormRegistrarPedido extends JFrame {
 
 	private JFrame frmRegistrarPedido;
-	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JButton btnRegistrar;
 	private JefeBodega jefazo;
 	private JLabel lblRegistrarPedido;
+	private ListaDescProducto listaProductos;
+	private AsesorVentas asesorVentas;
 
 	/**
 	 * Create the application.
@@ -27,6 +29,8 @@ public class FormRegistrarPedido extends JFrame {
 	public FormRegistrarPedido(Actor actor) {
 		try 
 		{
+			asesorVentas = new AsesorVentas(actor.getId(), actor.getNombre(), actor.getContrasena());
+			listaProductos=new ListaDescProducto();
 			jefazo = new JefeBodega(actor.getId(),actor.getNombre(),actor.getContrasena());
 			initialize();
 		} 
@@ -42,47 +46,50 @@ public class FormRegistrarPedido extends JFrame {
 		frmRegistrarPedido = new JFrame();
 		frmRegistrarPedido.getContentPane().setBackground(Color.WHITE);
 		frmRegistrarPedido.getContentPane().setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		frmRegistrarPedido.setBounds(100, 100, 521, 367);
+		frmRegistrarPedido.setBounds(100, 100, 521, 325);
 		frmRegistrarPedido.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmRegistrarPedido.getContentPane().setLayout(null);
+		
+		Choice chProductos = new Choice();
+		chProductos.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		for (int i = 0; i < listaProductos.mostrarProductos().size(); i++) {
+			chProductos.addItem(listaProductos.mostrarProductos().get(i).getId()+" / "+listaProductos.mostrarProductos().get(i).getTipo()+" / "+listaProductos.mostrarProductos().get(i).getMarca()+" / "+listaProductos.mostrarProductos().get(i).getModelo());
+		}
+		chProductos.setBounds(123, 79, 201, 22);
+		frmRegistrarPedido.getContentPane().add(chProductos);
 		
 		JLabel lblDescripcionProducto = new JLabel("Id producto");
 		lblDescripcionProducto.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblDescripcionProducto.setBounds(15, 79, 156, 20);
 		frmRegistrarPedido.getContentPane().add(lblDescripcionProducto);
 		
-		textField = new JTextField();
-		textField.setBounds(15, 115, 464, 57);
-		frmRegistrarPedido.getContentPane().add(textField);
-		textField.setColumns(10);
-		
 		JLabel lblIdProveedor = new JLabel("Id proveedor");
 		lblIdProveedor.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		lblIdProveedor.setBounds(15, 188, 118, 20);
+		lblIdProveedor.setBounds(15, 126, 118, 20);
 		frmRegistrarPedido.getContentPane().add(lblIdProveedor);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(15, 224, 146, 26);
+		textField_1.setBounds(15, 162, 146, 26);
 		frmRegistrarPedido.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
 		JLabel lblCantidad = new JLabel("Cantidad");
 		lblCantidad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		lblCantidad.setBounds(204, 188, 84, 20);
+		lblCantidad.setBounds(189, 126, 84, 20);
 		frmRegistrarPedido.getContentPane().add(lblCantidad);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(204, 224, 84, 26);
+		textField_2.setBounds(189, 162, 84, 26);
 		frmRegistrarPedido.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 		
 		JLabel lblPrecioCompra = new JLabel("Precio compra");
 		lblPrecioCompra.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		lblPrecioCompra.setBounds(340, 188, 139, 20);
+		lblPrecioCompra.setBounds(333, 126, 139, 20);
 		frmRegistrarPedido.getContentPane().add(lblPrecioCompra);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(333, 224, 146, 26);
+		textField_3.setBounds(333, 162, 146, 26);
 		frmRegistrarPedido.getContentPane().add(textField_3);
 		textField_3.setColumns(10);
 		
@@ -90,10 +97,13 @@ public class FormRegistrarPedido extends JFrame {
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if (textField.getText().isEmpty()||textField_1.getText().isEmpty()||textField_2.getText().isEmpty()||textField_3.getText().isEmpty()){
+					if (textField_1.getText().isEmpty()||textField_2.getText().isEmpty()||textField_3.getText().isEmpty()){
 						JOptionPane.showMessageDialog(null, "El campo esta vacio");
 					}else{
-					jefazo.registrarPedido(textField.getText(), textField_1.getText(), Integer.parseInt(textField_2.getText()), Integer.parseInt(textField_3.getText()), "Pendiente");
+						String delimiter = " / ";
+						String[] temp;
+						temp = chProductos.getSelectedItem().split(delimiter);
+					jefazo.registrarPedido(temp[0], textField_1.getText(), Integer.parseInt(textField_2.getText()), Integer.parseInt(textField_3.getText()), "Pendiente");
 					JOptionPane.showMessageDialog(null, ("pedido registrado exitosamente"));
 					}
 				} catch (Exception e1) {
@@ -102,7 +112,7 @@ public class FormRegistrarPedido extends JFrame {
 				}
 			}
 		});
-		btnRegistrar.setBounds(189, 266, 115, 29);
+		btnRegistrar.setBounds(189, 214, 115, 29);
 		frmRegistrarPedido.getContentPane().add(btnRegistrar);
 		
 		lblRegistrarPedido = new JLabel("Registrar pedido");
