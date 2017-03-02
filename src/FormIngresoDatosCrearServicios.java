@@ -98,7 +98,7 @@ public class FormIngresoDatosCrearServicios extends JFrame {
 				try {
 					auxiliar.ingresarServicio(txtDescripcion.getText(), txtIdCliente.getText(), Double.parseDouble(txtPrecio.getText()),Integer.parseInt(txtDiasEstimados.getText()));
 				} catch (NumberFormatException e) {
-					
+					JOptionPane.showMessageDialog(btnCargarServicio, "Error al cargar datos");
 					JOptionPane.showMessageDialog(btnCargarServicio, "Todos los campos deben llenarse");
 				} catch (Excepciones e) {
 					
