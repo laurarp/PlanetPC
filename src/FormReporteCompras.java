@@ -45,7 +45,7 @@ public class FormReporteCompras {
 		
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 809, 391);
+		frame.setBounds(100, 100, 809, 569);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -54,12 +54,12 @@ public class FormReporteCompras {
 		DefaultTableModel tableModel = new DefaultTableModel(titulos, 0);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(26, 69, 737, 210);
+		scrollPane.setBounds(36, 69, 720, 374);
 		frame.getContentPane().add(scrollPane);
 		table = new JTable(tableModel);
 		scrollPane.setViewportView(table);
 		
-		JButton btnConsultar = new JButton("Consultar");
+		JButton btnConsultar = new JButton("Generar");
 		btnConsultar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -126,12 +126,12 @@ public class FormReporteCompras {
 				}
 			}
 		});
-		btnConsultar.setBounds(26, 302, 116, 23);
+		btnConsultar.setBounds(324, 472, 145, 23);
 		frame.getContentPane().add(btnConsultar);
 		
 		lblReporteCompras = new JLabel("Reporte compras");
 		lblReporteCompras.setFont(new Font("Segoe UI", Font.BOLD, 24));
-		lblReporteCompras.setBounds(26, 22, 214, 31);
+		lblReporteCompras.setBounds(37, 25, 214, 31);
 		frame.getContentPane().add(lblReporteCompras);
 	}
 

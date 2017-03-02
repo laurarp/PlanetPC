@@ -44,40 +44,40 @@ public class FormCrearUsuario {
 	 */
 	private void initialize() {
 		setFrame(new JFrame());
-		getFrame().setBounds(100, 100, 415, 276);
+		getFrame().setBounds(100, 100, 415, 331);
 		getFrame().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getFrame().getContentPane().setLayout(null);
 		
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		lblNombre.setBounds(31, 67, 92, 14);
+		lblNombre.setBounds(34, 73, 92, 14);
 		getFrame().getContentPane().add(lblNombre);
 		
 		textNombre = new JTextField();
 		textNombre.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		textNombre.setBounds(145, 64, 223, 20);
+		textNombre.setBounds(132, 73, 223, 20);
 		getFrame().getContentPane().add(textNombre);
 		textNombre.setColumns(10);
 		
 		JLabel lblCedula = new JLabel("Cedula");
 		lblCedula.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		lblCedula.setBounds(31, 92, 92, 14);
+		lblCedula.setBounds(34, 110, 92, 14);
 		getFrame().getContentPane().add(lblCedula);
 		
 		textCedula = new JTextField();
 		textCedula.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		textCedula.setBounds(145, 91, 223, 20);
+		textCedula.setBounds(132, 110, 223, 20);
 		getFrame().getContentPane().add(textCedula);
 		textCedula.setColumns(10);
 		
 		JLabel lblContrasena = new JLabel("Contrase\u00F1a");
 		lblContrasena.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		lblContrasena.setBounds(31, 123, 92, 14);
+		lblContrasena.setBounds(34, 150, 92, 14);
 		getFrame().getContentPane().add(lblContrasena);
 		
 		contrasena = new JPasswordField();
 		contrasena.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		contrasena.setBounds(145, 122, 223, 20);
+		contrasena.setBounds(132, 152, 223, 20);
 		getFrame().getContentPane().add(contrasena);
 		
 		Choice choiceTipo = new Choice();
@@ -87,12 +87,12 @@ public class FormCrearUsuario {
 		choiceTipo.addItem("Auxiliar de almacenamiento");
 		choiceTipo.addItem("Auxiliar de servicio técnico");
 		choiceTipo.addItem("Asistente de compras y ventas");
-		choiceTipo.setBounds(145, 148, 223, 22);
+		choiceTipo.setBounds(132, 191, 223, 22);
 		getFrame().getContentPane().add(choiceTipo);
 		
 		JLabel lblTipo = new JLabel("Tipo");
 		lblTipo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		lblTipo.setBounds(31, 154, 108, 14);
+		lblTipo.setBounds(34, 194, 108, 14);
 		getFrame().getContentPane().add(lblTipo);
 		
 		JButton btnCrear = new JButton("Crear");
@@ -113,7 +113,7 @@ public class FormCrearUsuario {
 				}
 			}
 		});
-		btnCrear.setBounds(145, 184, 128, 23);
+		btnCrear.setBounds(132, 239, 128, 23);
 		getFrame().getContentPane().add(btnCrear);
 		
 		JLabel lblCrearUsuario = new JLabel("Crear usuario");

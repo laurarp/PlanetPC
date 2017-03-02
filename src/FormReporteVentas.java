@@ -62,7 +62,7 @@ public class FormReporteVentas {
 	 */
 	private void initialize() {
 		setFrame(new JFrame());
-		getFrame().setBounds(100, 100, 623, 367);
+		getFrame().setBounds(100, 100, 623, 525);
 		getFrame().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getFrame().getContentPane().setLayout(null);
 		
@@ -71,12 +71,12 @@ public class FormReporteVentas {
 		DefaultTableModel tableModel = new DefaultTableModel(titulos, 0);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(25, 71, 550, 183);
+		scrollPane.setBounds(25, 71, 550, 339);
 		getFrame().getContentPane().add(scrollPane);
 		table = new JTable(tableModel);
 		scrollPane.setViewportView(table);
 		
-		JButton btnConsultar = new JButton("Consultar");
+		JButton btnConsultar = new JButton("Generar");
 		btnConsultar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -122,7 +122,7 @@ public class FormReporteVentas {
 			}
 		});
 		
-		btnConsultar.setBounds(25, 277, 112, 23);
+		btnConsultar.setBounds(243, 436, 112, 23);
 		getFrame().getContentPane().add(btnConsultar);
 		
 		lblReporteVentas = new JLabel("Reporte ventas");

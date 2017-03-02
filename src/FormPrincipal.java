@@ -41,7 +41,7 @@ public class FormPrincipal extends JFrame{
 	private void initialize() {
 		setFrame(new JFrame());
 		getFrame().getContentPane().setBackground(Color.WHITE);
-		getFrame().setBounds(100, 100, 509, 276);
+		getFrame().setBounds(100, 100, 509, 284);
 		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getFrame().setResizable(false);
 		getFrame().setBackground(new Color(255, 255, 255));
@@ -55,7 +55,7 @@ public class FormPrincipal extends JFrame{
 		
 		JLabel label = new JLabel("");
 		label.setBackground(new Color(47, 79, 79));
-		label.setBounds(0, 212, 503, 14);
+		label.setBounds(0, 220, 503, 14);
 		label.setOpaque(true);
 		getFrame().getContentPane().add(label);
 		
