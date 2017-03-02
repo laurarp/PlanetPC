@@ -13,7 +13,7 @@ public class ListaDescProducto implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -5371723452641887410L;
-	private static ArrayList<DescripcionProducto> productos = new ArrayList<DescripcionProducto>();
+	private ArrayList<DescripcionProducto> productos = new ArrayList<DescripcionProducto>();
 	
 	public ListaDescProducto() throws Exception {
 		super();
@@ -173,7 +173,7 @@ public class ListaDescProducto implements Serializable{
 			return lista;
 	}
 
-	public static int buscarCatalogo(String id) {
+	public int buscarCatalogo(String id) {
 		int indice = 0;
 		while (indice < productos.size()) {
 			if (id.compareTo(productos.get(indice).getId())==0) {
@@ -184,12 +184,14 @@ public class ListaDescProducto implements Serializable{
 		}
 		return -1;
 	}
-	public static ArrayList<DescripcionProducto> getProductos() {
+	
+
+	public ArrayList<DescripcionProducto> getProductos() {
 		return productos;
 	}
 
-	public static void setProductos(ArrayList<DescripcionProducto> productos) {
-		ListaDescProducto.productos = productos;
+	public void setProductos(ArrayList<DescripcionProducto> productos) {
+		this.productos = productos;
 	}
 
 	public void nuevoProducto(String id, int precioVenta, String tipo, int diasGarantia, String marca, String modelo) {
